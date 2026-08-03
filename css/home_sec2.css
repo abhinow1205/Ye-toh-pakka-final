@@ -47,7 +47,10 @@
 
 /* Base Card Styles */
 .mat {
-  background-color: #cecccc;
+  /* background-color: #cecccc; */
+  background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
   border-radius: 16px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 12px rgba(233, 231, 231, 0.05);
@@ -58,7 +61,16 @@
 
 /* Upper Half Section */
 .sec2_upper_half {
-  background-color: #919191; /* Subtle contrasting upper background */
+  background: linear-gradient(
+        135deg,
+        rgba(0, 254, 252, 0.08),
+        rgba(203, 108, 230, 0.08)
+    );
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   padding: 1.5rem;
   border-bottom: 1px solid #e2e8f0; /* Horizontal divider between top and bottom halves */
 }
@@ -138,7 +150,7 @@
 .ring-num {
   font-weight: 700;
   font-size: 1.1rem;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .ring-label {
