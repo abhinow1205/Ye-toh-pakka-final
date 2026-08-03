@@ -12,6 +12,7 @@
   .accordion {
     width: 100%;
     border-top: 1px solid var(--line);
+    z-index: 1;
   }
 
   .accordion-item {
