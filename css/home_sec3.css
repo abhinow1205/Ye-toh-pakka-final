@@ -1,0 +1,50 @@
+  /* ===== Horizontal pin gallery ===== */
+
+  .s3_content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 340px;
+    text-align: left;
+    margin-bottom: 2rem;
+
+  }
+
+  .h-scroll-section {
+    max-width: none;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .h-track {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    gap: 2rem;
+    padding-left: 8vw;
+    width: max-content;
+  }
+
+  .h-card {
+    width: 340px;
+    height: 420px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(160deg, var(--card), var(--panel));
+    border: 1px solid var(--line);
+  }
+
+  .h-card .num {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: auto;
+  }
+
+  .h-card h3 { margin: 0 0 0.4rem; font-size: 1.3rem; }
+  .h-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }

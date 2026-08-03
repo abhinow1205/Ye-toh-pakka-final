@@ -1,0 +1,877 @@
+/* PRIMARY BUTTONS */
+
+/* Small Button */
+.primary_small_button {
+    color: rgb(0, 0, 0);
+    padding: 6px 12px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+/* Medium Button */
+.primary_medium_button {
+    color: rgb(0, 0, 0);
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Large Button */
+.primary_large_button {
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+/* Gradient Background Move */
+#bg_gradient_move {
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary),
+        var(--color-primary)
+    );
+    border: none;
+    background-size: 200% 200%;
+    background-position: left center;
+
+    transition: background-position 0.4s ease;
+}
+
+#bg_gradient_move:hover {
+
+  background-position: right center;
+
+}
+
+
+/* Button Moves Up */
+#button_moves-up {
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#button_moves-up:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+
+/* Button Moves Up & Shadow Appears */
+#button_moves-glow {
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    border: none;
+    transition: all 0.35s ease;
+}
+
+#button_moves-glow:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+
+    box-shadow:
+        0 10px 25px rgba(92, 225, 230, 0.25),
+        0 0 30px rgba(203, 108, 230, 0.35);
+}
+
+
+/* Border Appears & Button Moves Up */
+#border_moves-up {
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    border: 2px solid transparent;
+
+    transition: all 0.3s ease;
+}
+
+#border_moves-up:hover {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 12px rgba(0, 254, 252, 0.45);
+    transform: translateY(-2px);
+}
+
+/* _____________Secondary Buttons_______________________________________________ */
+
+/* Small Button */
+.secondary_small_button {
+    color: rgb(248, 248, 248);
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 9999px;
+}
+
+/* Medium Button */
+.secondary_medium_button {
+    color: rgb(255, 255, 255);
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 9999px;
+}
+
+/* Large Button */
+.secondary_large_button {
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 9999px;
+}
+
+
+/* Animated Gradient Border */
+
+#ani_gradient_border{
+    position:relative;
+    background:#0b0f1a;
+    border:none;
+    overflow:hidden;
+}
+
+#ani_gradient_border::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    padding:2px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-secondary),
+        var(--color-primary)
+    );
+
+    background-size:300% 100%;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+            mask-composite:exclude;
+
+    z-index:-1;
+
+}
+
+#ani_gradient_border:hover::before{
+
+    animation:borderMove 2s linear infinite;
+
+}
+
+@keyframes borderMove{
+
+    from{
+
+        background-position:0% 50%;
+
+    }
+
+    to{
+
+        background-position:300% 50%;
+
+    }
+
+}
+
+#ani_gradient_border:hover{
+
+    color:var(--color-secondary);
+
+}
+
+
+
+
+/* Minimal Outlined Button */
+#minimal_outline {
+    position: relative;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.15);
+    transition: all 0.35s ease;
+}
+
+#minimal_outline:hover{
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 18px rgba(0,254,252,.15);
+}
+
+/* Glass Button */
+#glass_button{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.15);
+    transition:.35s ease;
+}
+
+#glass_button:hover{
+
+    background:rgba(255,255,255,.08);
+
+    border-color:var(--color-primary);
+
+    transform:translateY(-2px);
+
+}
+
+/* Fill Animation */
+#fill_ani_button{
+    position:relative;
+    overflow:hidden;
+    background:transparent;
+    border:2px solid var(--color-primary);
+    transition:.3s;
+}
+
+#fill_ani_button::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    transform:scaleX(0);
+
+    transform-origin:left;
+
+    transition:.35s ease;
+
+    z-index:-1;
+
+}
+
+#fill_ani_button:hover::after{
+
+    transform:scaleX(1);
+
+}
+
+#fill_ani_button:hover{
+
+    color:black;
+
+}
+
+/* Underline Sweep */
+#underline_sweep_button{
+    position:relative;
+    background:none;
+    border:none;
+}
+
+#underline_sweep_button::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    width:0;
+
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    transition:.35s;
+}
+
+#underline_sweep_button:hover::after{
+
+    width:100%;
+
+}
+
+
+
+/* _____________Tertiary Buttons_______________________________________________ */
+
+/* Small Button */
+.tertiary_small_button {
+    color: rgb(0, 0, 0);
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 9999px;
+}
+
+/* Medium Button */
+.tertiary_medium_button {
+    color: rgb(0, 0, 0);
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 9999px;
+}
+
+/* Large Button */
+.tertiary_large_button {
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 9999px;
+}
+
+
+
+/* Border Fill */
+#border_fill_effect {
+    background: white;
+    border: 2px solid white;
+    transition: all .35s ease;
+}
+
+#border_fill_effect:hover {
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    border-color: transparent;
+
+    color: #000;
+
+    transform: translateY(-2px);
+}
+
+/* Lift + Glow */
+
+#lift_and_glow_effect {
+    background:white;
+    border:2px solid white;
+    transition:.35s ease;
+}
+
+#lift_and_glow_effect:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0,254,252,.18);
+
+}
+
+/* Animated Gradient Border */
+
+#ani_gradient_border{
+
+    position:relative;
+
+    background:white;
+
+    border:2px solid white;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+#ani_gradient_border::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:999px;
+
+    padding:2px;
+
+    background:linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-secondary),
+        var(--color-primary)
+    );
+
+    background-size:300% 100%;
+
+    opacity:0;
+
+    transition:.3s;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+}
+
+#ani_gradient_border:hover::before{
+
+    opacity:1;
+
+    animation:borderMove 2s linear infinite;
+
+}
+
+@keyframes borderMove{
+
+    from{
+
+        background-position:0%;
+
+    }
+
+    to{
+
+        background-position:300%;
+
+    }
+
+}
+
+/* Shine Sweep */
+#shine_weep_effect{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:white;
+
+    border:2px solid white;
+
+}
+
+#shine_weep_effect::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.7),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+
+}
+
+#shine_weep_effect:hover::after{
+
+    left:140%;
+
+    transition:.6s ease;
+
+}
+
+/* Inset Fill */
+
+#inset_fill_effect{
+
+    position:relative;
+
+    padding:12px 26px;
+
+    background:white;
+
+    border:2px solid white;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    z-index:1;
+
+}
+
+#inset_fill_effect::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    transform:scaleX(0);
+
+    transform-origin:center;
+
+    transition:.35s;
+
+    z-index:-1;
+
+}
+
+#inset_fill_effect:hover::before{
+
+    transform:scaleX(1);
+
+}
+
+#inset_fill_effect:hover{
+
+    color:black;
+
+}
+
+
+/* Border Expansion */
+
+#border_expantion_effect{
+
+    background:white;
+
+    border:2px solid white;
+
+    transition:.3s ease;
+
+}
+
+#border_expantion_effect:hover{
+
+    border-width:4px;
+
+    border-color:var(--color-secondary);
+
+}
+
+
+/* _____________Other Buttons_______________________________________________ */
+
+/* Small Button */
+.other_small_button {
+    color: rgb(8, 8, 8);
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 9999px;
+    border: none;
+    background: none;
+}
+
+/* Medium Button */
+.other_medium_button {
+    color: rgb(18, 18, 18);
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 9999px;
+}
+
+/* Large Button */
+.other_large_button {
+    color: rgb(35, 34, 34);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 9999px;
+}
+
+
+/* Underline Grow */
+
+#underline_grow_effect{
+    position: relative;
+    display: inline-block;
+
+    transition: color .3s ease;
+}
+
+#underline_grow_effect::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-4px;
+
+    width:0;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    transition:width .35s ease;
+
+}
+
+#underline_grow_effect:hover{
+
+    color:var(--color-secondary);
+
+}
+
+#underline_grow_effect:hover::after{
+
+    width:100%;
+
+}
+
+
+/* Arrow Slide */
+
+#arrow_slide_effect{
+
+    transition:.3s ease;
+
+}
+
+#arrow_slide_effect:hover{
+
+    color:var(--color-secondary);
+
+    letter-spacing:.5px;
+
+}
+
+/* Gradient Text */
+#gradient_text_effect{
+
+    transition:.3s;
+
+}
+
+.gradient_text_effect:hover{
+
+    background:linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+/* Glow Text */
+#glow_text_effect{
+
+    color:white;
+
+    transition:.3s;
+
+}
+
+#glow_text_effect:hover{
+
+    color:var(--color-secondary);
+
+    text-shadow:
+        0 0 10px rgba(0,254,252,.45);
+
+}
+
+/* Highlight Sweep */
+#highlight_sweep_effect{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+#highlight_sweep_effect::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.3),
+        transparent
+    );
+
+}
+
+#highlight_sweep_effect:hover::before{
+
+    left:120%;
+
+    transition:.6s ease;
+
+}
+
+/* Text Lift */
+#text_lift_effect{
+
+    display:inline-block;;
+
+    transition:.3s ease;
+
+}
+
+#text_lift_effect:hover{
+
+    transform:translateY(-2px);
+
+    color:var(--color-secondary);
+
+}
+
+/* Sliding Background */
+#sliding_background_effect{
+
+    background-image:
+    linear-gradient(
+        var(--color-secondary),
+        var(--color-secondary)
+    );
+
+    background-repeat:no-repeat;
+
+    background-size:0% 100%;
+
+    background-position:left;
+
+    transition:
+        background-size .35s ease,
+        color .35s ease;
+
+}
+
+#sliding_background_effect:hover{
+
+    background-size:100% 100%;
+
+    color:black;
+
+}
+
+
+/* Underline From Center */
+#underline_from_center_effect{
+
+    position:relative;
+
+}
+
+#underline_from_center_effect::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-4px;
+
+    left:50%;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--color-secondary);
+
+    transform:translateX(-50%);
+
+    transition:.3s;
+
+}
+
+#underline_from_center_effect:hover::after{
+
+    width:100%;
+
+}
