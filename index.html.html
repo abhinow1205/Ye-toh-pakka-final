@@ -1,0 +1,1417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complexity to Clarity — Halo Ring</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #08080a;
+      --ink: #f5f1e8;
+      --muted: #91918c;
+      --line: #26272d;
+      --accent: #cda45e;
+      --accent-2: #7c93ff;
+
+      --nav-h: 84px;
+      --panel: #101014;
+      --color-primary: rgba(205, 164, 94, 0.14);
+      --color-primary-hover: rgba(255, 255, 255, 0.05);
+
+      --fs-nav: 0.92rem;
+      --fs-btn: 0.85rem;
+      --fs-sub-title: 0.92rem;
+      --fs-sub-desc: 0.78rem;
+      --fs-mobile: 1.35rem;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      padding-top: var(--nav-h);
+    }
+
+    h1, h2 { font-family: 'Fraunces', serif; font-weight: 600; }
+
+    /* ===================== hero split layout ===================== */
+    .hero-section {
+      display: flex;
+      align-items: center;
+      min-height: calc(100vh - var(--nav-h));
+      gap: clamp(1.5rem, 4vw, 4rem);
+      padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+    }
+
+    .hero-left {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    .hero-right {
+      flex: 0 0 50%;
+      max-width: 50%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .demo-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.12;
+      margin: 0 0 1.25rem;
+    }
+
+    .hero-left p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      max-width: 460px;
+    }
+
+    @media (max-width: 780px) {
+      .hero-section {
+        flex-direction: column;
+        align-items: stretch;
+        min-height: unset;
+        padding: 3.5rem 1.5rem;
+        gap: 2.5rem;
+      }
+      .hero-left, .hero-right {
+        max-width: 100%;
+        flex: none;
+      }
+      .hero-left p { max-width: 100%; }
+    }
+
+    /* ===================== card shell ===================== */
+    .cc-card-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      height: 400px;
+      margin: 0;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      cursor: ew-resize;
+      background: #000;
+      /*
+        isolation gives the whole card its own stacking context, so
+        everything inside it (including the draggable handle, which
+        needs its own z-index to sit above the before/after layers)
+        is painted as one unit. Without this, the handle's z-index is
+        compared directly against unrelated elements elsewhere on the
+        page — like the fixed navbar and mobile menu overlay — and can
+        end up rendering on top of them even while they're "open".
+      */
+      isolation: isolate;
+    }
+
+    .cc-layer {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      /*
+        isolation gives each layer its own stacking context so their
+        z-indexed labels/headlines are compared fairly by DOM order,
+        rather than one layer's content escaping to always render on
+        top regardless of drag position. The background makes each
+        layer an actually opaque surface — without it, the "before"
+        layer could sit on top correctly but still not visually cover
+        anything underneath it, since it would just be transparent
+        space with a few small stars on it.
+      */
+      isolation: isolate;
+      background: var(--bg);
+    }
+
+    .cc-label {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.75rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245, 241, 232, 0.55);
+      z-index: 5;
+    }
+
+    .cc-label-after { left: auto; right: 1.75rem; color: rgba(244, 242, 236, 0.7); }
+
+    .cc-headline {
+      position: absolute;
+      bottom: 1.75rem;
+      left: 1.75rem;
+      right: 1.75rem;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .cc-headline-before { color: rgba(245, 241, 232, 0.6); text-align: left; }
+    .cc-headline-after { color: var(--ink); text-align: right; }
+
+    .cc-handle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background: rgba(244, 242, 236, 0.5);
+      z-index: 10;
+    }
+
+    .cc-handle::after {
+      content: '⇔';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #08080a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* ===================== galaxy backdrop ===================== */
+    .gx-nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.16;
+      pointer-events: none;
+    }
+
+    .gx-star {
+      position: absolute;
+      border-radius: 50%;
+      background: #ffffff;
+    }
+
+    .gx-core-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(18px);
+    }
+
+    /* ===================== NAVBAR SHELL ===================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-h);
+      z-index: 500;
+      background: rgba(8, 8, 10, 0.72);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .navbar-inner {
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 3vw, 2.5rem);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* ===================== LOGO ===================== */
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease,
+        filter 0.3s ease;
+    }
+
+    .logo-wrap img {
+      display: block;
+      height: clamp(56px, 6vw, 72px);
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-wrap:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .logo-wrap:hover img {
+      filter: drop-shadow(0 0 10px rgba(92, 225, 230, 0.25));
+    }
+
+    .logo-wrap:active {
+      transform: scale(0.98);
+    }
+
+    /* ===================== DESKTOP CENTER NAV ===================== */
+    .desktop-only {
+    }
+
+    .nav-center {
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      all: unset;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      font-size: var(--fs-nav);
+      color: var(--ink);
+      transition:
+        background 0.25s ease,
+        color 0.25s ease;
+    }
+
+    .nav-item:hover .nav-link {
+      background: var(--color-primary-hover);
+    }
+
+    .nav-item.pinned .nav-link {
+      background: var(--color-primary);
+    }
+
+    .chevron {
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    /* ===================== DROPDOWN PANEL (level 2) ===================== */
+    .dropdown-panel {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      min-width: 320px;
+      transform: translate(-50%, 10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s;
+      z-index: 10;
+    }
+
+    .dropdown-panel.align-start {
+      left: 0;
+      transform: translate(0, 10px);
+    }
+    .dropdown-panel.align-end {
+      left: auto;
+      right: 0;
+      transform: translate(0, 10px);
+    }
+
+    .nav-item:hover .dropdown-panel,
+    .nav-item.pinned .dropdown-panel {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translate(-50%, 0);
+    }
+
+    .nav-item:hover .dropdown-panel.align-start,
+    .nav-item.pinned .dropdown-panel.align-start,
+    .nav-item:hover .dropdown-panel.align-end,
+    .nav-item.pinned .dropdown-panel.align-end {
+      transform: translate(0, 0);
+    }
+
+    .dropdown-inner {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 0.6rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .dropdown-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dropdown-item {
+      position: relative;
+      border-radius: 12px;
+    }
+
+    .dropdown-link {
+      all: unset;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      width: 90%;
+      padding: 0.7rem 0.85rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .dropdown-link:hover {
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .dropdown-item.has-flyout.pinned > .dropdown-link {
+      background: rgba(205, 164, 94, 0.12);
+      color: var(--accent);
+    }
+
+    .dropdown-link-title {
+      display: block;
+      font-size: var(--fs-sub-title);
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .dropdown-item.has-flyout.pinned .dropdown-link-title,
+    .dropdown-link:hover .dropdown-link-title {
+      color: var(--ink);
+    }
+
+    .dropdown-link-desc {
+      display: block;
+      font-size: var(--fs-sub-desc);
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .chevron-right {
+      color: var(--muted);
+    }
+
+    /* ===================== FLYOUT PANEL (level 3) ===================== */
+    .flyout-panel {
+      position: absolute;
+      top: -0.6rem;
+      left: 100%;
+      margin-left: 10px;
+      min-width: 220px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateX(8px);
+      transition:
+        opacity 0.22s ease,
+        transform 0.22s ease,
+        visibility 0.22s;
+    }
+
+    .has-flyout.flyout-left .flyout-panel {
+      left: auto;
+      right: 100%;
+      margin-left: 0;
+      margin-right: 10px;
+      transform: translateX(-8px);
+    }
+
+    .has-flyout:hover .flyout-panel,
+    .has-flyout.pinned .flyout-panel {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    .flyout-list {
+      list-style: none;
+      margin: 0;
+      padding: 0.6rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .flyout-link {
+      display: block;
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
+      font-size: var(--fs-sub-desc);
+      color: var(--ink);
+      transition: background 0.2s ease;
+    }
+
+    .flyout-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* ===================== RIGHT SECTION ===================== */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.6rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      font-size: var(--fs-btn);
+      font-weight: 500;
+      padding: 0.6rem clamp(0.9rem, 1.6vw, 1.4rem);
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .btn-ghost:hover {
+      border-color: #3d4048;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .btn-solid {
+      background: var(--ink);
+      border: 1px solid var(--ink);
+      color: #08080a;
+    }
+
+    .btn-solid:hover {
+      transform: translateY(-1px);
+    }
+
+    /* gradient CTA pill used in the nav-right actions */
+    .primary_small_button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      font-size: var(--fs-btn);
+      font-weight: 500;
+      padding: 0.6rem clamp(0.9rem, 1.6vw, 1.4rem);
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #08080a;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2), var(--accent));
+      background-size: 200% 200%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .primary_small_button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(205, 164, 94, 0.25);
+    }
+
+    #bg_gradient_move {
+      animation: bgGradientMove 6s ease infinite;
+    }
+
+    @keyframes bgGradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===================== HAMBURGER ===================== */
+    .hamburger {
+      width: 26px;
+      height: 20px;
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .hamburger .bar {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--ink);
+    }
+
+    .bar1 {
+      top: 0;
+    }
+    .bar2 {
+      top: 9px;
+    }
+    .bar3 {
+      top: 18px;
+    }
+
+    /* ===================== MOBILE OVERLAY ===================== */
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 400;
+      display: none;
+      overflow-y: auto;
+    }
+
+    .mobile-overlay-inner {
+      padding: calc(var(--nav-h) + 1.5rem) clamp(1.25rem, 6vw, 3rem) 3rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .m-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .m-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .m-link {
+      all: unset;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 1.1rem 0.1rem;
+      font-size: var(--fs-mobile);
+      font-family: "Fraunces", serif;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .m-item[data-depth="1"] > .m-link,
+    .m-item[data-depth="2"] > .m-link {
+      font-family: "Inter", sans-serif;
+      font-size: calc(var(--fs-mobile) * 0.72);
+      color: var(--muted);
+      padding: 0.85rem 0.1rem;
+    }
+
+    .m-item[data-depth="1"] {
+      border-bottom: 1px dashed var(--line);
+      padding-left: 1rem;
+    }
+    .m-item[data-depth="2"] {
+      border-bottom: none;
+      padding-left: 2rem;
+    }
+
+    .m-panel {
+      height: 0;
+      overflow: hidden;
+    }
+
+    .m-panel-inner {
+      padding-bottom: 0.5rem;
+    }
+
+    .m-item.open > .m-link {
+      color: var(--accent);
+    }
+
+    .mobile-actions {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mobile-actions .btn {
+      width: 100%;
+      padding: 0.9rem;
+      font-size: var(--fs-btn);
+    }
+
+    /* ===================== RESPONSIVE SWITCH ===================== */
+    @media (min-width: 960px) {
+      .mobile-only {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 959px) {
+      .desktop-only {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="siteNav">
+    <div class="navbar-inner">
+      <a href="#" class="logo-wrap">
+        <img src="assets/logo/IG Only Logo.png" alt="Insight Grid Logo" />
+      </a>
+
+      <div class="nav-center desktop-only">
+        <ul class="nav-list" id="desktopNavList"></ul>
+      </div>
+
+      <div class="nav-right">
+        <div
+          class="nav-actions desktop-only"
+          style="display: flex; gap: 0.6rem"
+        >
+          <a href="#" class="btn btn-ghost">Log in</a>
+          <a href="#" class="primary_small_button" id="bg_gradient_move"
+            >Sign up free</a
+          >
+        </div>
+
+        <button
+          class="hamburger mobile-only"
+          id="hamburgerBtn"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span class="bar bar1"></span>
+          <span class="bar bar2"></span>
+          <span class="bar bar3"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay mobile-only" id="mobileOverlay">
+    <div class="mobile-overlay-inner">
+      <ul class="m-list" id="mobileNavList"></ul>
+      <div class="mobile-actions">
+        <a href="#" class="btn btn-ghost">Log in</a>
+        <a href="#" class="btn btn-solid">Sign up free</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-section">
+    <div class="hero-left">
+      <div class="demo-tag">From Complexity to Clarity</div>
+      <h1>Turn scattered chaos into a single, luminous focus.</h1>
+      <p>Stars scattered loosely across the whole card, with a faint nebula glow behind them, gather into a dense, glowing halo around a single core. Drag the handle on the card to see the shift from complexity to clarity.</p>
+    </div>
+
+    <div class="hero-right">
+      <div class="cc-card-wrap" id="gx1Wrap">
+        <div class="cc-layer" id="gx1AfterLayer">
+          <div id="gx1AfterStars" style="position: absolute; inset: 0;"></div>
+          <div class="cc-label cc-label-after">To Clarity</div>
+          <div class="cc-headline cc-headline-after">To Clarity</div>
+        </div>
+        <div class="cc-layer" id="gx1BeforeLayer">
+          <div id="gx1BeforeStars" style="position: absolute; inset: 0;"></div>
+          <div class="cc-label">From Complexity</div>
+          <div class="cc-headline cc-headline-before">From Complexity</div>
+        </div>
+        <div class="cc-handle" id="gx1Handle"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      gsap.registerPlugin(ScrollTrigger);
+
+      /* ===================== Sticky nav hide/show ===================== */
+      ScrollTrigger.create({
+        start: 'top top',
+        end: 'max',
+        onUpdate: (self) => {
+          const nav = document.getElementById('siteNav');
+          if (self.direction === 1 && self.scroll() > 120) {
+            gsap.to(nav, { yPercent: -100, duration: 0.35, ease: 'power2.out' });
+          } else {
+            gsap.to(nav, { yPercent: 0, duration: 0.35, ease: 'power2.out' });
+          }
+        }
+      });
+
+      /* ===================== DATA ===================== */
+      const navData = [
+        {
+          label: "Products",
+          children: [
+            {
+              label: "Analytics",
+              desc: "Understand usage in real time.",
+              children: [
+                { label: "Real-time Dashboards", href: "#" },
+                { label: "Custom Reports", href: "#" },
+                { label: "Data Export", href: "#" },
+              ],
+            },
+            {
+              label: "Automation",
+              desc: "Trigger workflows without code.",
+              href: "#",
+            },
+            {
+              label: "Integrations",
+              desc: "Connect the tools you already use.",
+              children: [
+                { label: "Slack", href: "#" },
+                { label: "Salesforce", href: "#" },
+                { label: "Zapier", href: "#" },
+              ],
+            },
+            { label: "Security", desc: "SOC 2 Type II certified.", href: "#" },
+            {
+              label: "API Access",
+              desc: "Build on top of our platform.",
+              href: "#",
+            },
+          ],
+        },
+        {
+          label: "Solutions",
+          children: [
+            {
+              label: "For Startups",
+              desc: "Move fast without breaking things.",
+              href: "#",
+            },
+            {
+              label: "For Enterprise",
+              desc: "Scale with confidence.",
+              children: [
+                { label: "Dedicated Support", href: "#" },
+                { label: "SLA Guarantees", href: "#" },
+              ],
+            },
+            {
+              label: "For Agencies",
+              desc: "Manage multiple clients with ease.",
+              href: "#",
+            },
+            { label: "Case Studies", desc: "See how teams use us.", href: "#" },
+          ],
+        },
+        {
+          label: "Resources",
+          children: [
+            {
+              label: "Documentation",
+              desc: "Guides and API references.",
+              href: "#",
+            },
+            { label: "Blog", desc: "Ideas on product and design.", href: "#" },
+            {
+              label: "Community",
+              desc: "Talk to other builders.",
+              children: [
+                { label: "Forum", href: "#" },
+                { label: "Slack Community", href: "#" },
+                { label: "Events", href: "#" },
+              ],
+            },
+            { label: "Webinars", desc: "Live sessions, monthly.", href: "#" },
+            {
+              label: "Help Center",
+              desc: "Answers to common questions.",
+              href: "#",
+            },
+          ],
+        },
+        {
+          label: "Pricing",
+          children: [
+            {
+              label: "Plans & Pricing",
+              desc: "Simple, transparent tiers.",
+              href: "#",
+            },
+            { label: "Compare Plans", desc: "Find the right fit.", href: "#" },
+            {
+              label: "Enterprise Pricing",
+              desc: "Custom quotes for larger teams.",
+              href: "#",
+            },
+            { label: "FAQs", desc: "Billing questions, answered.", href: "#" },
+          ],
+        },
+        {
+          label: "Company",
+          children: [
+            { label: "About Us", desc: "Our story so far.", href: "#" },
+            {
+              label: "Careers",
+              desc: "Join the team.",
+              children: [
+                { label: "Open Roles", href: "#" },
+                { label: "Life at Lumen", href: "#" },
+                { label: "Benefits", href: "#" },
+              ],
+            },
+            { label: "Press", desc: "News and media kit.", href: "#" },
+            { label: "Contact", desc: "Get in touch with us.", href: "#" },
+          ],
+        },
+      ];
+
+      const chevronDownSvg =
+        '<svg class="chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      const chevronRightSvg =
+        '<svg class="chevron chevron-right" viewBox="0 0 24 24" width="14" height="14"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+      /* ===================== DESKTOP RENDER ===================== */
+      function renderDesktopTop(data) {
+        return data
+          .map((item) => {
+            const hasChildren = item.children && item.children.length;
+            return `
+      <li class="nav-item">
+        <button type="button" class="nav-link">
+          <span>${item.label}</span>
+          ${hasChildren ? chevronDownSvg : ""}
+        </button>
+        ${
+          hasChildren
+            ? `
+        <div class="dropdown-panel">
+          <div class="dropdown-inner">
+            <ul class="dropdown-list">
+              ${item.children.map(renderDesktopSub).join("")}
+            </ul>
+          </div>
+        </div>`
+            : ""
+        }
+      </li>`;
+          })
+          .join("");
+      }
+
+      function renderDesktopSub(child) {
+        const hasChildren = child.children && child.children.length;
+        const body = `
+    <span>
+      <span class="dropdown-link-title">${child.label}</span>
+      ${child.desc ? `<span class="dropdown-link-desc">${child.desc}</span>` : ""}
+    </span>`;
+
+        if (hasChildren) {
+          return `
+      <li class="dropdown-item has-flyout">
+        <button type="button" class="dropdown-link">
+          ${body}
+          ${chevronRightSvg}
+        </button>
+        <div class="flyout-panel">
+          <ul class="flyout-list">
+            ${child.children.map((sub) => `<li><a href="${sub.href || "#"}" class="flyout-link">${sub.label}</a></li>`).join("")}
+          </ul>
+        </div>
+      </li>`;
+        }
+
+        return `
+    <li class="dropdown-item">
+      <a href="${child.href || "#"}" class="dropdown-link">${body}</a>
+    </li>`;
+      }
+
+      document.getElementById("desktopNavList").innerHTML =
+        renderDesktopTop(navData);
+
+      /* ===================== MOBILE RENDER ===================== */
+      function renderMobile(data, depth) {
+        return data
+          .map((item) => {
+            const hasChildren = item.children && item.children.length;
+            if (hasChildren) {
+              return `
+        <li class="m-item" data-depth="${depth}">
+          <button type="button" class="m-link">
+            <span>${item.label}</span>
+            ${chevronDownSvg}
+          </button>
+          <div class="m-panel">
+            <div class="m-panel-inner">
+              <ul>${renderMobile(item.children, depth + 1)}</ul>
+            </div>
+          </div>
+        </li>`;
+            }
+            return `
+      <li class="m-item" data-depth="${depth}">
+        <a href="${item.href || "#"}" class="m-link m-leaf">${item.label}</a>
+      </li>`;
+          })
+          .join("");
+      }
+
+      document.getElementById("mobileNavList").innerHTML = renderMobile(
+        navData,
+        0,
+      );
+
+      /* ===================== DESKTOP INTERACTIONS ===================== */
+      const topItems = Array.from(
+        document.querySelectorAll("#desktopNavList > .nav-item"),
+      );
+
+      // Align first/last dropdown panels so they don't overflow the viewport edge
+      if (topItems.length) {
+        const firstPanel = topItems[0].querySelector(
+          ":scope > .dropdown-panel",
+        );
+        const lastPanel = topItems[topItems.length - 1].querySelector(
+          ":scope > .dropdown-panel",
+        );
+        if (firstPanel) firstPanel.classList.add("align-start");
+        if (lastPanel) {
+          lastPanel.classList.add("align-end");
+          lastPanel
+            .querySelectorAll(":scope .has-flyout")
+            .forEach((el) => el.classList.add("flyout-left"));
+        }
+      }
+
+      function togglePin(el, siblings) {
+        const wasPinned = el.classList.contains("pinned");
+        siblings.forEach((sib) => {
+          if (sib !== el) {
+            sib.classList.remove("pinned");
+            sib
+              .querySelectorAll(".pinned")
+              .forEach((nested) => nested.classList.remove("pinned"));
+          }
+        });
+        if (wasPinned) {
+          el.classList.remove("pinned");
+          el.querySelectorAll(".pinned").forEach((nested) =>
+            nested.classList.remove("pinned"),
+          );
+        } else {
+          el.classList.add("pinned");
+        }
+      }
+
+      function closeAllDesktopPins() {
+        document
+          .querySelectorAll(".navbar .pinned")
+          .forEach((el) => el.classList.remove("pinned"));
+      }
+
+      topItems.forEach((item) => {
+        const link = item.querySelector(":scope > .nav-link");
+        link.addEventListener("click", (e) => {
+          e.stopPropagation();
+          togglePin(item, topItems);
+        });
+
+        // level-3 flyout toggles, scoped to this top-level item's own submenu
+        const flyoutParents = Array.from(item.querySelectorAll(".has-flyout"));
+        flyoutParents.forEach((fp) => {
+          const fpLink = fp.querySelector(":scope > .dropdown-link");
+          const siblingGroup = Array.from(
+            fp.parentElement.querySelectorAll(":scope > .has-flyout"),
+          );
+          fpLink.addEventListener("click", (e) => {
+            e.stopPropagation();
+            togglePin(fp, siblingGroup);
+          });
+        });
+
+        // leaf links close everything after "navigating"
+        item
+          .querySelectorAll("a.dropdown-link, a.flyout-link")
+          .forEach((leaf) => {
+            leaf.addEventListener("click", (e) => {
+              e.preventDefault();
+              closeAllDesktopPins();
+            });
+          });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".navbar")) closeAllDesktopPins();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeAllDesktopPins();
+      });
+
+      /* ===================== MOBILE INTERACTIONS ===================== */
+      const hamburgerBtn = document.getElementById("hamburgerBtn");
+      const mobileOverlay = document.getElementById("mobileOverlay");
+      const mobileNavList = document.getElementById("mobileNavList");
+      let mobileOpen = false;
+
+      function morphHamburger(open) {
+        if (open) {
+          gsap.to("#hamburgerBtn .bar1", {
+            y: 9,
+            rotate: 45,
+            duration: 0.35,
+            ease: "power2.inOut",
+          });
+          gsap.to("#hamburgerBtn .bar2", { opacity: 0, duration: 0.2 });
+          gsap.to("#hamburgerBtn .bar3", {
+            y: -9,
+            rotate: -45,
+            duration: 0.35,
+            ease: "power2.inOut",
+          });
+        } else {
+          gsap.to("#hamburgerBtn .bar1", {
+            y: 0,
+            rotate: 0,
+            duration: 0.35,
+            ease: "power2.inOut",
+          });
+          gsap.to("#hamburgerBtn .bar2", {
+            opacity: 1,
+            duration: 0.2,
+            delay: 0.15,
+          });
+          gsap.to("#hamburgerBtn .bar3", {
+            y: 0,
+            rotate: 0,
+            duration: 0.35,
+            ease: "power2.inOut",
+          });
+        }
+      }
+
+      function collapseAllMobileAccordions() {
+        mobileNavList.querySelectorAll(".m-item.open").forEach((li) => {
+          li.classList.remove("open");
+          const panel = li.querySelector(":scope > .m-panel");
+          const chevron = li.querySelector(":scope > .m-link .chevron");
+          gsap.set(panel, { height: 0 });
+          if (chevron) gsap.set(chevron, { rotate: 0 });
+        });
+      }
+
+      function openMobileOverlay() {
+        mobileOpen = true;
+        hamburgerBtn.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+        morphHamburger(true);
+
+        gsap.set(mobileOverlay, { display: "block" });
+        gsap.fromTo(
+          mobileOverlay,
+          { autoAlpha: 0 },
+          { autoAlpha: 1, duration: 0.35, ease: "power2.out" },
+        );
+
+        const items = mobileNavList.querySelectorAll(":scope > .m-item");
+        gsap.fromTo(
+          items,
+          { y: 16, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.45,
+            stagger: 0.05,
+            delay: 0.1,
+            ease: "power3.out",
+          },
+        );
+        gsap.fromTo(
+          ".mobile-actions",
+          { y: 16, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.45,
+            delay: 0.1 + items.length * 0.05,
+            ease: "power3.out",
+          },
+        );
+      }
+
+      function closeMobileOverlay() {
+        mobileOpen = false;
+        hamburgerBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+        morphHamburger(false);
+
+        gsap.to(mobileOverlay, {
+          autoAlpha: 0,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            gsap.set(mobileOverlay, { display: "none" });
+            collapseAllMobileAccordions();
+          },
+        });
+      }
+
+      hamburgerBtn.addEventListener("click", () => {
+        if (mobileOpen) closeMobileOverlay();
+        else openMobileOverlay();
+      });
+
+      function toggleMobileItem(li) {
+        const isOpen = li.classList.contains("open");
+        const panel = li.querySelector(":scope > .m-panel");
+        const inner = panel.querySelector(":scope > .m-panel-inner");
+        const chevron = li.querySelector(":scope > .m-link .chevron");
+
+        if (isOpen) {
+          li.classList.remove("open");
+          gsap.to(panel, { height: 0, duration: 0.35, ease: "power2.inOut" });
+          if (chevron) gsap.to(chevron, { rotate: 0, duration: 0.3 });
+        } else {
+          li.classList.add("open");
+          const targetHeight = inner.offsetHeight;
+          gsap.fromTo(
+            panel,
+            { height: 0 },
+            { height: targetHeight, duration: 0.35, ease: "power2.inOut" },
+          );
+          if (chevron) gsap.to(chevron, { rotate: 180, duration: 0.3 });
+        }
+      }
+
+      mobileNavList.querySelectorAll(".m-link:not(.m-leaf)").forEach((btn) => {
+        btn.addEventListener("click", () =>
+          toggleMobileItem(btn.closest(".m-item")),
+        );
+      });
+
+      mobileNavList.querySelectorAll(".m-leaf").forEach((leaf) => {
+        leaf.addEventListener("click", (e) => {
+          e.preventDefault();
+          closeMobileOverlay();
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 960 && mobileOpen) closeMobileOverlay();
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      gsap.registerPlugin(Draggable);
+
+      /* ===================== drag-reveal wiring ===================== */
+      function initDragReveal(wrapId, beforeLayerId, handleId) {
+        const wrap = document.getElementById(wrapId);
+        const beforeLayer = document.getElementById(beforeLayerId);
+        const handle = document.getElementById(handleId);
+        const wrapWidth = wrap.getBoundingClientRect().width;
+
+        gsap.set(handle, { x: wrapWidth / 2 });
+        beforeLayer.style.clipPath = 'inset(0 50% 0 0)';
+
+        Draggable.create(handle, {
+          type: 'x',
+          bounds: { minX: 0, maxX: wrapWidth },
+          onDrag: function () {
+            const percent = gsap.utils.clamp(0, 100, (this.x / wrapWidth) * 100);
+            beforeLayer.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+          }
+        });
+      }
+
+      initDragReveal('gx1Wrap', 'gx1BeforeLayer', 'gx1Handle');
+
+      /* ===================== nebula backdrop ===================== */
+      function addNebula(layer) {
+        const colors = ['#7c93ff', '#cda45e', '#ff8fd6'];
+        for (let i = 0; i < 3; i++) {
+          const blob = document.createElement('div');
+          blob.className = 'gx-nebula';
+          const size = gsap.utils.random(140, 220);
+          blob.style.width = size + 'px';
+          blob.style.height = size + 'px';
+          blob.style.background = colors[i % colors.length];
+          blob.style.left = gsap.utils.random(0, 80) + '%';
+          blob.style.top = gsap.utils.random(0, 80) + '%';
+          layer.appendChild(blob);
+
+          gsap.to(blob, {
+            x: gsap.utils.random(-20, 20),
+            y: gsap.utils.random(-20, 20),
+            duration: gsap.utils.random(10, 16),
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+          });
+        }
+      }
+
+      /* ===================== scattered "before" starfield ===================== */
+      function buildScatteredStars(container) {
+        addNebula(container.parentElement);
+        const COUNT = 90;
+        const starColors = ['#ffffff', '#ffffff', '#ffffff', '#bcd0ff', '#ffe9bf'];
+
+        for (let i = 0; i < COUNT; i++) {
+          const star = document.createElement('div');
+          star.className = 'gx-star';
+          const size = gsap.utils.random(1, 2.6);
+          const isBright = Math.random() > 0.85;
+          star.style.width = (isBright ? size + 1.2 : size) + 'px';
+          star.style.height = (isBright ? size + 1.2 : size) + 'px';
+          star.style.left = gsap.utils.random(2, 98) + '%';
+          star.style.top = gsap.utils.random(4, 96) + '%';
+          star.style.background = starColors[Math.floor(Math.random() * starColors.length)];
+          star.style.opacity = gsap.utils.random(0.25, 0.95);
+          if (isBright) {
+            star.style.boxShadow = '0 0 4px 1px rgba(255,255,255,0.55)';
+          }
+          container.appendChild(star);
+
+          gsap.to(star, {
+            opacity: () => gsap.utils.random(0.1, 1),
+            scale: () => gsap.utils.random(0.7, 1.5),
+            duration: () => gsap.utils.random(2, 5),
+            repeat: -1,
+            yoyo: true,
+            repeatRefresh: true,
+            ease: 'sine.inOut',
+            delay: gsap.utils.random(0, 3)
+          });
+
+          if (Math.random() > 0.6) {
+            gsap.to(star, {
+              x: gsap.utils.random(-6, 6),
+              y: gsap.utils.random(-6, 6),
+              duration: gsap.utils.random(8, 16),
+              repeat: -1,
+              yoyo: true,
+              ease: 'sine.inOut'
+            });
+          }
+        }
+      }
+
+      buildScatteredStars(document.getElementById('gx1BeforeStars'));
+
+      /* ===================== glowing core ===================== */
+      function addCoreGlow(layer, size, color) {
+        const glow = document.createElement('div');
+        glow.className = 'gx-core-glow';
+        glow.style.width = size + 'px';
+        glow.style.height = size + 'px';
+        glow.style.marginLeft = -(size / 2) + 'px';
+        glow.style.marginTop = -(size / 2) + 'px';
+        glow.style.background = color;
+        layer.appendChild(glow);
+        gsap.to(glow, { opacity: 0.5, scale: 1.15, duration: 2.4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        return glow;
+      }
+
+      /* ===================== halo ring ===================== */
+      const gx1AfterLayer = document.getElementById('gx1AfterLayer');
+      const gx1AfterStars = document.getElementById('gx1AfterStars');
+      addCoreGlow(gx1AfterLayer, 90, 'rgba(205, 164, 94, 0.55)');
+
+      const GX1_RING_COUNT = 140;
+      const gx1RingWrap = document.createElement('div');
+      gx1RingWrap.style.position = 'absolute';
+      gx1RingWrap.style.inset = '0';
+      gx1AfterStars.appendChild(gx1RingWrap);
+
+      for (let i = 0; i < GX1_RING_COUNT; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        // gaussian-ish radius clustering using the average of three randoms
+        const spread = (Math.random() + Math.random() + Math.random()) / 3;
+        const radius = 45 + spread * 60;
+
+        const star = document.createElement('div');
+        star.className = 'gx-star';
+        const size = gsap.utils.random(1.2, 3);
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = '50%';
+        star.style.top = '50%';
+        star.style.marginLeft = (Math.cos(angle) * radius) + 'px';
+        star.style.marginTop = (Math.sin(angle) * radius) + 'px';
+        const bright = Math.random() > 0.8;
+        star.style.background = bright ? '#fff4dd' : '#ffffff';
+        if (bright) star.style.boxShadow = '0 0 5px 1px rgba(255, 230, 180, 0.6)';
+        star.style.opacity = gsap.utils.random(0.4, 1);
+        gx1RingWrap.appendChild(star);
+
+        gsap.to(star, {
+          opacity: () => gsap.utils.random(0.3, 1),
+          duration: () => gsap.utils.random(1.5, 4),
+          repeat: -1,
+          yoyo: true,
+          repeatRefresh: true,
+          ease: 'sine.inOut',
+          delay: gsap.utils.random(0, 3)
+        });
+      }
+
+      gsap.to(gx1RingWrap, { rotation: 360, duration: 50, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+    })();
+  </script>
+
+</body>
+</html>
