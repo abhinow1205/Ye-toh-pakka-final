@@ -13,6 +13,18 @@
     width: 100%;
     border-top: 1px solid var(--line);
     z-index: 1;
+    /* Glass Effect */
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    padding: 0 2rem 0 2rem;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .accordion {
+      padding: 0 1rem 0 1rem;
+    }
   }
 
   .accordion-item {

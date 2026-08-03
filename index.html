@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Complexity to Clarity — Halo Ring</title>
+    <title>Insight Grid</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -60,6 +60,7 @@
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/drag_card.css" />
     <link rel="stylesheet" href="css/circular-motion.css" />
+    <link rel="stylesheet" href="css/tabbed-view.css" />
 
     <!-- GSAP Libraries to be declared first -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -234,18 +235,18 @@
         left: 1.75rem;
         right: 1.75rem;
         font-family: "Fraunces", serif;
-        font-size: clamp(1.4rem, 3vw, 1.9rem);
+        font-size: clamp(1.2rem, 2.5vw, 1.7rem);
         z-index: 5;
         pointer-events: none;
       }
 
       .cc-headline-before {
-        color: rgba(245, 241, 232, 0.6);
-        text-align: left;
+        color: var(--ink);
+        text-align: right;
       }
       .cc-headline-after {
         color: var(--ink);
-        text-align: right;
+        text-align: left;
       }
 
       .cc-handle {
@@ -616,52 +617,6 @@
         transform: translateY(-1px);
       }
 
-      /* gradient CTA pill used in the nav-right actions */
-      .primary_small_button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap;
-        font-size: var(--fs-btn);
-        font-weight: 500;
-        padding: 0.6rem clamp(0.9rem, 1.6vw, 1.4rem);
-        border-radius: 999px;
-        cursor: pointer;
-        text-decoration: none;
-        color: #08080a;
-        background: linear-gradient(
-          120deg,
-          var(--accent),
-          var(--accent-2),
-          var(--accent)
-        );
-        background-size: 200% 200%;
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
-      }
-
-      .primary_small_button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 8px 24px rgba(205, 164, 94, 0.25);
-      }
-
-      #bg_gradient_move {
-        animation: bgGradientMove 6s ease infinite;
-      }
-
-      @keyframes bgGradientMove {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
       /* ===================== HAMBURGER ===================== */
       .hamburger {
         width: 26px;
@@ -793,10 +748,8 @@
   <body>
     <!-- ================= Background ================= -->
     <section class="fixed_background" id="bg">
-      <!-- Full-screen space canvas (starfield) -->
       <canvas id="space-canvas" aria-hidden="true"></canvas>
 
-      <!-- Particle canvas sits above the starfield and behind the logo -->
       <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
       <div class="background">
@@ -822,8 +775,11 @@
             style="display: flex; gap: 0.6rem"
           >
             <a href="#" class="btn btn-ghost">Log in</a>
-            <a href="#" class="primary_small_button" id="bg_gradient_move"
-              >Sign up free</a
+            <a
+              href="contact-us.html"
+              class="primary_small_button"
+              id="bg_gradient_move"
+              >Request Quote</a
             >
           </div>
 
@@ -1036,44 +992,124 @@
             </p>
           </div>
           <div class="h-card">
-            <span class="num">01</span>
-            <h3>Pinned & panned</h3>
-            <p>
-              This whole gallery is pinned in place — vertical scroll drives
-              horizontal movement.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
           <div class="h-card">
-            <span class="num">02</span>
-            <h3>ScrollTrigger.matchMedia</h3>
-            <p>
-              Great pattern for responsive scroll effects that behave
-              differently per breakpoint.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
           <div class="h-card">
-            <span class="num">03</span>
-            <h3>Scrub, not autoplay</h3>
-            <p>
-              scrub:true ties the timeline directly to scroll position — no
-              easing lag.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
           <div class="h-card">
-            <span class="num">04</span>
-            <h3>End distance</h3>
-            <p>
-              The pin's "end" is calculated from the track's total scrollable
-              width.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
           <div class="h-card">
-            <span class="num">05</span>
-            <h3>That's the trick</h3>
-            <p>
-              Under the hood it's one gsap.to() moving xPercent on the track
-              element.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -1112,35 +1148,10 @@
 
     <!-- ================= Section 5 ================= -->
     <section id="option3" class="design-section space-y-8">
-      <div
-        class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-800 pb-4"
-      >
-        <div>
-          <div
-            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 mb-2"
-          >
-            <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
-            <span>Option 03: Interactive Story Pillars</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white">
-            Interactive Narrative Stage
-          </h2>
-          <p class="text-slate-400 text-sm mt-1">
-            Engaging, click-to-explore value proposition with dynamic graphic
-            stages.
-          </p>
-        </div>
-        <button
-          onclick="copyCode('code-option3')"
-          class="mt-4 md:mt-0 flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-medium border border-slate-700 transition"
-        >
-          <i data-lucide="code" class="w-3.5 h-3.5"></i>
-          <span>Copy Section Code</span>
-        </button>
-      </div>
-
       <!-- Pillars Canvas -->
-      <div class="rounded-3xl bg-slate-950 p-6 md:p-10 border border-slate-800">
+      <div
+        class="rounded-3xl bg-white/5 backdrop-blur-xl p-6 md:p-10 border border-slate-800 m-6"
+      >
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <!-- Left Column: Navigation Buttons -->
           <div class="lg:col-span-5 space-y-3">
@@ -1372,13 +1383,77 @@
             <h3>Northbridge rebrand</h3>
             <p>A full identity overhaul for a 40-year-old finance firm.</p>
             <div class="expand-body">
-              <p>
-                The brief called for a system that felt established but not
-                stale — new type, a restrained palette, and a mark that reads at
-                both business-card and billboard scale. We shipped a full
-                identity system, a 90-page brand guideline, and motion tokens
-                for their product team to build from.
-              </p>
+              <div class="wrap">
+                <div class="panel">
+                  <!-- Left: options -->
+                  <div class="panel-list" id="panelList">
+                    <button class="active" data-target="item-1">
+                      <span class="dot"></span> Overview
+                    </button>
+                    <button data-target="item-2">
+                      <span class="dot"></span> Features
+                    </button>
+                    <button data-target="item-3">
+                      <span class="dot"></span> Pricing
+                    </button>
+                    <button data-target="item-4">
+                      <span class="dot"></span> Integrations
+                    </button>
+                    <button data-target="item-5">
+                      <span class="dot"></span> Support
+                    </button>
+                  </div>
+
+                  <!-- Right: content that swaps per option -->
+                  <div class="panel-content" id="panelContent">
+                    <div class="content-item active" id="item-1">
+                      <span class="tag">Overview</span>
+                      <h2>Everything in one place</h2>
+                      <p>
+                        A quick summary of what this product does, who it's for,
+                        and why it matters. Replace this with your real copy.
+                      </p>
+                    </div>
+
+                    <div class="content-item" id="item-2">
+                      <span class="tag">Features</span>
+                      <h2>Built for speed and clarity</h2>
+                      <p>
+                        List the core features here. Each option on the left can
+                        point to a completely different block of content, image,
+                        or even a small demo.
+                      </p>
+                    </div>
+
+                    <div class="content-item" id="item-3">
+                      <span class="tag">Pricing</span>
+                      <h2>Simple, transparent plans</h2>
+                      <p>
+                        Describe pricing tiers, what's included, and any trial
+                        details relevant to this section.
+                      </p>
+                    </div>
+
+                    <div class="content-item" id="item-4">
+                      <span class="tag">Integrations</span>
+                      <h2>Works with your existing stack</h2>
+                      <p>
+                        Mention the tools and platforms this connects with, or
+                        show logos/icons here instead of text.
+                      </p>
+                    </div>
+
+                    <div class="content-item" id="item-5">
+                      <span class="tag">Support</span>
+                      <h2>Help whenever you need it</h2>
+                      <p>
+                        Explain support channels, response times, or link out to
+                        documentation and contact options.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <button class="expand-close">✕</button>
           </div>
@@ -1800,7 +1875,7 @@
                 label: "Analytics",
                 desc: "Understand usage in real time.",
                 children: [
-                  { label: "Real-time Dashboards", href: "#" },
+                  { label: "Real-time Dashboards", href: "contact-us.html" },
                   { label: "Custom Reports", href: "#" },
                   { label: "Data Export", href: "#" },
                 ],
@@ -2482,6 +2557,7 @@
     <script src="js/blog-comp.js"></script>
     <script src="js/home_sec9.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/tabbed-view.js"></script>
     <script src="js/home_case_studies.js"></script>
     <script src="js/type_in_motion.js"></script>
     <script src="js/drag_card.js"></script>
