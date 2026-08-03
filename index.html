@@ -46,13 +46,15 @@
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/border_styles.css" />
-    <!-- <link rel="stylesheet" href="css/Components/fixed_bg.css" /> -->
+    <link rel="stylesheet" href="css/fixed-bg.css" />
     <link rel="stylesheet" href="css/home_sec2.css" />
     <link rel="stylesheet" href="css/home_sec3.css" />
     <link rel="stylesheet" href="css/home_sec5.css" />
     <link rel="stylesheet" href="css/home_counter.css" />
     <link rel="stylesheet" href="css/home_case_studies.css" />
+    <link rel="stylesheet" href="css/review-comp.css" />
     <link rel="stylesheet" href="css/home_sec8.css" />
+    <link rel="stylesheet" href="css/blog-comp.css" />
     <link rel="stylesheet" href="css/home_sec9.css" />
     <link rel="stylesheet" href="css/type_in_motion.css" />
     <link rel="stylesheet" href="css/footer.css" />
@@ -788,6 +790,21 @@
     </style>
   </head>
   <body>
+    <!-- ================= Background ================= -->
+    <section class="fixed_background" id="bg">
+      <!-- Full-screen space canvas (starfield) -->
+      <canvas id="space-canvas" aria-hidden="true"></canvas>
+
+      <!-- Particle canvas sits above the starfield and behind the logo -->
+      <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+      <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+      </div>
+    </section>
+
     <nav class="navbar" id="siteNav">
       <div class="navbar-inner">
         <a href="#" class="logo-wrap">
@@ -1433,6 +1450,198 @@
         </div>
       </div>
     </section>
+
+    <!-- ================= Section 8 ================= -->
+    <section class="section_8" id="sec-8">
+      <div class="sec8_top">
+        <div class="section-label">Accordion</div>
+        <h2>Smooth height, not display toggling</h2>
+        <p class="section-sub">
+          Height animates to each panel's natural scrollHeight, so it's never
+          abrupt.
+        </p>
+      </div>
+      <div class="accordion" id="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>How does the height animation work?</span
+            ><span class="plus">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              GSAP reads the content's natural height via scrollHeight and
+              tweens the wrapper's height to that value, then back to 0 on
+              close.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Can more than one stay open?</span><span class="plus">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              This version closes others when one opens — remove that line in
+              the JS if you want independent panels instead.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Does this need a plugin?</span><span class="plus">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              No — just core GSAP tweening a height value, same trick works for
+              any expand/collapse UI.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Blog Section ================= -->
+    <section class="bl-section">
+      <div class="bl-head">
+        <div>
+          <div class="eyebrow" id="bl1Eyebrow">From the blog</div>
+          <h2 id="bl1Heading">
+            Notes on building automation that doesn't break at 2 AM.
+          </h2>
+        </div>
+        <div class="bl-view-all">View all articles →</div>
+      </div>
+
+      <div class="bl1-grid" id="bl1Grid">
+        <div class="bl1-card">
+          <div class="bl-glare"></div>
+          <div class="bl1-thumb"></div>
+          <div class="bl1-body">
+            <span class="bl1-tag">Engineering</span>
+            <h3>How we cut alert fatigue by 60% using smarter thresholds</h3>
+            <p>
+              A look at the incident-scoring model behind our newest release.
+            </p>
+            <div class="bl1-meta">
+              <span>Mar 14</span><span>6 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="bl1-card">
+          <div class="bl-glare"></div>
+          <div
+            class="bl1-thumb"
+            style="
+              background: linear-gradient(
+                135deg,
+                rgba(52, 229, 161, 0.18),
+                rgba(77, 216, 255, 0.18)
+              );
+            "
+          ></div>
+          <div class="bl1-body">
+            <span class="bl1-tag">Guide</span>
+            <h3>Migrating from cron jobs to event-driven workflows</h3>
+            <p>
+              A step-by-step guide for IT teams moving off legacy scheduling.
+            </p>
+            <div class="bl1-meta">
+              <span>Mar 02</span><span>9 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="bl1-card">
+          <div class="bl-glare"></div>
+          <div
+            class="bl1-thumb"
+            style="
+              background: linear-gradient(
+                135deg,
+                rgba(255, 184, 77, 0.18),
+                rgba(255, 92, 122, 0.18)
+              );
+            "
+          ></div>
+          <div class="bl1-body">
+            <span class="bl1-tag">Case Study</span>
+            <h3>Northbeam's on-call rotation, before and after</h3>
+            <p>What changed when a 40-person SRE team automated triage.</p>
+            <div class="bl1-meta">
+              <span>Feb 21</span><span>7 min read</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Section 9 ================= -->
+    <section class="section_9" id="sec-9">
+      <div class="section-label">12 — Breathing spacing</div>
+      <p class="section-sub">
+        Letter-spacing and opacity animate together on scroll, so the heading
+        seems to exhale into its final, tighter tracking.
+      </p>
+      <h2
+        id="breatheText"
+        style="
+          font-size: clamp(1.8rem, 4.5vw, 3rem);
+          letter-spacing: 0.6em;
+          opacity: 0;
+        "
+      >
+        Feel Like Talking?
+      </h2>
+      <button class="primary_medium_button" id="bg_gradient_move">
+        Contact
+      </button>
+    </section>
+
+    <!-- ================= Footer ================= -->
+    <footer class="ft2-footer" id="ft2Footer">
+      <div class="ft2-columns" id="ft2Columns">
+        <div class="ft2-col">
+          <div class="ft1-logo">Insight Grid<span class="ft1-dot">.</span></div>
+          <p class="ft2-brand-blurb">
+            The automation platform for teams who'd rather build the next thing
+            than repeat the last one.
+          </p>
+        </div>
+        <div class="ft2-col">
+          <h5>Product</h5>
+          <ul>
+            <li><a href="#">Workflow Builder</a></li>
+            <li><a href="#">Integrations</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+        <div class="ft2-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft2-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft2-wordmark" id="ft2Wordmark">INSIGHT GRID</div>
+
+      <div class="ft2-bottom-bar">
+        <span>© 2019 Insight Grid, Inc.</span>
+        <button class="ft2-back-top" id="ft2BackTop">Back to top ↑</button>
+      </div>
+    </footer>
 
     <script>
       (function () {
@@ -2137,12 +2346,14 @@
     </script>
 
     <!-- Section JS -->
-    <!-- <script src="js/Components/fixed_bg.js"></script> -->
+    <script src="js/fixed-bg.js"></script>
     <script src="js/home_sec2.js"></script>
     <script src="js/home_sec3.js"></script>
     <script src="js/home_sec5.js"></script>
     <script src="js/home_counter.js"></script>
     <script src="js/home_sec8.js"></script>
+    <script src="js/review-comp.js"></script>
+    <script src="js/blog-comp.js"></script>
     <script src="js/home_sec9.js"></script>
     <script src="js/footer.js"></script>
     <script src="js/home_case_studies.js"></script>
