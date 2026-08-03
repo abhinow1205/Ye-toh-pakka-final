@@ -1,0 +1,48 @@
+  /* ===== Accordion ===== */
+  .sec8_top {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+    text-align: left;
+  }
+
+  .accordion {
+    width: 100%;
+    border-top: 1px solid var(--line);
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .accordion-header {
+    all: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    font-size: 1.02rem;
+  }
+
+  .accordion-header .plus {
+    color: var(--accent);
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+
+  .accordion-body {
+    height: 0;
+    overflow: hidden;
+  }
+
+  .accordion-body-inner {
+    padding-bottom: 1.25rem;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 560px;
+  }
