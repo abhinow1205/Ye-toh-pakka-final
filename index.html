@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Complexity to Clarity — Halo Ring</title>
+    <title>Insight Grid</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/border_styles.css" />
-    <link rel="stylesheet" href="css/fixed-bg.css" />
+    <!-- <link rel="stylesheet" href="css/fixed-bg.css" /> -->
     <link rel="stylesheet" href="css/home_sec2.css" />
     <link rel="stylesheet" href="css/home_sec3.css" />
     <link rel="stylesheet" href="css/home_sec5.css" />
@@ -60,6 +60,7 @@
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/drag_card.css" />
     <link rel="stylesheet" href="css/circular-motion.css" />
+    <link rel="stylesheet" href="css/tabbed-view.css" />
 
     <!-- GSAP Libraries to be declared first -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -746,11 +747,9 @@
   </head>
   <body>
     <!-- ================= Background ================= -->
-    <section class="fixed_background" id="bg">
-      <!-- Full-screen space canvas (starfield) -->
+    <!-- <section class="fixed_background" id="bg">
       <canvas id="space-canvas" aria-hidden="true"></canvas>
 
-      <!-- Particle canvas sits above the starfield and behind the logo -->
       <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
       <div class="background">
@@ -758,7 +757,7 @@
         <div class="blob blob2"></div>
         <div class="blob blob3"></div>
       </div>
-    </section>
+    </section> -->
 
     <nav class="navbar" id="siteNav">
       <div class="navbar-inner">
@@ -1151,7 +1150,7 @@
     <section id="option3" class="design-section space-y-8">
       <!-- Pillars Canvas -->
       <div
-        class="rounded-3xl bg-white/5 backdrop-blur-xl p-6 md:p-10 border border-slate-800"
+        class="rounded-3xl bg-white/5 backdrop-blur-xl p-6 md:p-10 border border-slate-800 m-6"
       >
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <!-- Left Column: Navigation Buttons -->
@@ -1384,13 +1383,77 @@
             <h3>Northbridge rebrand</h3>
             <p>A full identity overhaul for a 40-year-old finance firm.</p>
             <div class="expand-body">
-              <p>
-                The brief called for a system that felt established but not
-                stale — new type, a restrained palette, and a mark that reads at
-                both business-card and billboard scale. We shipped a full
-                identity system, a 90-page brand guideline, and motion tokens
-                for their product team to build from.
-              </p>
+              <div class="wrap">
+                <div class="panel">
+                  <!-- Left: options -->
+                  <div class="panel-list" id="panelList">
+                    <button class="active" data-target="item-1">
+                      <span class="dot"></span> Overview
+                    </button>
+                    <button data-target="item-2">
+                      <span class="dot"></span> Features
+                    </button>
+                    <button data-target="item-3">
+                      <span class="dot"></span> Pricing
+                    </button>
+                    <button data-target="item-4">
+                      <span class="dot"></span> Integrations
+                    </button>
+                    <button data-target="item-5">
+                      <span class="dot"></span> Support
+                    </button>
+                  </div>
+
+                  <!-- Right: content that swaps per option -->
+                  <div class="panel-content" id="panelContent">
+                    <div class="content-item active" id="item-1">
+                      <span class="tag">Overview</span>
+                      <h2>Everything in one place</h2>
+                      <p>
+                        A quick summary of what this product does, who it's for,
+                        and why it matters. Replace this with your real copy.
+                      </p>
+                    </div>
+
+                    <div class="content-item" id="item-2">
+                      <span class="tag">Features</span>
+                      <h2>Built for speed and clarity</h2>
+                      <p>
+                        List the core features here. Each option on the left can
+                        point to a completely different block of content, image,
+                        or even a small demo.
+                      </p>
+                    </div>
+
+                    <div class="content-item" id="item-3">
+                      <span class="tag">Pricing</span>
+                      <h2>Simple, transparent plans</h2>
+                      <p>
+                        Describe pricing tiers, what's included, and any trial
+                        details relevant to this section.
+                      </p>
+                    </div>
+
+                    <div class="content-item" id="item-4">
+                      <span class="tag">Integrations</span>
+                      <h2>Works with your existing stack</h2>
+                      <p>
+                        Mention the tools and platforms this connects with, or
+                        show logos/icons here instead of text.
+                      </p>
+                    </div>
+
+                    <div class="content-item" id="item-5">
+                      <span class="tag">Support</span>
+                      <h2>Help whenever you need it</h2>
+                      <p>
+                        Explain support channels, response times, or link out to
+                        documentation and contact options.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <button class="expand-close">✕</button>
           </div>
@@ -2484,7 +2547,7 @@
     </script>
 
     <!-- Section JS -->
-    <script src="js/fixed-bg.js"></script>
+    <!-- <script src="js/fixed-bg.js"></script> -->
     <script src="js/home_sec2.js"></script>
     <script src="js/home_sec3.js"></script>
     <script src="js/home_sec5.js"></script>
@@ -2494,6 +2557,7 @@
     <script src="js/blog-comp.js"></script>
     <script src="js/home_sec9.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/tabbed-view.js"></script>
     <script src="js/home_case_studies.js"></script>
     <script src="js/type_in_motion.js"></script>
     <script src="js/drag_card.js"></script>

@@ -158,14 +158,14 @@
 }
 
 /* <!-- ================= Section 7 ================= --> */
-.section_7 {
+/* .section_7 {
     display: flex;
     flex-direction: column;
     padding: 5rem;
     justify-content: space-evenly;
     align-items: center;
     gap: 1rem;
-}
+} */
 
 /* <!-- ================= Section 8 ================= --> */
 .section_8 {
@@ -180,7 +180,6 @@
 /* <!-- ================= Section 9 ================= --> */
 .section_9 {
     display: flex;
-    padding: 5rem;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
