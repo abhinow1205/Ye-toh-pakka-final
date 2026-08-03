@@ -2,12 +2,14 @@
 
 /* Small Button */
 .primary_small_button {
+    display: inline-flex;
     color: rgb(0, 0, 0);
     padding: 6px 12px;
     text-align: center;
     justify-content: center;
     text-decoration: none;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     border-radius: 15px;
 }

@@ -10,7 +10,7 @@
     height: 260px;
     border-radius: 16px;
     border: 1px solid var(--line);
-    background: linear-gradient(150deg, var(--card-2), var(--card));
+    background: blue;
     padding: 1.75rem;
     display: flex;
     flex-direction: column;

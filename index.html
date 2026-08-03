@@ -234,18 +234,18 @@
         left: 1.75rem;
         right: 1.75rem;
         font-family: "Fraunces", serif;
-        font-size: clamp(1.4rem, 3vw, 1.9rem);
+        font-size: clamp(1.2rem, 2.5vw, 1.7rem);
         z-index: 5;
         pointer-events: none;
       }
 
       .cc-headline-before {
-        color: rgba(245, 241, 232, 0.6);
-        text-align: left;
+        color: var(--ink);
+        text-align: right;
       }
       .cc-headline-after {
         color: var(--ink);
-        text-align: right;
+        text-align: left;
       }
 
       .cc-handle {
@@ -616,52 +616,6 @@
         transform: translateY(-1px);
       }
 
-      /* gradient CTA pill used in the nav-right actions */
-      .primary_small_button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap;
-        font-size: var(--fs-btn);
-        font-weight: 500;
-        padding: 0.6rem clamp(0.9rem, 1.6vw, 1.4rem);
-        border-radius: 999px;
-        cursor: pointer;
-        text-decoration: none;
-        color: #08080a;
-        background: linear-gradient(
-          120deg,
-          var(--accent),
-          var(--accent-2),
-          var(--accent)
-        );
-        background-size: 200% 200%;
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
-      }
-
-      .primary_small_button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 8px 24px rgba(205, 164, 94, 0.25);
-      }
-
-      #bg_gradient_move {
-        animation: bgGradientMove 6s ease infinite;
-      }
-
-      @keyframes bgGradientMove {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
       /* ===================== HAMBURGER ===================== */
       .hamburger {
         width: 26px;
@@ -822,8 +776,11 @@
             style="display: flex; gap: 0.6rem"
           >
             <a href="#" class="btn btn-ghost">Log in</a>
-            <a href="#" class="primary_small_button" id="bg_gradient_move"
-              >Sign up free</a
+            <a
+              href="contact-us.html"
+              class="primary_small_button"
+              id="bg_gradient_move"
+              >Request Quote</a
             >
           </div>
 
@@ -1036,44 +993,124 @@
             </p>
           </div>
           <div class="h-card">
-            <span class="num">01</span>
-            <h3>Pinned & panned</h3>
-            <p>
-              This whole gallery is pinned in place — vertical scroll drives
-              horizontal movement.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
           <div class="h-card">
-            <span class="num">02</span>
-            <h3>ScrollTrigger.matchMedia</h3>
-            <p>
-              Great pattern for responsive scroll effects that behave
-              differently per breakpoint.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
           <div class="h-card">
-            <span class="num">03</span>
-            <h3>Scrub, not autoplay</h3>
-            <p>
-              scrub:true ties the timeline directly to scroll position — no
-              easing lag.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
           <div class="h-card">
-            <span class="num">04</span>
-            <h3>End distance</h3>
-            <p>
-              The pin's "end" is calculated from the track's total scrollable
-              width.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
           <div class="h-card">
-            <span class="num">05</span>
-            <h3>That's the trick</h3>
-            <p>
-              Under the hood it's one gsap.to() moving xPercent on the track
-              element.
-            </p>
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <span class="eyebrow"> Analytics </span>
+            </div>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design</h3>
+
+              <p>
+                Interactive dashboards built for business intelligence,
+                automation and data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -1112,35 +1149,10 @@
 
     <!-- ================= Section 5 ================= -->
     <section id="option3" class="design-section space-y-8">
-      <div
-        class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-800 pb-4"
-      >
-        <div>
-          <div
-            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 mb-2"
-          >
-            <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
-            <span>Option 03: Interactive Story Pillars</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white">
-            Interactive Narrative Stage
-          </h2>
-          <p class="text-slate-400 text-sm mt-1">
-            Engaging, click-to-explore value proposition with dynamic graphic
-            stages.
-          </p>
-        </div>
-        <button
-          onclick="copyCode('code-option3')"
-          class="mt-4 md:mt-0 flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-medium border border-slate-700 transition"
-        >
-          <i data-lucide="code" class="w-3.5 h-3.5"></i>
-          <span>Copy Section Code</span>
-        </button>
-      </div>
-
       <!-- Pillars Canvas -->
-      <div class="rounded-3xl bg-slate-950 p-6 md:p-10 border border-slate-800">
+      <div
+        class="rounded-3xl bg-white/5 backdrop-blur-xl p-6 md:p-10 border border-slate-800"
+      >
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <!-- Left Column: Navigation Buttons -->
           <div class="lg:col-span-5 space-y-3">
@@ -1800,7 +1812,7 @@
                 label: "Analytics",
                 desc: "Understand usage in real time.",
                 children: [
-                  { label: "Real-time Dashboards", href: "#" },
+                  { label: "Real-time Dashboards", href: "contact-us.html" },
                   { label: "Custom Reports", href: "#" },
                   { label: "Data Export", href: "#" },
                 ],

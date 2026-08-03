@@ -1,6 +1,6 @@
   /* ===== Horizontal pin gallery ===== */
 
-  .s3_content {
+  /* .s3_content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -9,7 +9,30 @@
     text-align: left;
     margin-bottom: 2rem;
 
-  }
+  } */
+
+  .s3_content {
+    position: relative;
+    width: 340px;
+    height: 420px;
+
+    padding: 2.5rem;
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(0, 254, 252, 0.08),
+        0 0 40px rgba(203, 108, 230, 0.08);
+}
 
   .h-scroll-section {
     max-width: none;
@@ -41,10 +64,129 @@
   }
 
   .h-card .num {
-    font-size: 0.8rem;
-    color: var(--accent);
-    margin-bottom: auto;
+    font-size:1.25rem;
+    font-weight:700;
+
+    color:#ffffff;
+
+    opacity:.8;
   }
+
+  .eyebrow{
+
+    padding:.45rem 1rem;
+
+    border-radius:50px;
+
+    border:1px solid rgba(0,254,252,.35);
+
+    color:#00fefc;
+
+    font-size:.72rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.5px;
+
+    font-weight:600;
+
+    background:rgba(0,254,252,.08);
+
+}
+
+.service-icon{
+
+    margin-top:3rem;
+
+    width:72px;
+    height:72px;
+
+    border-radius:20px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,254,252,.12),
+            rgba(203,108,230,.12)
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.service-icon svg{
+
+    width:34px;
+    height:34px;
+
+    color:#00fefc;
+
+}
+
+.card-content{
+
+    margin-top:2rem;
+
+}
+
+.card-content h3{
+
+    color:#fff;
+
+    font-size:1.6rem;
+
+    margin-bottom:1rem;
+
+    line-height:1.2;
+
+}
+
+.card-content p{
+
+    color:rgba(255,255,255,.72);
+
+    line-height:1.8;
+
+    font-size:.95rem;
+
+}
+
+.card-arrow{
+
+    margin-top:auto;
+
+    align-self:flex-end;
+
+    width:56px;
+    height:56px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00fefc,
+            #cb6ce6
+        );
+
+}
+
+.card-arrow svg{
+
+    width:24px;
+    height:24px;
+
+    color:#000;
+
+}
 
   .h-card h3 { margin: 0 0 0.4rem; font-size: 1.3rem; }
   .h-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Lumen</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+  /*
+    NOTE ON NAMING: every class/ID here is prefixed "cu-" (Contact Us) —
+    distinct from "au-" (About) and "sv-" (Services) from earlier pages —
+    so all three can sit in the same site with zero risk of clashing.
+    This page has a few extra sections beyond a minimal contact page
+    (contact-method picker, social row, floating chat bubble) — cut
+    whatever you don't need, each section is self-contained.
+  */
+
+  :root {
+    --bg: #0b0b0d;
+    --panel: #131317;
+    --card: #17181c;
+    --card-2: #1c1d22;
+    --ink: #f5f1e8;
+    --muted: #91918c;
+    --line: #26272d;
+    --accent: #cda45e;
+    --accent-2: #7c93ff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body.cu-body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .cu-page h1, .cu-page h2, .cu-page h3, .cu-page .cu-display {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+  }
+
+  .cu-page section {
+    position: relative;
+    padding: 6rem 1.5rem;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .cu-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .cu-label::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .cu-sub {
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .cu-section-heading {
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    margin: 0 0 0.5rem;
+  }
+
+  /* ===================== HERO ===================== */
+  .cu-hero {
+    min-height: 66vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+    overflow: hidden;
+  }
+
+  .cu-hero .cu-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+  }
+
+  .cu-hero h1 {
+    font-size: clamp(2.4rem, 5.8vw, 4.2rem);
+    line-height: 1.12;
+    margin: 0 0 1.5rem;
+    max-width: 880px;
+  }
+
+  .cu-hero h1 .cu-char {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  .cu-hero p {
+    color: var(--muted);
+    max-width: 500px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    opacity: 0;
+  }
+
+  .cu-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.26;
+    z-index: -1;
+  }
+
+  .cu-blob-1 { width: 380px; height: 380px; background: var(--accent); top: -90px; right: -60px; }
+  .cu-blob-2 { width: 280px; height: 280px; background: var(--accent-2); bottom: -60px; left: 8%; }
+
+  /* ===================== STATS STRIP ===================== */
+  .cu-stats-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cu-stat { flex: 1 1 160px; }
+
+  .cu-stat .cu-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .cu-stat .cu-stat-label {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }
+
+  /* ===================== CONTACT METHOD PICKER ===================== */
+  .cu-method-wrap {
+    position: relative;
+    display: inline-flex;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.35rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cu-method-wrap button {
+    all: unset;
+    position: relative;
+    z-index: 2;
+    padding: 0.6rem 1.3rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .cu-method-wrap button.cu-method-active { color: #1a1305; }
+
+  .cu-method-indicator {
+    position: absolute;
+    top: 0.35rem;
+    left: 0.35rem;
+    height: calc(100% - 0.7rem);
+    border-radius: 999px;
+    background: var(--accent);
+    z-index: 1;
+  }
+
+  /* ===================== FORM + INFO SPLIT ===================== */
+  .cu-split {
+    display: flex;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .cu-form-col { flex: 1 1 420px; min-width: 300px; }
+  .cu-info-col { flex: 1 1 320px; min-width: 280px; display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .cu-form {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  .cu-field {
+    position: relative;
+    margin-bottom: 1.75rem;
+  }
+
+  .cu-field input,
+  .cu-field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    padding: 0.75rem 0.1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.98rem;
+    color: var(--ink);
+    outline: none;
+    resize: none;
+  }
+
+  .cu-field textarea { min-height: 100px; }
+
+  .cu-field label {
+    position: absolute;
+    left: 0.1rem;
+    top: 0.75rem;
+    color: var(--muted);
+    font-size: 0.98rem;
+    pointer-events: none;
+    transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+  }
+
+  .cu-field input:focus + label,
+  .cu-field input:not(:placeholder-shown) + label,
+  .cu-field textarea:focus + label,
+  .cu-field textarea:not(:placeholder-shown) + label {
+    top: -0.9rem;
+    font-size: 0.72rem;
+    color: var(--accent);
+  }
+
+  .cu-field-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .cu-submit-btn {
+    position: relative;
+    width: 100%;
+    padding: 1.05rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #1a1305;
+    font-weight: 600;
+    font-size: 0.98rem;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    overflow: hidden;
+  }
+
+  .cu-submit-btn .cu-check-icon {
+    width: 18px;
+    height: 18px;
+    display: none;
+  }
+
+  .cu-submit-btn.cu-sent .cu-check-icon { display: block; }
+
+  .cu-check-icon circle {
+    fill: none;
+    stroke: #1a1305;
+    stroke-width: 2;
+  }
+
+  .cu-check-icon path {
+    fill: none;
+    stroke: #1a1305;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ---- Info cards ---- */
+  .cu-info-card {
+    position: relative;
+    border-radius: 16px;
+    background: linear-gradient(160deg, var(--card-2), var(--card));
+    border: 1px solid var(--line);
+    padding: 1.5rem 1.75rem;
+    overflow: hidden;
+  }
+
+  .cu-info-card .cu-glare {
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,0.08), transparent 45%);
+    pointer-events: none;
+  }
+
+  .cu-info-card h4 { margin: 0 0 0.3rem; font-size: 1.02rem; position: relative; }
+  .cu-info-card p { margin: 0 0 0.6rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5; position: relative; }
+  .cu-info-card a { color: var(--accent); font-size: 0.88rem; font-weight: 500; position: relative; }
+
+  /* ===================== SOCIAL ROW ===================== */
+  .cu-social-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .cu-social-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    cursor: pointer;
+  }
+
+  /* ===================== OFFICES ===================== */
+  .cu-offices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .cu-office-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1.75rem;
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .cu-office-card .cu-office-top {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .cu-pulse-dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .cu-office-card h4 { margin: 0; font-size: 1.05rem; }
+  .cu-office-tag { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+  .cu-office-card p { margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+
+  /* ===================== NEWSLETTER STRIP ===================== */
+  .cu-newsletter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: linear-gradient(140deg, #1a2340, var(--panel));
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 2.5rem clamp(1.75rem, 4vw, 3rem);
+  }
+
+  .cu-newsletter h3 { margin: 0 0 0.4rem; font-size: 1.3rem; }
+  .cu-newsletter p { margin: 0; color: var(--muted); font-size: 0.9rem; max-width: 380px; }
+
+  .cu-newsletter-form {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .cu-newsletter-form input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.8rem 1.2rem;
+    color: var(--ink);
+    font-size: 0.9rem;
+    min-width: 220px;
+    outline: none;
+  }
+
+  .cu-newsletter-form button {
+    all: unset;
+    background: var(--accent);
+    color: #1a1305;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  /* ===================== FAQ ===================== */
+  .cu-accordion { border-top: 1px solid var(--line); margin-top: 3rem; }
+  .cu-accordion-item { border-bottom: 1px solid var(--line); }
+
+  .cu-accordion-header {
+    all: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.35rem 0;
+    cursor: pointer;
+    font-size: 1.02rem;
+  }
+
+  .cu-accordion-header .cu-plus {
+    color: var(--accent);
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  .cu-accordion-body { height: 0; overflow: hidden; }
+  .cu-accordion-body-inner { padding-bottom: 1.35rem; color: var(--muted); line-height: 1.65; max-width: 640px; }
+
+  /* ===================== FLOATING CHAT BUBBLE ===================== */
+  .cu-chat-bubble {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 300;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  }
+
+  .cu-chat-bubble svg { width: 24px; height: 24px; stroke: #1a1305; }
+
+  .cu-chat-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+  }
+</style>
+</head>
+<body class="cu-body">
+
+<div class="cu-page">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="cu-hero">
+    <div class="cu-blob cu-blob-1"></div>
+    <div class="cu-blob cu-blob-2"></div>
+    <div class="cu-eyebrow" id="cuHeroEyebrow">Contact</div>
+    <h1 id="cuHeroHeading">Let's talk about what you're trying to automate.</h1>
+    <p id="cuHeroSub">Whether it's one workflow or your whole ops stack, someone on our team will reply personally — no ticket queue, no bot in between.</p>
+  </section>
+
+  <!-- ===================== STATS STRIP ===================== -->
+  <section style="padding-top: 0; padding-bottom: 0;">
+    <div class="cu-stats-strip" id="cuStatsStrip">
+      <div class="cu-stat"><div class="cu-stat-num" data-target="2" data-suffix="hrs">0</div><div class="cu-stat-label">Average reply time</div></div>
+      <div class="cu-stat"><div class="cu-stat-num" data-target="4.9" data-suffix="/5">0</div><div class="cu-stat-label">Support satisfaction</div></div>
+      <div class="cu-stat"><div class="cu-stat-num" data-target="98" data-suffix="%">0</div><div class="cu-stat-label">First-reply resolution</div></div>
+      <div class="cu-stat"><div class="cu-stat-num" data-target="24" data-suffix="/7">0</div><div class="cu-stat-label">Enterprise support</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== FORM + INFO ===================== -->
+  <section>
+    <div class="cu-label">Get in touch</div>
+    <h2 class="cu-section-heading">Send us a message.</h2>
+    <p class="cu-sub">Fill this out and it lands directly in our team's inbox — most people hear back the same day.</p>
+
+    <div class="cu-method-wrap" id="cuMethodWrap" style="margin-top: 2rem;">
+      <div class="cu-method-indicator" id="cuMethodIndicator"></div>
+      <button type="button" class="cu-method-active" data-method="email">Email me</button>
+      <button type="button" data-method="call">Call me</button>
+      <button type="button" data-method="chat">Live chat</button>
+    </div>
+
+    <div class="cu-split">
+      <div class="cu-form-col">
+        <form class="cu-form" id="cuForm">
+          <div class="cu-field">
+            <input type="text" id="cuName" placeholder=" " required />
+            <label for="cuName">Full name</label>
+            <span class="cu-field-underline" data-underline></span>
+          </div>
+          <div class="cu-field">
+            <input type="email" id="cuEmail" placeholder=" " required />
+            <label for="cuEmail">Work email</label>
+            <span class="cu-field-underline" data-underline></span>
+          </div>
+          <div class="cu-field">
+            <input type="text" id="cuCompany" placeholder=" " />
+            <label for="cuCompany">Company</label>
+            <span class="cu-field-underline" data-underline></span>
+          </div>
+          <div class="cu-field">
+            <textarea id="cuMessage" placeholder=" " required></textarea>
+            <label for="cuMessage">What are you looking to automate?</label>
+            <span class="cu-field-underline" data-underline></span>
+          </div>
+          <button type="submit" class="cu-submit-btn" id="cuSubmitBtn">
+            <span id="cuSubmitLabel">Send message</span>
+            <svg class="cu-check-icon" id="cuCheckIcon" viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="16"></circle>
+              <path id="cuCheckPath" d="M10 18l5 5 11-11"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="cu-info-col">
+        <div class="cu-info-card"><div class="cu-glare"></div><h4>Sales</h4><p>Talk through pricing, plans, or a custom enterprise quote.</p><a href="mailto:sales@lumen.example">sales@lumen.example</a></div>
+        <div class="cu-info-card"><div class="cu-glare"></div><h4>Support</h4><p>Already a customer? Get help from someone who's used the product.</p><a href="mailto:support@lumen.example">support@lumen.example</a></div>
+        <div class="cu-info-card"><div class="cu-glare"></div><h4>Careers</h4><p>Interested in joining the team instead of just working with us?</p><a href="mailto:careers@lumen.example">careers@lumen.example</a></div>
+        <div class="cu-info-card">
+          <div class="cu-glare"></div>
+          <h4>Follow along</h4>
+          <p>Product updates, automation tips, and the occasional behind-the-scenes.</p>
+          <div class="cu-social-row" id="cuSocialRow">
+            <button class="cu-social-btn" type="button">X</button>
+            <button class="cu-social-btn" type="button">in</button>
+            <button class="cu-social-btn" type="button">yt</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== OFFICES ===================== -->
+  <section>
+    <div class="cu-label">Where we are</div>
+    <h2 class="cu-section-heading">Three offices, one small team.</h2>
+    <p class="cu-sub">Remote-first by default, but happy to meet in person if you're nearby.</p>
+
+    <div class="cu-offices-grid" id="cuOfficesGrid">
+      <div class="cu-office-card">
+        <div class="cu-office-top"><span class="cu-pulse-dot" id="cuPulseDot"></span><span class="cu-office-tag">Headquarters</span></div>
+        <h4>San Francisco</h4>
+        <p>548 Market Street, Suite 1100<br>San Francisco, CA 94104</p>
+      </div>
+      <div class="cu-office-card">
+        <div class="cu-office-top"><span class="cu-office-tag">Europe</span></div>
+        <h4>London</h4>
+        <p>12 Finsbury Square<br>London EC2A 1AS, UK</p>
+      </div>
+      <div class="cu-office-card">
+        <div class="cu-office-top"><span class="cu-office-tag">Asia Pacific</span></div>
+        <h4>Bengaluru</h4>
+        <p>4th Floor, Indiranagar<br>Bengaluru, KA 560038</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NEWSLETTER ===================== -->
+  <section style="padding-top: 2rem;">
+    <div class="cu-newsletter" id="cuNewsletter">
+      <div>
+        <h3>Not ready to reach out yet?</h3>
+        <p>Get one email a month with automation tips and product updates — nothing else.</p>
+      </div>
+      <form class="cu-newsletter-form" id="cuNewsletterForm">
+        <input type="email" placeholder="you@company.com" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section style="padding-bottom: 8rem;">
+    <div class="cu-label">Before you write in</div>
+    <h2 class="cu-section-heading">A few quick answers.</h2>
+    <p class="cu-sub">In case one of these saves you a message.</p>
+
+    <div class="cu-accordion" id="cuAccordion">
+      <div class="cu-accordion-item">
+        <button class="cu-accordion-header"><span>How fast will I actually hear back?</span><span class="cu-plus">+</span></button>
+        <div class="cu-accordion-body"><div class="cu-accordion-body-inner">Most messages get a personal reply within 2 hours during business hours, and same-day outside of them. Enterprise customers get a dedicated Slack channel with faster SLAs.</div></div>
+      </div>
+      <div class="cu-accordion-item">
+        <button class="cu-accordion-header"><span>Do you offer a free trial?</span><span class="cu-plus">+</span></button>
+        <div class="cu-accordion-body"><div class="cu-accordion-body-inner">Yes — every plan starts with a 14-day free trial, no credit card required. You can build and run real automations from day one.</div></div>
+      </div>
+      <div class="cu-accordion-item">
+        <button class="cu-accordion-header"><span>Can I talk to sales before signing up?</span><span class="cu-plus">+</span></button>
+        <div class="cu-accordion-body"><div class="cu-accordion-body-inner">Of course — use the form above or email sales@lumen.example directly and we'll set up a call that fits your timezone.</div></div>
+      </div>
+      <div class="cu-accordion-item">
+        <button class="cu-accordion-header"><span>Do you have an enterprise support tier?</span><span class="cu-plus">+</span></button>
+        <div class="cu-accordion-body"><div class="cu-accordion-body-inner">Yes — Enterprise plans include 24/7 support, a dedicated account manager, and custom onboarding for larger rollouts.</div></div>
+      </div>
+      <div class="cu-accordion-item">
+        <button class="cu-accordion-header"><span>Is my data safe with Lumen?</span><span class="cu-plus">+</span></button>
+        <div class="cu-accordion-body"><div class="cu-accordion-body-inner">We're SOC 2 Type II certified, encrypt data at rest and in transit, and never sell or share customer data. Full details are on our security page.</div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===================== FLOATING CHAT BUBBLE ===================== -->
+<div class="cu-chat-bubble" id="cuChatBubble">
+  <div class="cu-chat-ring" id="cuChatRing"></div>
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+  </svg>
+</div>
+
+<script>
+(function () {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ===================== Hero ===================== */
+  const cuHeroHeading = document.getElementById('cuHeroHeading');
+  const cuHeroText = cuHeroHeading.textContent;
+  cuHeroHeading.innerHTML = cuHeroText.split('').map((ch) =>
+    ch === ' ' ? ' ' : `<span class="cu-char">${ch}</span>`
+  ).join('');
+
+  gsap.set('.cu-hero .cu-char', { yPercent: 120, opacity: 0 });
+
+  const cuHeroTl = gsap.timeline({ delay: 0.2 });
+  cuHeroTl
+    .to('#cuHeroEyebrow', { opacity: 1, duration: 0.6, ease: 'power2.out' })
+    .to('.cu-hero .cu-char', { yPercent: 0, opacity: 1, duration: 0.9, ease: 'power4.out', stagger: 0.012 }, '-=0.2')
+    .to('#cuHeroSub', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4');
+
+  gsap.to('.cu-blob-1', { y: 40, x: -20, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+  gsap.to('.cu-blob-2', { y: -30, x: 30, duration: 7, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+  /* ===================== Stats strip counters ===================== */
+  document.querySelectorAll('.cu-stat-num').forEach((el) => {
+    const target = parseFloat(el.getAttribute('data-target'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    const decimals = target % 1 !== 0 ? 1 : 0;
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 90%',
+      once: true,
+      onEnter: () => {
+        const counter = { val: 0 };
+        gsap.to(counter, {
+          val: target,
+          duration: 1.4,
+          ease: 'power2.out',
+          onUpdate: () => { el.textContent = counter.val.toFixed(decimals) + suffix; }
+        });
+      }
+    });
+  });
+
+  /* ===================== Contact method picker (sliding pill) ===================== */
+  const cuMethodWrap = document.getElementById('cuMethodWrap');
+  const cuMethodIndicator = document.getElementById('cuMethodIndicator');
+  const cuMethodButtons = cuMethodWrap.querySelectorAll('button');
+
+  function moveMethodIndicator(btn, animate) {
+    const btnRect = btn.getBoundingClientRect();
+    const wrapRect = cuMethodWrap.getBoundingClientRect();
+    const x = btnRect.left - wrapRect.left - 4;
+    const width = btnRect.width;
+    if (animate) {
+      gsap.to(cuMethodIndicator, { x, width, duration: 0.4, ease: 'power3.out' });
+    } else {
+      gsap.set(cuMethodIndicator, { x, width });
+    }
+  }
+  moveMethodIndicator(cuMethodButtons[0], false);
+
+  cuMethodButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      cuMethodButtons.forEach((b) => b.classList.remove('cu-method-active'));
+      btn.classList.add('cu-method-active');
+      moveMethodIndicator(btn, true);
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    const activeBtn = cuMethodWrap.querySelector('.cu-method-active');
+    moveMethodIndicator(activeBtn, false);
+  });
+
+  /* ===================== Form field underline on focus ===================== */
+  document.querySelectorAll('.cu-field').forEach((field) => {
+    const input = field.querySelector('input, textarea');
+    const underline = field.querySelector('[data-underline]');
+
+    input.addEventListener('focus', () => {
+      gsap.to(underline, { scaleX: 1, duration: 0.35, ease: 'power2.out' });
+    });
+    input.addEventListener('blur', () => {
+      gsap.to(underline, { scaleX: 0, duration: 0.3, ease: 'power2.in' });
+    });
+  });
+
+  /* ===================== Submit: success morph ===================== */
+  const cuForm = document.getElementById('cuForm');
+  const cuSubmitBtn = document.getElementById('cuSubmitBtn');
+  const cuSubmitLabel = document.getElementById('cuSubmitLabel');
+  const cuCheckPath = document.getElementById('cuCheckPath');
+  const cuCheckPathLength = cuCheckPath.getTotalLength();
+
+  gsap.set(cuCheckPath, { strokeDasharray: cuCheckPathLength, strokeDashoffset: cuCheckPathLength });
+
+  cuForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (cuSubmitBtn.classList.contains('cu-sending') || cuSubmitBtn.classList.contains('cu-sent')) return;
+
+    cuSubmitBtn.classList.add('cu-sending');
+    cuSubmitLabel.textContent = 'Sending...';
+
+    gsap.to(cuSubmitBtn, {
+      scale: 0.97,
+      duration: 0.15,
+      yoyo: true,
+      repeat: 1,
+      onComplete: () => {
+        cuSubmitBtn.classList.remove('cu-sending');
+        cuSubmitBtn.classList.add('cu-sent');
+        cuSubmitLabel.textContent = 'Message sent';
+        gsap.to(cuCheckPath, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out', delay: 0.1 });
+      }
+    });
+  });
+
+  /* ===================== Info card glare ===================== */
+  document.querySelectorAll('.cu-info-card').forEach((card) => {
+    const glare = card.querySelector('.cu-glare');
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      glare.style.setProperty('--gx', (((e.clientX - rect.left) / rect.width) * 100) + '%');
+      glare.style.setProperty('--gy', (((e.clientY - rect.top) / rect.height) * 100) + '%');
+    });
+  });
+
+  /* ===================== Social row: magnetic hover ===================== */
+  document.querySelectorAll('.cu-social-btn').forEach((btn) => {
+    const xTo = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power3' });
+    const yTo = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power3' });
+
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      xTo((e.clientX - rect.left - rect.width / 2) * 0.4);
+      yTo((e.clientY - rect.top - rect.height / 2) * 0.4);
+    });
+    btn.addEventListener('mouseleave', () => { xTo(0); yTo(0); });
+  });
+
+  /* ===================== Offices: staggered reveal + pulse dot ===================== */
+  ScrollTrigger.batch('.cu-office-card', {
+    start: 'top 88%',
+    onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1 }),
+    once: true
+  });
+
+  ScrollTrigger.create({
+    trigger: '#cuPulseDot',
+    start: 'top 90%',
+    once: true,
+    onEnter: () => {
+      gsap.to('#cuPulseDot', {
+        boxShadow: '0 0 0 8px rgba(205, 164, 94, 0)',
+        duration: 1.6,
+        repeat: -1,
+        ease: 'power2.out'
+      });
+    }
+  });
+
+  /* ===================== Newsletter: submit feedback ===================== */
+  const cuNewsletterForm = document.getElementById('cuNewsletterForm');
+  cuNewsletterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = cuNewsletterForm.querySelector('button');
+    const original = btn.textContent;
+    btn.textContent = 'Subscribed ✓';
+    gsap.fromTo(btn, { scale: 0.95 }, { scale: 1, duration: 0.3, ease: 'back.out(3)' });
+    setTimeout(() => { btn.textContent = original; }, 2200);
+  });
+
+  /* ===================== FAQ accordion ===================== */
+  document.querySelectorAll('.cu-accordion-header').forEach((header) => {
+    header.addEventListener('click', () => {
+      const item = header.closest('.cu-accordion-item');
+      const body = item.querySelector('.cu-accordion-body');
+      const inner = item.querySelector('.cu-accordion-body-inner');
+      const isOpen = item.classList.contains('cu-open');
+
+      document.querySelectorAll('.cu-accordion-item.cu-open').forEach((openItem) => {
+        if (openItem !== item) {
+          openItem.classList.remove('cu-open');
+          gsap.to(openItem.querySelector('.cu-accordion-body'), { height: 0, duration: 0.4, ease: 'power2.inOut' });
+          gsap.to(openItem.querySelector('.cu-plus'), { rotate: 0, duration: 0.3 });
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove('cu-open');
+        gsap.to(body, { height: 0, duration: 0.4, ease: 'power2.inOut' });
+        gsap.to(header.querySelector('.cu-plus'), { rotate: 0, duration: 0.3 });
+      } else {
+        item.classList.add('cu-open');
+        gsap.to(body, { height: inner.offsetHeight, duration: 0.4, ease: 'power2.inOut' });
+        gsap.to(header.querySelector('.cu-plus'), { rotate: 45, duration: 0.3 });
+      }
+    });
+  });
+
+  /* ===================== Floating chat bubble ===================== */
+  gsap.fromTo('#cuChatBubble', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, delay: 1, ease: 'back.out(2.5)' });
+  gsap.to('#cuChatRing', {
+    scale: 1.5,
+    opacity: 0,
+    duration: 1.8,
+    repeat: -1,
+    ease: 'power2.out',
+    delay: 1.5
+  });
+
+  document.getElementById('cuChatBubble').addEventListener('click', function () {
+    gsap.to(this, { rotate: 360, duration: 0.5, ease: 'power2.inOut' });
+  });
+
+  window.addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+
+</body>
+</html>

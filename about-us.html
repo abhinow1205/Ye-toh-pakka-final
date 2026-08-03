@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Lumen</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+  /*
+    NOTE ON NAMING: every class/ID on this page is prefixed "au-" (About Us)
+    specifically so it won't collide with classes from your navbar, footer,
+    or other pages when you drop this into the rest of your site.
+  */
+
+  :root {
+    --bg: #0b0b0d;
+    --panel: #131317;
+    --card: #17181c;
+    --card-2: #1c1d22;
+    --ink: #f5f1e8;
+    --muted: #91918c;
+    --line: #26272d;
+    --accent: #cda45e;
+    --accent-2: #7c93ff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body.au-body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .au-page h1, .au-page h2, .au-page h3, .au-page .au-display {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+  }
+
+  .au-page section {
+    position: relative;
+    padding: 8rem 1.5rem;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .au-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .au-label::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .au-sub {
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  /* ===================== HERO ===================== */
+  .au-hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+    overflow: hidden;
+  }
+
+  .au-hero .au-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+  }
+
+  .au-hero h1 {
+    font-size: clamp(2.6rem, 6.6vw, 5rem);
+    line-height: 1.08;
+    margin: 0 0 1.75rem;
+    max-width: 980px;
+  }
+
+  .au-hero h1 .au-char {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  .au-hero h1 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .au-hero p {
+    color: var(--muted);
+    max-width: 520px;
+    font-size: 1.08rem;
+    line-height: 1.7;
+    opacity: 0;
+  }
+
+  .au-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.28;
+    z-index: -1;
+  }
+
+  .au-blob-1 { width: 420px; height: 420px; background: var(--accent); top: -100px; right: -80px; }
+  .au-blob-2 { width: 320px; height: 320px; background: var(--accent-2); bottom: -80px; left: 8%; }
+
+  /* ===================== MANIFESTO (pinned zoom) ===================== */
+  .au-manifesto-section {
+    max-width: none;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .au-manifesto-text {
+    font-size: clamp(1.8rem, 5.4vw, 3.6rem);
+    text-align: center;
+    line-height: 1.35;
+    max-width: 90vw;
+  }
+
+  .au-manifesto-text .au-accent-word { color: var(--accent); }
+
+  /* ===================== STATS ===================== */
+  .au-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .au-stat .au-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .au-stat .au-stat-label {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+  }
+
+  /* ===================== TIMELINE ===================== */
+  .au-timeline {
+    position: relative;
+    margin-top: 3rem;
+  }
+
+  .au-timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line);
+    transform: translateX(-50%);
+  }
+
+  .au-timeline-fill {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 0%;
+    background: var(--accent);
+    transform: translateX(-50%);
+  }
+
+  .au-tl-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+
+  .au-tl-card {
+    width: calc(50% - 3rem);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1.75rem;
+    opacity: 0;
+  }
+
+  .au-tl-item.au-tl-left .au-tl-card { margin-right: auto; transform: translateX(-30px); }
+  .au-tl-item.au-tl-right .au-tl-card { margin-left: auto; transform: translateX(30px); }
+
+  .au-tl-year {
+    font-family: 'Fraunces', serif;
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .au-tl-card p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+  .au-tl-dot {
+    position: absolute;
+    left: 50%;
+    top: 0.4rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    transform: translate(-50%, 0) scale(0);
+    z-index: 2;
+  }
+
+  @media (max-width: 720px) {
+    .au-timeline-line, .au-timeline-fill { left: 6px; }
+    .au-tl-card { width: 100%; margin-left: 2rem !important; margin-right: 0 !important; transform: translateX(0) !important; }
+    .au-tl-dot { left: 6px; }
+  }
+
+  /* ===================== VALUES ===================== */
+  .au-values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    perspective: 1100px;
+    margin-top: 3rem;
+  }
+
+  .au-value-card {
+    position: relative;
+    border-radius: 18px;
+    background: linear-gradient(160deg, var(--card-2), var(--card));
+    border: 1px solid var(--line);
+    padding: 2rem;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transform-style: preserve-3d;
+    will-change: transform;
+    overflow: hidden;
+  }
+
+  .au-value-card .au-glare {
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,0.1), transparent 45%);
+    pointer-events: none;
+  }
+
+  .au-value-num {
+    position: absolute;
+    top: 1.5rem;
+    left: 2rem;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .au-value-card h3 { font-size: 1.2rem; margin: 0 0 0.4rem; transform: translateZ(20px); }
+  .au-value-card p { margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.5; transform: translateZ(15px); }
+
+  /* ===================== TEAM ===================== */
+  .au-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .au-team-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.75rem;
+    text-align: center;
+    opacity: 0;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .au-team-card:hover { border-color: #3a3d45; transform: translateY(-4px); }
+
+  .au-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    margin: 0 auto 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #14100a;
+  }
+
+  .au-team-card h4 { margin: 0 0 0.2rem; font-size: 1.05rem; }
+  .au-team-card .au-role { color: var(--accent); font-size: 0.8rem; margin-bottom: 0.6rem; }
+  .au-team-card p { margin: 0; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+
+  /* ===================== CULTURE STRIP (horizontal pin) ===================== */
+  .au-culture-section {
+    max-width: none;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .au-culture-track {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    gap: 1.75rem;
+    padding-left: 8vw;
+    width: max-content;
+  }
+
+  .au-culture-heading-slide {
+    width: 40vw;
+    max-width: 480px;
+    flex-shrink: 0;
+    padding-right: 3rem;
+  }
+
+  .au-culture-card {
+    width: 300px;
+    height: 380px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .au-culture-card h4 { margin: 0 0 0.35rem; font-size: 1.1rem; }
+  .au-culture-card p { margin: 0; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+
+  .au-culture-card:nth-child(2) { background: linear-gradient(160deg, #2a2416, var(--card)); }
+  .au-culture-card:nth-child(3) { background: linear-gradient(160deg, #1a2340, var(--card)); }
+  .au-culture-card:nth-child(4) { background: linear-gradient(160deg, #3a1c1c, var(--card)); }
+  .au-culture-card:nth-child(5) { background: linear-gradient(160deg, #1c3a2c, var(--card)); }
+  .au-culture-card:nth-child(6) { background: linear-gradient(160deg, #241c3a, var(--card)); }
+
+  /* ===================== CTA ===================== */
+  .au-cta-section {
+    text-align: center;
+    padding-bottom: 12rem;
+  }
+
+  .au-cta-section h2 {
+    font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+    max-width: 700px;
+    margin: 0 auto 1rem;
+  }
+
+  .au-cta-btn {
+    position: relative;
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 1.15rem 2.75rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #1a1305;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body class="au-body">
+
+<div class="au-page">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="au-hero">
+    <div class="au-blob au-blob-1"></div>
+    <div class="au-blob au-blob-2"></div>
+    <div class="au-eyebrow" id="auHeroEyebrow">About Lumen</div>
+    <h1 id="auHeroHeading">We build the software that does the work you never wanted to.</h1>
+    <p id="auHeroSub">Lumen turns repetitive, manual busywork into automated workflows — so the people on your team can spend their hours on the parts of the job only a person can do.</p>
+  </section>
+
+  <!-- ===================== MANIFESTO ===================== -->
+  <div class="au-manifesto-section" id="auManifestoSection">
+    <h2 class="au-manifesto-text" id="auManifestoText">
+      We started Lumen because we were tired of watching <span class="au-accent-word">talented people</span> spend their best hours copying data between tabs.
+    </h2>
+  </div>
+
+  <!-- ===================== STATS ===================== -->
+  <section>
+    <div class="au-label">By the numbers</div>
+    <h2 style="font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: 0 0 0.5rem;">A small team, a lot of hours given back.</h2>
+    <p class="au-sub">We measure ourselves less by revenue and more by how much time we've handed back to the people who use Lumen every day.</p>
+
+    <div class="au-stats-grid" id="auStatsGrid">
+      <div class="au-stat"><div class="au-stat-num" data-target="40" data-suffix="K+">0</div><div class="au-stat-label">Teams automating with Lumen</div></div>
+      <div class="au-stat"><div class="au-stat-num" data-target="12" data-suffix="M+">0</div><div class="au-stat-label">Hours saved every month</div></div>
+      <div class="au-stat"><div class="au-stat-num" data-target="99.98" data-suffix="%">0</div><div class="au-stat-label">Platform uptime</div></div>
+      <div class="au-stat"><div class="au-stat-num" data-target="120" data-suffix="+">0</div><div class="au-stat-label">Countries running Lumen</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== TIMELINE ===================== -->
+  <section>
+    <div class="au-label">Our story</div>
+    <h2 style="font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: 0 0 0.5rem;">Five years, one steady idea.</h2>
+    <p class="au-sub">Automation shouldn't require an engineering team to set up. That belief hasn't changed since day one — everything else has just gotten better at proving it.</p>
+
+    <div class="au-timeline" id="auTimeline">
+      <div class="au-timeline-line"></div>
+      <div class="au-timeline-fill" id="auTimelineFill"></div>
+
+      <div class="au-tl-item au-tl-left">
+        <div class="au-tl-dot"></div>
+        <div class="au-tl-card">
+          <div class="au-tl-year">2021</div>
+          <p>Founded in a two-bedroom apartment. The first version of the automation engine was built and shipped over a single weekend.</p>
+        </div>
+      </div>
+
+      <div class="au-tl-item au-tl-right">
+        <div class="au-tl-dot"></div>
+        <div class="au-tl-card">
+          <div class="au-tl-year">2022</div>
+          <p>Crossed 1,000 paying teams and shipped the visual workflow builder — no code required to connect two tools together.</p>
+        </div>
+      </div>
+
+      <div class="au-tl-item au-tl-left">
+        <div class="au-tl-dot"></div>
+        <div class="au-tl-card">
+          <div class="au-tl-year">2023</div>
+          <p>Raised our Series A and crossed 10 million automated tasks run through the platform in a single year.</p>
+        </div>
+      </div>
+
+      <div class="au-tl-item au-tl-right">
+        <div class="au-tl-dot"></div>
+        <div class="au-tl-card">
+          <div class="au-tl-year">2024</div>
+          <p>Launched the enterprise tier and opened our first office — still small enough that everyone knows everyone.</p>
+        </div>
+      </div>
+
+      <div class="au-tl-item au-tl-left">
+        <div class="au-tl-dot"></div>
+        <div class="au-tl-card">
+          <div class="au-tl-year">2026</div>
+          <p>Today, over 40,000 teams across 120 countries run their busywork through Lumen. We're just getting started.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VALUES ===================== -->
+  <section>
+    <div class="au-label">What we care about</div>
+    <h2 style="font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: 0 0 0.5rem;">Four things we don't compromise on.</h2>
+    <p class="au-sub">Values are easy to write down and hard to hold onto once a company grows. These are the four we check ourselves against.</p>
+
+    <div class="au-values-grid" id="auValuesGrid">
+      <div class="au-value-card"><div class="au-glare"></div><span class="au-value-num">01</span><h3>Clarity</h3><p>If a workflow needs a manual to understand, we haven't finished designing it.</p></div>
+      <div class="au-value-card"><div class="au-glare"></div><span class="au-value-num">02</span><h3>Momentum</h3><p>We'd rather ship a smaller thing this week than a perfect thing next quarter.</p></div>
+      <div class="au-value-card"><div class="au-glare"></div><span class="au-value-num">03</span><h3>Trust</h3><p>Your data and your workflows are yours. We build like someone's checking.</p></div>
+      <div class="au-value-card"><div class="au-glare"></div><span class="au-value-num">04</span><h3>Craft</h3><p>Automation should feel invisible. That takes far more care than it looks like.</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== TEAM ===================== -->
+  <section>
+    <div class="au-label">Leadership</div>
+    <h2 style="font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: 0 0 0.5rem;">The people steering the ship.</h2>
+    <p class="au-sub">A deliberately small leadership team — we've found it keeps decisions fast and honest.</p>
+
+    <div class="au-team-grid" id="auTeamGrid">
+      <div class="au-team-card">
+        <div class="au-avatar" style="background: linear-gradient(150deg, #cda45e, #f0c98a);">MC</div>
+        <h4>Maya Chen</h4>
+        <div class="au-role">Co-founder &amp; CEO</div>
+        <p>Previously led product at two other startups. Still writes the occasional workflow herself.</p>
+      </div>
+      <div class="au-team-card">
+        <div class="au-avatar" style="background: linear-gradient(150deg, #7c93ff, #a9b9ff);">DO</div>
+        <h4>Devon Okafor</h4>
+        <div class="au-role">Co-founder &amp; CTO</div>
+        <p>Built the first version of Lumen's automation engine over one long weekend in 2021.</p>
+      </div>
+      <div class="au-team-card">
+        <div class="au-avatar" style="background: linear-gradient(150deg, #ff9d7c, #ffc09e);">PR</div>
+        <h4>Priya Raman</h4>
+        <div class="au-role">Head of Design</div>
+        <p>Obsessed with making complex workflows feel like they explain themselves.</p>
+      </div>
+      <div class="au-team-card">
+        <div class="au-avatar" style="background: linear-gradient(150deg, #8fe3a5, #b8f0c8);">SW</div>
+        <h4>Sam Whitfield</h4>
+        <div class="au-role">Head of Customer Success</div>
+        <p>Talks to more customers in a week than most of us do in a quarter.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CULTURE (horizontal pin) ===================== -->
+  <div class="au-culture-section" id="auCultureSection">
+    <div class="au-culture-track" id="auCultureTrack">
+      <div class="au-culture-heading-slide">
+        <div class="au-label">Life at Lumen</div>
+        <h2 style="font-size: clamp(1.8rem, 3.6vw, 2.6rem); margin: 0 0 0.75rem;">Small team, real momentum.</h2>
+        <p class="au-sub">A few snapshots of how we actually work — keep scrolling this section sideways.</p>
+      </div>
+      <div class="au-culture-card"><h4>Remote-first, always</h4><p>Across 9 time zones, with two in-person meetups a year to actually be in a room together.</p></div>
+      <div class="au-culture-card"><h4>No-meeting Wednesdays</h4><p>One full day a week protected for deep, uninterrupted work.</p></div>
+      <div class="au-culture-card"><h4>Ship day, every Friday</h4><p>Whatever's ready goes out — small and often beats big and rare.</p></div>
+      <div class="au-culture-card"><h4>Customers in standup</h4><p>Real support tickets get read out loud every single morning.</p></div>
+      <div class="au-culture-card"><h4>Built by 40 people</h4><p>Still small enough that your onboarding email gets a reply from a founder.</p></div>
+    </div>
+  </div>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="au-cta-section">
+    <div class="au-label" style="justify-content:center;">Join us</div>
+    <h2>We're always looking for people who'd rather fix the process than complain about it.</h2>
+    <p class="au-sub" style="margin-left:auto; margin-right:auto;">Open roles across engineering, design, and customer success — remote-first, always.</p>
+    <button class="au-cta-btn" id="auCtaBtn">View open roles</button>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ===================== Hero ===================== */
+  const auHeroHeading = document.getElementById('auHeroHeading');
+  const auHeroHtml = auHeroHeading.innerHTML;
+  // Split into characters while preserving the <em> tag for the highlighted word
+  const auTemp = document.createElement('div');
+  auTemp.innerHTML = auHeroHtml;
+
+  function splitNodeChars(node) {
+    node.childNodes.forEach((child) => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        const frag = document.createDocumentFragment();
+        child.textContent.split('').forEach((ch) => {
+          if (ch === ' ') {
+            frag.appendChild(document.createTextNode(' '));
+          } else {
+            const span = document.createElement('span');
+            span.className = 'au-char';
+            span.textContent = ch;
+            frag.appendChild(span);
+          }
+        });
+        child.replaceWith(frag);
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        splitNodeChars(child);
+      }
+    });
+  }
+  splitNodeChars(auTemp);
+  auHeroHeading.innerHTML = auTemp.innerHTML;
+
+  gsap.set('.au-hero .au-char', { yPercent: 120, opacity: 0 });
+
+  const auHeroTl = gsap.timeline({ delay: 0.2 });
+  auHeroTl
+    .to('#auHeroEyebrow', { opacity: 1, duration: 0.6, ease: 'power2.out' })
+    .to('.au-hero .au-char', { yPercent: 0, opacity: 1, duration: 0.9, ease: 'power4.out', stagger: 0.014 }, '-=0.2')
+    .to('#auHeroSub', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4');
+
+  gsap.to('.au-blob-1', { y: 40, x: -20, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+  gsap.to('.au-blob-2', { y: -30, x: 30, duration: 7, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+  /* ===================== Manifesto (pinned zoom) ===================== */
+  gsap.fromTo('#auManifestoText',
+    { scale: 0.55, opacity: 0.3 },
+    {
+      scale: 1,
+      opacity: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#auManifestoSection',
+        start: 'top top',
+        end: '+=90%',
+        scrub: true,
+        pin: true
+      }
+    }
+  );
+
+  /* ===================== Stats counters ===================== */
+  document.querySelectorAll('.au-stat-num').forEach((el) => {
+    const target = parseFloat(el.getAttribute('data-target'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    const decimals = target % 1 !== 0 ? 2 : 0;
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        const counter = { val: 0 };
+        gsap.to(counter, {
+          val: target,
+          duration: 1.6,
+          ease: 'power2.out',
+          onUpdate: () => {
+            el.textContent = counter.val.toFixed(decimals) + suffix;
+          }
+        });
+      }
+    });
+  });
+
+  /* ===================== Timeline ===================== */
+  gsap.to('#auTimelineFill', {
+    height: '100%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#auTimeline',
+      start: 'top 60%',
+      end: 'bottom 70%',
+      scrub: true
+    }
+  });
+
+  document.querySelectorAll('.au-tl-item').forEach((item) => {
+    const card = item.querySelector('.au-tl-card');
+    const dot = item.querySelector('.au-tl-dot');
+
+    ScrollTrigger.create({
+      trigger: item,
+      start: 'top 78%',
+      once: true,
+      onEnter: () => {
+        gsap.to(card, { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' });
+        gsap.to(dot, { scale: 1, duration: 0.5, ease: 'back.out(2)' });
+      }
+    });
+  });
+
+  /* ===================== Values: staggered reveal + tilt ===================== */
+  ScrollTrigger.batch('.au-value-card', {
+    start: 'top 88%',
+    onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1 }),
+    once: true
+  });
+  gsap.set('.au-value-card', { opacity: 0, y: 30 });
+
+  document.querySelectorAll('.au-value-card').forEach((card) => {
+    const rotateX = gsap.quickTo(card, 'rotateX', { duration: 0.5, ease: 'power3' });
+    const rotateY = gsap.quickTo(card, 'rotateY', { duration: 0.5, ease: 'power3' });
+    const glare = card.querySelector('.au-glare');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width;
+      const relY = (e.clientY - rect.top) / rect.height;
+      rotateY((relX - 0.5) * 14);
+      rotateX(-(relY - 0.5) * 14);
+      glare.style.setProperty('--gx', (relX * 100) + '%');
+      glare.style.setProperty('--gy', (relY * 100) + '%');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      rotateX(0);
+      rotateY(0);
+    });
+  });
+
+  /* ===================== Team: staggered reveal ===================== */
+  ScrollTrigger.batch('.au-team-card', {
+    start: 'top 88%',
+    onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08 }),
+    once: true
+  });
+  gsap.set('.au-team-card', { y: 24 });
+
+  /* ===================== Culture: horizontal pin ===================== */
+  const auCultureTrack = document.getElementById('auCultureTrack');
+  gsap.to(auCultureTrack, {
+    x: () => -(auCultureTrack.scrollWidth - window.innerWidth + 100),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#auCultureSection',
+      start: 'top top',
+      end: () => `+=${auCultureTrack.scrollWidth - window.innerWidth + 100}`,
+      scrub: 1,
+      pin: true,
+      invalidateOnRefresh: true
+    }
+  });
+
+  /* ===================== CTA: magnetic button ===================== */
+  const auCtaBtn = document.getElementById('auCtaBtn');
+  const auCtaX = gsap.quickTo(auCtaBtn, 'x', { duration: 0.4, ease: 'power3' });
+  const auCtaY = gsap.quickTo(auCtaBtn, 'y', { duration: 0.4, ease: 'power3' });
+
+  auCtaBtn.addEventListener('mousemove', (e) => {
+    const rect = auCtaBtn.getBoundingClientRect();
+    auCtaX((e.clientX - rect.left - rect.width / 2) * 0.35);
+    auCtaY((e.clientY - rect.top - rect.height / 2) * 0.45);
+  });
+
+  auCtaBtn.addEventListener('mouseleave', () => {
+    auCtaX(0);
+    auCtaY(0);
+  });
+
+  window.addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+
+</body>
+</html>
