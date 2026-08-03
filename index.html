@@ -59,6 +59,7 @@
     <link rel="stylesheet" href="css/type_in_motion.css" />
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/drag_card.css" />
+    <link rel="stylesheet" href="css/circular-motion.css" />
 
     <!-- GSAP Libraries to be declared first -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -890,9 +891,134 @@
       </div>
       <div class="bottom_half">
         <div class="mat_container">
-          <div class="mat mat1"></div>
-          <div class="mat mat2"></div>
-          <div class="mat mat3"></div>
+          <!-- Card 1 -->
+          <div class="mat mat1">
+            <div class="sec2_upper_half">
+              <h1>Just a Headline</h1>
+              <p>
+                A few sentences of text to explain the headline. A few
+                sentences.
+              </p>
+            </div>
+
+            <div class="sec2_lower_half">
+              <div class="sec2_circles">
+                <div class="ring-item" data-percent="78">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <circle class="bg" cx="55" cy="55" r="46"></circle>
+                    <circle class="progress" cx="55" cy="55" r="46"></circle>
+                  </svg>
+                  <div class="ring-content">
+                    <span class="ring-num">0%</span>
+                    <span class="ring-label">Design</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sec2_vertical_divider"></div>
+
+              <ul class="sec2_lists">
+                <li>
+                  <i data-lucide="check-circle" class="list-icon"></i>
+                  <span>User Interface</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" class="list-icon"></i>
+                  <span>UX Research</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" class="list-icon"></i>
+                  <span>Prototyping</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="mat mat2">
+            <div class="sec2_upper_half">
+              <h1>Just a Headline</h1>
+              <p>
+                A few sentences of text to explain the headline. A few
+                sentences.
+              </p>
+            </div>
+
+            <div class="sec2_lower_half">
+              <div class="sec2_circles">
+                <div class="ring-item" data-percent="65">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <circle class="bg" cx="55" cy="55" r="46"></circle>
+                    <circle class="progress" cx="55" cy="55" r="46"></circle>
+                  </svg>
+                  <div class="ring-content">
+                    <span class="ring-num">0%</span>
+                    <span class="ring-label">Code</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sec2_vertical_divider"></div>
+
+              <ul class="sec2_lists">
+                <li>
+                  <i data-lucide="code" class="list-icon"></i>
+                  <span>HTML & CSS</span>
+                </li>
+                <li>
+                  <i data-lucide="code" class="list-icon"></i>
+                  <span>JavaScript</span>
+                </li>
+                <li>
+                  <i data-lucide="code" class="list-icon"></i>
+                  <span>React App</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="mat mat3">
+            <div class="sec2_upper_half">
+              <h1>Just a Headline</h1>
+              <p>
+                A few sentences of text to explain the headline. A few
+                sentences.
+              </p>
+            </div>
+
+            <div class="sec2_lower_half">
+              <div class="sec2_circles">
+                <div class="ring-item" data-percent="90">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <circle class="bg" cx="55" cy="55" r="46"></circle>
+                    <circle class="progress" cx="55" cy="55" r="46"></circle>
+                  </svg>
+                  <div class="ring-content">
+                    <span class="ring-num">0%</span>
+                    <span class="ring-label">Growth</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sec2_vertical_divider"></div>
+
+              <ul class="sec2_lists">
+                <li>
+                  <i data-lucide="trending-up" class="list-icon"></i>
+                  <span>SEO Optimization</span>
+                </li>
+                <li>
+                  <i data-lucide="trending-up" class="list-icon"></i>
+                  <span>Analytics</span>
+                </li>
+                <li>
+                  <i data-lucide="trending-up" class="list-icon"></i>
+                  <span>Conversion</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2359,6 +2485,7 @@
     <script src="js/home_case_studies.js"></script>
     <script src="js/type_in_motion.js"></script>
     <script src="js/drag_card.js"></script>
+    <script src="js/circular-motion.js"></script>
 
     <!-- Main script remains at the last -->
     <script src="js/script.js"></script>

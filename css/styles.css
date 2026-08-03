@@ -77,30 +77,28 @@
 
 
 /* <!-- ================= Section 2 ================= --> */
- .section_2 {
-    height: 100vh;
+.section_2 {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content:center;
-    align-items: center;
+    justify-content: center;
     overflow: hidden;
+    padding: clamp(2rem, 4vw, 4rem) 0;
 }
 
 .top_half {
     display: flex;
-    height: 50%;
     width: 100%;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
+    padding-bottom: clamp(2rem, 4vw, 4rem);
 }
 
 .bottom_half {
     display: flex;
-    height: 50%;
     width: 100%;
-    flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
 }
 

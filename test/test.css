@@ -1,4 +1,31 @@
-  /* ===================== Split-line curtain ===================== */
+.section_0{
+    height: 100vh;
+    background-color: blue;
+}
+
+.section_1{
+    height: 100vh;
+    background-color: black;
+}
+
+.section_2{
+    height: 100vh;
+    position: relative;
+    background-color: orange;
+}
+
+.section_3{
+    height: 100vh;
+    background-color: green;
+}
+
+.circular-progress{
+    height: 100vh;
+    position: relative;
+    background-color: pink;
+}
+
+/* ===================== Split-line curtain ===================== */
   .curtain-line {
     overflow: hidden;
   }
@@ -24,33 +51,18 @@
 }
 
 .mat_container {
-  /* display: grid; */
-  /* grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); */
-  display: flex;
-  flex-wrap: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   align-items: stretch;
 }
 
-@media (max-width: 768px) {
-    .mat_container {
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .mat {
-        width: 100%;
-        max-width: 22rem;
-    }
-}
-
-
 /* Base Card Styles */
 .mat {
-  background-color: #cecccc;
+  background-color: #ffffff;
   border-radius: 16px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 12px rgba(233, 231, 231, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -58,7 +70,7 @@
 
 /* Upper Half Section */
 .sec2_upper_half {
-  background-color: #919191; /* Subtle contrasting upper background */
+  background-color: #f8fafc; /* Subtle contrasting upper background */
   padding: 1.5rem;
   border-bottom: 1px solid #e2e8f0; /* Horizontal divider between top and bottom halves */
 }
@@ -152,7 +164,7 @@
 .sec2_vertical_divider {
   width: 1px;
   height: 70px;
-  background-color: #919191;
+  background-color: #cbd5e1;
   flex-shrink: 0;
 }
 
@@ -183,3 +195,24 @@
   color: #2563eb;
   flex-shrink: 0;
 }
+
+
+  /* ===== Circular progress rings ===== */
+  .rings-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+
+  .ring-item {
+    text-align: center;
+  }
+
+  .ring-item svg { transform: rotate(-90deg); }
+
+  .ring-item circle.bg { stroke: var(--line); fill: none; stroke-width: 8; }
+  .ring-item circle.progress { stroke: var(--accent); fill: none; stroke-width: 8; stroke-linecap: round; }
+
+  .ring-item .ring-label { margin-top: 0.75rem; color: var(--muted); font-size: 0.85rem; }
+  .ring-item .ring-num { font-size: 1.3rem; font-weight: 700; }
+
