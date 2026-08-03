@@ -1,0 +1,205 @@
+.filler_section {
+    height: 175vh;
+    /* background-color: aqua; */
+}
+
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+  }
+
+    .section-label::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--color-secondary);
+  }
+
+  .section-sub {
+    color: white;
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: 3rem;
+    font-size: 0.98rem;
+  }
+
+/* <!-- ================= Section 1 ================= --> */
+
+.section_1 {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    background-color: grey;
+}
+
+@media (max-width: 992px){
+
+    .section_1{
+
+        flex-direction:column;
+
+        /* text-align:center; */
+
+    }
+
+}
+
+.hero-left-side {
+    display: flex;
+    height: 100vh;
+    /* width: 50vw; */
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    margin: clamp(1rem, 3vw, 2rem);
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+.hero-right-side {
+    display: flex;
+    height: 100vh;
+    /* width: 50vw; */
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin: clamp(1rem, 3vw, 2rem);
+    padding: clamp(1rem, 3vw, 2rem);
+    padding-top: 10rem;
+}
+
+
+/* <!-- ================= Section 2 ================= --> */
+ .section_2 {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.top_half {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.bottom_half {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+
+/* <!-- ================= Section 3 ================= --> */
+ .section_3 {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+/* <!-- ================= Section 4 ================= --> */
+ .section_4 {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+
+.counter-section {
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+}
+
+/* Section 5 */
+#option3 {
+    height: auto;
+    position: relative;
+    justify-content:center;
+    align-items: center;
+}
+
+.counter_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: Left;
+    gap: 1rem;
+}
+
+
+/* <!-- ================= Section 6 ================= --> */
+.section_6 {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* <!-- ================= Section 7 ================= --> */
+.section_7 {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* <!-- ================= Section 8 ================= --> */
+.section_8 {
+    display: flex;
+    padding: 5rem;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* <!-- ================= Section 9 ================= --> */
+.section_9 {
+    display: flex;
+    padding: 5rem;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* <!-- ================= Section 10 ================= --> */
+.section_10 {
+    /* display: flex; */
+    height: 100vh;
+    /* flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center; */
+    /* gap: 1rem; */
+    background-color: azure;
+}
+
+
+
+
