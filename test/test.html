@@ -3,61 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog Page</title>
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                50: "#f0f6ff",
-                100: "#e0edff",
-                500: "#3b82f6",
-                600: "#2563eb",
-                700: "#1d4ed8",
-                900: "#0f172a",
-                accent: "#6366f1",
-                neon: "#06b6d4",
-                emerald: "#10b981",
-              },
-            },
-            fontFamily: {
-              sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
+    <title>Premium Responsive Navbar</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="icon" type="image/png" href="assets/IG Only Logo.png" />
-    <link rel="stylesheet" href="css/buttons.css" />
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/variables.css" />
-    <link rel="stylesheet" href="css/border_styles.css" />
-    <link rel="stylesheet" href="css/fixed-bg.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/blog-article_page.css" />
-
-    <!-- GSAP Libraries to be declared first -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 
     <style>
+      :root {
+        --bg: #0b0b0d;
+        --panel: #131317;
+        --card: #17181c;
+        --ink: #f5f1e8;
+        --muted: #93938c;
+        --line: #26272d;
+        --accent: #cda45e;
+        --nav-h: clamp(64px, 6vw + 40px, 84px);
+
+        --fs-logo: clamp(1.1rem, 0.9rem + 1vw, 1.5rem);
+        --fs-nav: clamp(0.82rem, 0.7rem + 0.4vw, 0.95rem);
+        --fs-sub-title: clamp(0.85rem, 0.75rem + 0.3vw, 0.95rem);
+        --fs-sub-desc: clamp(0.72rem, 0.65rem + 0.2vw, 0.8rem);
+        --fs-btn: clamp(0.78rem, 0.68rem + 0.3vw, 0.92rem);
+        --fs-mobile: clamp(1.05rem, 0.9rem + 1.4vw, 1.4rem);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+      }
+
+      /* Demo page filler so you can see the navbar in context */
+      .page-filler {
+        padding-top: calc(var(--nav-h) + 4rem);
+        min-height: 220vh;
+        max-width: 800px;
+        margin: 0 auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .page-filler h1 {
+        font-family: "Fraunces", serif;
+        color: var(--ink);
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+      }
+
       /* ===================== NAVBAR SHELL ===================== */
       .navbar {
         position: fixed;
@@ -66,14 +78,15 @@
         width: 100%;
         height: var(--nav-h);
         z-index: 500;
-        background: rgba(8, 8, 10, 0.72);
-        border-bottom: 1px solid var(--line);
+        background: rgba(11, 11, 13, 0.72);
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
       }
 
       .navbar-inner {
         height: 100%;
+        max-width: 1300px;
         margin: 0 auto;
         padding: 0 clamp(1.25rem, 3vw, 2.5rem);
         display: grid;
@@ -83,36 +96,16 @@
       }
 
       /* ===================== LOGO ===================== */
-      .logo-wrap {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        cursor: pointer;
-        user-select: none;
-        transition:
-          transform 0.3s ease,
-          opacity 0.3s ease,
-          filter 0.3s ease;
+      .logo {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: var(--fs-logo);
+        white-space: nowrap;
+        letter-spacing: -0.01em;
       }
 
-      .logo-wrap img {
-        display: block;
-        height: clamp(56px, 6vw, 72px);
-        width: auto;
-        object-fit: contain;
-      }
-
-      .logo-wrap:hover {
-        transform: translateY(-2px) scale(1.02);
-      }
-
-      .logo-wrap:hover img {
-        filter: drop-shadow(0 0 10px rgba(92, 225, 230, 0.25));
-      }
-
-      .logo-wrap:active {
-        transform: scale(0.98);
+      .logo .dot {
+        color: var(--accent);
       }
 
       /* ===================== DESKTOP CENTER NAV ===================== */
@@ -153,16 +146,21 @@
       }
 
       .nav-item:hover .nav-link {
-        background: var(--color-primary-hover);
+        background: rgba(255, 255, 255, 0.06);
       }
 
       .nav-item.pinned .nav-link {
-        background: var(--color-primary);
+        background: rgba(205, 164, 94, 0.14);
+        color: var(--accent);
       }
 
       .chevron {
         transition: transform 0.25s ease;
         flex-shrink: 0;
+      }
+      .nav-item:hover .chevron,
+      .nav-item.pinned .chevron {
+        transform: rotate(180deg);
       }
 
       /* ===================== DROPDOWN PANEL (level 2) ===================== */
@@ -232,7 +230,7 @@
         justify-content: space-between;
         align-items: center;
         gap: 0.75rem;
-        width: 90%;
+        width: 100%;
         padding: 0.7rem 0.85rem;
         border-radius: 12px;
         cursor: pointer;
@@ -347,7 +345,6 @@
         padding: 0.6rem clamp(0.9rem, 1.6vw, 1.4rem);
         border-radius: 999px;
         cursor: pointer;
-        text-decoration: none;
         transition:
           transform 0.2s ease,
           background 0.2s ease,
@@ -366,9 +363,10 @@
       }
 
       .btn-solid {
-        background: var(--ink);
-        border: 1px solid var(--ink);
-        color: #08080a;
+        background: var(--accent);
+        border: 1px solid var(--accent);
+        color: #1a1305;
+        font-weight: 600;
       }
 
       .btn-solid:hover {
@@ -504,24 +502,9 @@
     </style>
   </head>
   <body>
-    <!-- ================= Background ================= -->
-    <div class="fixed_background" id="bg">
-      <canvas id="space-canvas" aria-hidden="true"></canvas>
-
-      <canvas id="particle-canvas" aria-hidden="true"></canvas>
-
-      <div class="background">
-        <div class="blob blob1"></div>
-        <div class="blob blob2"></div>
-        <div class="blob blob3"></div>
-      </div>
-    </div>
-
-    <nav class="navbar" id="siteNav">
+    <nav class="navbar">
       <div class="navbar-inner">
-        <a href="index.html" class="logo-wrap">
-          <img src="assets/IG Only Logo.png" alt="Insight Grid Logo" />
-        </a>
+        <a href="#" class="logo">Lumen<span class="dot">.</span></a>
 
         <div class="nav-center desktop-only">
           <ul class="nav-list" id="desktopNavList"></ul>
@@ -533,12 +516,7 @@
             style="display: flex; gap: 0.6rem"
           >
             <a href="#" class="btn btn-ghost">Log in</a>
-            <a
-              href="contact-us.html"
-              class="primary_small_button"
-              id="bg_gradient_move"
-              >Request Quote</a
-            >
+            <a href="#" class="btn btn-solid">Sign up free</a>
           </div>
 
           <button
@@ -565,241 +543,22 @@
       </div>
     </div>
 
-    <!-- Cyber Grid -->
-    <div class="bg-grid"></div>
-
-    <!-- Progress Bar -->
-    <div class="progress-bar-container">
-      <div class="progress-bar" id="progressBar"></div>
+    <div class="page-filler">
+      <h1>This is just a demo page behind the navbar.</h1>
+      <p>
+        Resize your browser below 960px width to see the navbar collapse into a
+        hamburger menu.
+      </p>
     </div>
-
-    <!-- Hero Header -->
-    <header class="hero">
-      <div class="status-badge">
-        <div class="pulse-dot"></div>
-        ARCHITECTURE / AGENTIC SYSTEMS
-      </div>
-
-      <h1 class="article-title">
-        Designing Self-Healing Workflows with Autonomous AI Agents
-      </h1>
-
-      <div class="hero-meta">
-        <div class="author-block">
-          <img
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"
-            alt="Alex Chen"
-            class="author-avatar"
-          />
-          <div class="author-info">
-            <h4>Alex Chen</h4>
-            <p>Head of Automation Systems</p>
-          </div>
-        </div>
-
-        <div class="meta-tags">
-          <span
-            ><i data-lucide="calendar" style="width: 14px; display: inline"></i>
-            Aug 2026</span
-          >
-          <span
-            ><i data-lucide="clock" style="width: 14px; display: inline"></i> 6
-            min execution</span
-          >
-        </div>
-      </div>
-    </header>
-
-    <!-- Featured Media -->
-    <section class="featured-media">
-      <div class="tech-media-card" id="heroMedia">
-        <img
-          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1600"
-          alt="Futuristic Automation Architecture"
-        />
-        <div class="card-overlay"></div>
-      </div>
-    </section>
-
-    <!-- Content Container -->
-    <div class="article-container">
-      <!-- Left Navigation Sidebar -->
-      <aside class="sidebar-left">
-        <div class="toc-title">NAVIGATION_INDEX</div>
-        <ul class="toc-list">
-          <li>
-            <a href="#sec-1" class="toc-link active"
-              >01. The Fragility Problem</a
-            >
-          </li>
-          <li>
-            <a href="#sec-2" class="toc-link">02. Self-Healing Pipelines</a>
-          </li>
-          <li><a href="#sec-3" class="toc-link">03. Code Implementation</a></li>
-          <li><a href="#sec-4" class="toc-link">04. Benchmark Results</a></li>
-        </ul>
-      </aside>
-
-      <!-- Main Article Body -->
-      <main class="content-body">
-        <p>
-          Legacy enterprise API integration pipelines break when an unexpected
-          schema change or endpoint failure occurs. In modern AI-first
-          automation, system architectures must transition from deterministic
-          sequences to self-healing, agent-driven workflows.
-        </p>
-
-        <h2 id="sec-1">01. The Fragility Problem</h2>
-        <p>
-          Traditional workflow engines rely on rigid conditional branching. If
-          an third-party API modifies a JSON response payload, the worker node
-          crashes, triggering cascading pipeline timeouts that require human
-          engineering intervention.
-        </p>
-
-        <div class="terminal-callout">
-          <h4>⚡ Core Architecture Shift</h4>
-          <p style="margin: 0; font-size: 0.95rem">
-            Static scripts process data. Autonomous agents interpret intent and
-            re-route logic dynamically when edge cases arise.
-          </p>
-        </div>
-
-        <h2 id="sec-2">02. Self-Healing Pipelines</h2>
-        <p>
-          By placing lightweight LLM evaluation loops between critical execution
-          stages, workflow pipelines can intercept failures, analyze error logs
-          in real-time, and dynamically restructure payloads before re-executing
-          failed steps.
-        </p>
-
-        <h2 id="sec-3">03. Code Implementation</h2>
-        <p>
-          Below is an example of an agentic retry wrapper that intercepts schema
-          mismatch errors and corrects payload properties on the fly:
-        </p>
-
-        <div class="code-block">
-          <div class="code-header">
-            <span>agent_executor.py</span>
-            <span>PYTHON 3.12</span>
-          </div>
-          <code>
-            <span class="keyword">async def</span>
-            <span class="highlight">execute_workflow_step</span>(payload: dict):
-            <span class="keyword">try</span>:
-            <span class="keyword">return await</span> api_client.post(<span
-              class="string"
-              >"/v2/sync"</span
-            >, json=payload)
-            <span class="keyword">except</span> SchemaValidationError
-            <span class="keyword">as</span> err:
-            <span class="comment"># Trigger Agentic Healing Loop</span>
-            corrected_payload =
-            <span class="keyword">await</span> agent.heal(payload, err.schema)
-            <span class="keyword">return await</span> api_client.post(<span
-              class="string"
-              >"/v2/sync"</span
-            >, json=corrected_payload)
-          </code>
-        </div>
-
-        <h2 id="sec-4">04. Benchmark Results</h2>
-        <p>
-          Deploying autonomous retry agents reduces enterprise pipeline downtime
-          by up to 94%. System maintainers transition from firefighting API
-          breakages to designing high-level business logic.
-        </p>
-      </main>
-    </div>
-
-    <!-- Footer CTA -->
-    <footer class="article-footer">
-      <div class="cta-card">
-        <h3>Automate Your Infrastructure</h3>
-        <p>
-          Subscribe to our weekly engineering dispatch for cutting-edge
-          autonomous system blueprints.
-        </p>
-        <form class="form-group" onsubmit="event.preventDefault()">
-          <input type="email" placeholder="developer@company.com" required />
-          <button type="submit" class="btn-tech">SUBSCRIBE</button>
-        </form>
-      </div>
-    </footer>
-
-    <!-- ================= Footer ================= -->
-    <footer class="ft2-footer" id="ft2Footer">
-      <div class="ft2-columns" id="ft2Columns">
-        <div class="ft2-col">
-          <div class="ft1-logo">Insight Grid<span class="ft1-dot">.</span></div>
-          <p class="ft2-brand-blurb">
-            The automation platform for teams who'd rather build the next thing
-            than repeat the last one.
-          </p>
-        </div>
-        <div class="ft2-col">
-          <h5>Product</h5>
-          <ul>
-            <li><a href="#">Workflow Builder</a></li>
-            <li><a href="#">Integrations</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Security</a></li>
-          </ul>
-        </div>
-        <div class="ft2-col">
-          <h5>Company</h5>
-          <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-        <div class="ft2-col">
-          <h5>Resources</h5>
-          <ul>
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">API Reference</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="ft2-wordmark" id="ft2Wordmark">INSIGHT GRID</div>
-
-      <div class="ft2-bottom-bar">
-        <span>© 2019 Insight Grid, Inc.</span>
-        <button class="ft2-back-top" id="ft2BackTop">Back to top ↑</button>
-      </div>
-    </footer>
 
     <script>
-      ScrollTrigger.create({
-        start: "top top",
-        end: "max",
-        onUpdate: (self) => {
-          const nav = document.getElementById("siteNav");
-          if (self.direction === 1 && self.scroll() > 120) {
-            gsap.to(nav, {
-              yPercent: -100,
-              duration: 0.35,
-              ease: "power2.out",
-            });
-          } else {
-            gsap.to(nav, { yPercent: 0, duration: 0.35, ease: "power2.out" });
-          }
-        },
-      });
-
       /* ===================== DATA ===================== */
       const navData = [
-        { label: "Solutions", href: "services.html" },
-        { label: "About Us", href: "about-us.html" },
-        { label: "Case Studies", href: "case-studies.html" },
-        { label: "Blogs", href: "blog-page.html" },
-        { label: "Contact", href: "contact-us.html" },
+        { label: "Products", href: "https://google.com" },
+        { label: "Solutions", href: "https://google.com" },
+        { label: "Resources", href: "https://google.com" },
+        { label: "Pricing", href: "https://google.com" },
+        { label: "Company", href: "https://google.com" },
       ];
 
       const chevronDownSvg =
@@ -1132,23 +891,5 @@
         if (window.innerWidth >= 960 && mobileOpen) closeMobileOverlay();
       });
     </script>
-
-    <!-- Register plugins -->
-    <script>
-      gsap.registerPlugin(
-        ScrollTrigger,
-        ScrollToPlugin,
-        Draggable,
-        MotionPathPlugin,
-        Flip,
-      );
-    </script>
-
-    <!-- Section JS -->
-    <script src="js/fixed-bg.js"></script>
-    \
-    <script src="js/footer.js"></script>
-    <!-- Main script remains at the last -->
-    <script src="js/blog-article_page.js"></script>
   </body>
 </html>
