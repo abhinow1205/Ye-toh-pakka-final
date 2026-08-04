@@ -3,16 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Services</title>
+    <title>Insight Grid</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#f0f6ff",
+                100: "#e0edff",
+                500: "#3b82f6",
+                600: "#2563eb",
+                700: "#1d4ed8",
+                900: "#0f172a",
+                accent: "#6366f1",
+                neon: "#06b6d4",
+                emerald: "#10b981",
+              },
+            },
+            fontFamily: {
+              sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="icon" type="image/png" href="assets/IG Only Logo.png" />
@@ -20,83 +45,219 @@
     <link rel="stylesheet" href="css/buttons.css" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/border_styles.css" />
     <link rel="stylesheet" href="css/fixed-bg.css" />
+    <link rel="stylesheet" href="css/home_sec2.css" />
+    <link rel="stylesheet" href="css/home_sec3.css" />
+    <link rel="stylesheet" href="css/home_sec5.css" />
+    <link rel="stylesheet" href="css/home_counter.css" />
+    <link rel="stylesheet" href="css/home_case_studies.css" />
+    <link rel="stylesheet" href="css/review-comp.css" />
+    <link rel="stylesheet" href="css/home_sec8.css" />
+    <link rel="stylesheet" href="css/blog-comp.css" />
+    <link rel="stylesheet" href="css/home_sec9.css" />
+    <link rel="stylesheet" href="css/type_in_motion.css" />
     <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/drag_card.css" />
+    <link rel="stylesheet" href="css/circular-motion.css" />
+    <link rel="stylesheet" href="css/tabbed-view.css" />
+
+    <!-- GSAP Libraries to be declared first -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 
     <style>
-      /*
-    NOTE ON NAMING: every class/ID on this page is prefixed "sv-" (Services)
-    — a different prefix from the "au-" used on the About page — so the two
-    can sit in the same site without any risk of colliding with each other.
-  */
-
-      :root {
-        --bg: #0b0b0d;
-        --panel: #131317;
-        --card: #17181c;
-        --card-2: #1c1d22;
-        --ink: #f5f1e8;
-        --muted: #91918c;
-        --line: #26272d;
-        --accent: #8c52ff;
-        --accent-2: #7c93ff;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body.sv-body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: "Inter", sans-serif;
-        overflow-x: hidden;
-      }
-
-      .sv-page h1,
-      .sv-page h2,
-      .sv-page h3,
-      .sv-page .sv-display {
-        font-family: "Fraunces", serif;
-        font-weight: 600;
-      }
-
-      .sv-page section {
-        position: relative;
-        padding: 8rem 1.5rem;
-        max-width: 1180px;
-        margin: 0 auto;
-      }
-
-      .sv-label {
-        display: inline-flex;
+      /* ===================== hero split layout ===================== */
+      .hero-section {
+        display: flex;
         align-items: center;
-        gap: 0.5rem;
-        font-size: 0.75rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 1.25rem;
+        min-height: 100vh;
+        gap: clamp(1.5rem, 4vw, 4rem);
+        padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
       }
 
-      .sv-label::before {
-        content: "";
-        width: 20px;
-        height: 1px;
-        background: var(--accent);
+      .hero-left {
+        flex: 0 0 50%;
+        max-width: 50%;
       }
 
-      .sv-sub {
+      .hero-right {
+        flex: 0 0 50%;
+        max-width: 50%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-left h1 {
+        font-size: clamp(2.2rem, 4vw, 3.4rem);
+        font-weight: 700;
+        font-family: var(--font-primary);
+        line-height: 1.12;
+        margin: 0 0 1.25rem;
+
+        background: linear-gradient(120deg, #5ce1e6, #7fa8ff, #8c52ff, #d26cff);
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-left p {
         color: var(--muted);
-        max-width: 560px;
         line-height: 1.7;
+        font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+        max-width: 460px;
+      }
+
+      @media (max-width: 780px) {
+        .hero-section {
+          flex-direction: column;
+          align-items: stretch;
+          min-height: unset;
+          padding: 3.5rem 1.5rem;
+          gap: 2.5rem;
+        }
+        .hero-left,
+        .hero-right {
+          max-width: 100%;
+          flex: none;
+        }
+        .hero-left p {
+          max-width: 100%;
+        }
+      }
+
+      /* ===================== card shell ===================== */
+      .cc-card-wrap {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        height: 400px;
+        margin: 0;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        cursor: ew-resize;
+        background: #000;
+        /*
+        isolation gives the whole card its own stacking context, so
+        everything inside it (including the draggable handle, which
+        needs its own z-index to sit above the before/after layers)
+        is painted as one unit. Without this, the handle's z-index is
+        compared directly against unrelated elements elsewhere on the
+        page — like the fixed navbar and mobile menu overlay — and can
+        end up rendering on top of them even while they're "open".
+      */
+        isolation: isolate;
+      }
+
+      .cc-layer {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        /*
+        isolation gives each layer its own stacking context so their
+        z-indexed labels/headlines are compared fairly by DOM order,
+        rather than one layer's content escaping to always render on
+        top regardless of drag position. The background makes each
+        layer an actually opaque surface — without it, the "before"
+        layer could sit on top correctly but still not visually cover
+        anything underneath it, since it would just be transparent
+        space with a few small stars on it.
+      */
+        isolation: isolate;
+        background: var(--bg);
+      }
+
+      .cc-label {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.75rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(245, 241, 232, 0.55);
+        z-index: 5;
+      }
+
+      .cc-label-after {
+        left: auto;
+        right: 1.75rem;
+        color: rgba(244, 242, 236, 0.7);
+      }
+
+      .cc-headline {
+        position: absolute;
+        bottom: 1.75rem;
+        left: 1.75rem;
+        right: 1.75rem;
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+        z-index: 5;
+        pointer-events: none;
+      }
+
+      .cc-headline-before {
+        color: var(--ink);
+        text-align: right;
+      }
+      .cc-headline-after {
+        color: var(--ink);
+        text-align: left;
+      }
+
+      .cc-handle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: rgba(244, 242, 236, 0.5);
+        z-index: 10;
+      }
+
+      .cc-handle::after {
+        content: "⇔";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--ink);
+        color: #08080a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 1rem;
       }
 
-      .sv-section-heading {
-        font-size: clamp(1.7rem, 3.4vw, 2.4rem);
-        margin: 0 0 0.5rem;
+      /* ===================== galaxy backdrop ===================== */
+      .gx-nebula {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.16;
+        pointer-events: none;
+      }
+
+      .gx-star {
+        position: absolute;
+        border-radius: 50%;
+        background: #ffffff;
+      }
+
+      .gx-core-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(18px);
       }
 
       /* ===================== NAVBAR SHELL ===================== */
@@ -542,1109 +703,2013 @@
           display: none !important;
         }
       }
-
-      /* ===================== HERO ===================== */
-      .sv-hero {
-        min-height: calc(100vh - var(--nav-h));
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-top: 6rem;
-        overflow: hidden;
-      }
-
-      .sv-hero .sv-eyebrow {
-        font-size: 0.78rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 1.5rem;
-        opacity: 0;
-      }
-
-      .sv-hero h1 {
-        font-size: clamp(2.5rem, 6.2vw, 4.6rem);
-        line-height: 1.1;
-        margin: 0 0 1.75rem;
-        max-width: 920px;
-      }
-
-      .sv-hero h1 .sv-char {
-        display: inline-block;
-        will-change: transform;
-      }
-
-      .sv-hero p {
-        color: var(--muted);
-        max-width: 520px;
-        font-size: 1.08rem;
-        line-height: 1.7;
-        opacity: 0;
-      }
-
-      .sv-blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(70px);
-        opacity: 0.26;
-        z-index: -1;
-      }
-
-      .sv-blob-1 {
-        width: 400px;
-        height: 400px;
-        background: var(--accent-2);
-        top: -90px;
-        right: -70px;
-      }
-      .sv-blob-2 {
-        width: 300px;
-        height: 300px;
-        background: var(--accent);
-        bottom: -70px;
-        left: 6%;
-      }
-
-      /* ===================== SERVICES GRID ===================== */
-      .sv-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.5rem;
-        perspective: 1100px;
-        margin-top: 3rem;
-      }
-
-      .sv-service-card {
-        position: relative;
-        border-radius: 18px;
-        background: linear-gradient(160deg, var(--card-2), var(--card));
-        border: 1px solid var(--line);
-        padding: 2rem;
-        height: 230px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        transform-style: preserve-3d;
-        will-change: transform;
-        overflow: hidden;
-      }
-
-      .sv-service-card .sv-glare {
-        position: absolute;
-        inset: -50%;
-        background: radial-gradient(
-          circle at var(--gx, 50%) var(--gy, 50%),
-          rgba(255, 255, 255, 0.1),
-          transparent 45%
-        );
-        pointer-events: none;
-      }
-
-      .sv-service-icon {
-        position: absolute;
-        top: 1.6rem;
-        left: 2rem;
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        background: rgba(205, 164, 94, 0.12);
-        color: var(--accent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Fraunces", serif;
-        font-weight: 600;
-        transform: translateZ(25px);
-      }
-
-      .sv-service-card h3 {
-        font-size: 1.15rem;
-        margin: 0 0 0.4rem;
-        transform: translateZ(20px);
-      }
-      .sv-service-card p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.87rem;
-        line-height: 1.55;
-        transform: translateZ(15px);
-      }
-
-      /* ===================== DEEP-DIVE SECTIONS ===================== */
-      .sv-deepdive {
-        display: flex;
-        align-items: center;
-        gap: clamp(2rem, 6vw, 5rem);
-        flex-wrap: wrap;
-      }
-
-      .sv-deepdive.sv-reverse {
-        flex-direction: row-reverse;
-      }
-
-      .sv-deepdive-text {
-        flex: 1 1 360px;
-        min-width: 280px;
-      }
-
-      .sv-deepdive-visual {
-        flex: 1 1 380px;
-        min-width: 280px;
-        height: 380px;
-        border-radius: 20px;
-        border: 1px solid var(--line);
-        background: var(--panel);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .sv-deepdive-text ul {
-        list-style: none;
-        margin: 1.5rem 0 0;
-        padding: 0;
-      }
-
-      .sv-deepdive-text li {
-        color: var(--muted);
-        font-size: 0.92rem;
-        padding: 0.6rem 0;
-        border-top: 1px solid var(--line);
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-      }
-
-      .sv-deepdive-text li::before {
-        content: "";
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--accent);
-        flex-shrink: 0;
-      }
-
-      /* ---- Visual: workflow node chain ---- */
-      .sv-node-chain {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        width: 220px;
-      }
-
-      .sv-node {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 0.9rem 1.1rem;
-        font-size: 0.82rem;
-        color: var(--ink);
-        opacity: 0;
-        transform: translateY(14px);
-      }
-
-      .sv-node .sv-node-tag {
-        display: block;
-        font-size: 0.65rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 0.3rem;
-      }
-
-      .sv-node-connector {
-        width: 1px;
-        height: 34px;
-        background: var(--line);
-        margin-left: 1.1rem;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .sv-node-connector .sv-connector-fill {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 0%;
-        background: var(--accent);
-      }
-
-      /* ---- Visual: orbit hub ---- */
-      .sv-orbit-visual {
-        position: relative;
-        width: 280px;
-        height: 280px;
-      }
-
-      .sv-orbit-hub {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 76px;
-        height: 76px;
-        margin: -38px 0 0 -38px;
-        border-radius: 50%;
-        background: var(--accent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Fraunces", serif;
-        font-weight: 600;
-        font-size: 0.85rem;
-        color: #1a1305;
-        z-index: 2;
-      }
-
-      .sv-orbit-ring {
-        position: absolute;
-        inset: 0;
-        border: 1px dashed var(--line);
-        border-radius: 50%;
-      }
-
-      .sv-orbit-chip {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 54px;
-        height: 54px;
-        margin: -27px 0 0 -27px;
-        border-radius: 50%;
-        background: var(--card);
-        border: 1px solid var(--line);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.68rem;
-        color: var(--muted);
-        text-align: center;
-      }
-
-      /* ---- Visual: analytics bars ---- */
-      .sv-bars-visual {
-        width: 260px;
-        display: flex;
-        align-items: flex-end;
-        gap: 1rem;
-        height: 200px;
-      }
-
-      .sv-bar {
-        flex: 1;
-        background: linear-gradient(180deg, var(--accent), #8a6f38);
-        border-radius: 6px 6px 0 0;
-        height: 0%;
-      }
-
-      .sv-bar:nth-child(2) {
-        background: linear-gradient(180deg, var(--accent-2), #4d5fb0);
-      }
-      .sv-bar:nth-child(4) {
-        background: linear-gradient(180deg, var(--accent-2), #4d5fb0);
-      }
-
-      /* ===================== PROCESS (horizontal pin) ===================== */
-      .sv-process-section {
-        max-width: none;
-        padding: 0;
-        height: 100vh;
-        overflow: hidden;
-      }
-
-      .sv-process-track {
-        display: flex;
-        height: 100vh;
-        align-items: center;
-        gap: 1.75rem;
-        padding-left: 8vw;
-        width: max-content;
-      }
-
-      .sv-process-heading-slide {
-        width: 40vw;
-        max-width: 460px;
-        flex-shrink: 0;
-        padding-right: 3rem;
-      }
-
-      .sv-process-card {
-        width: 300px;
-        height: 380px;
-        flex-shrink: 0;
-        border-radius: 18px;
-        border: 1px solid var(--line);
-        padding: 2.25rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-      }
-
-      .sv-process-card .sv-step-num {
-        position: absolute;
-        top: 2rem;
-        font-family: "Fraunces", serif;
-        font-size: 2.4rem;
-        color: rgba(205, 164, 94, 0.35);
-      }
-
-      .sv-process-card h4 {
-        margin: 0 0 0.4rem;
-        font-size: 1.15rem;
-      }
-      .sv-process-card p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.87rem;
-        line-height: 1.55;
-      }
-
-      .sv-process-card:nth-child(2) {
-        background: linear-gradient(160deg, #2a2416, var(--card));
-      }
-      .sv-process-card:nth-child(3) {
-        background: linear-gradient(160deg, #1a2340, var(--card));
-      }
-      .sv-process-card:nth-child(4) {
-        background: linear-gradient(160deg, #3a1c1c, var(--card));
-      }
-      .sv-process-card:nth-child(5) {
-        background: linear-gradient(160deg, #1c3a2c, var(--card));
-      }
-
-      /* ===================== INTEGRATIONS MARQUEE ===================== */
-      .sv-marquee-wrap {
-        max-width: none;
-        padding: 2.5rem 0;
-        overflow: hidden;
-      }
-
-      .sv-marquee-track {
-        display: flex;
-        width: max-content;
-        gap: 2.5rem;
-      }
-
-      .sv-marquee-track span {
-        font-family: "Fraunces", serif;
-        font-size: clamp(1.6rem, 3.6vw, 2.4rem);
-        color: transparent;
-        -webkit-text-stroke: 1px var(--line);
-        white-space: nowrap;
-      }
-
-      .sv-marquee-track.sv-marquee-row2 span {
-        -webkit-text-stroke: 1px var(--accent-2);
-      }
-
-      /* ===================== QUOTE (pinned zoom) ===================== */
-      .sv-quote-section {
-        max-width: none;
-        padding: 0;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-
-      .sv-quote-text {
-        font-size: clamp(1.8rem, 5vw, 3.4rem);
-        text-align: center;
-        line-height: 1.35;
-        max-width: 85vw;
-      }
-
-      .sv-quote-text .sv-accent-word {
-        color: var(--accent);
-      }
-
-      /* ===================== CTA ===================== */
-      .sv-cta-section {
-        text-align: center;
-        padding-bottom: 12rem;
-      }
-
-      .sv-cta-section h2 {
-        font-size: clamp(1.9rem, 4.4vw, 3.2rem);
-        max-width: 680px;
-        margin: 0 auto 1rem;
-      }
-
-      .sv-cta-actions {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        margin-top: 1.75rem;
-        flex-wrap: wrap;
-      }
-
-      .sv-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.05rem 2.4rem;
-        border-radius: 999px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        cursor: pointer;
-      }
-
-      .sv-btn-solid {
-        background: var(--accent);
-        color: #1a1305;
-        border: none;
-      }
-
-      .sv-btn-ghost {
-        background: transparent;
-        color: var(--ink);
-        border: 1px solid var(--line);
-      }
-
-      @media (max-width: 720px) {
-        .sv-deepdive-visual {
-          height: 320px;
-        }
-      }
     </style>
   </head>
-  <body class="sv-body">
-    <div class="sv-page">
-      <!-- ================= Background ================= -->
-      <section class="fixed_background" id="bg">
-        <canvas id="space-canvas" aria-hidden="true"></canvas>
+  <body>
+    <!-- ================= Background ================= -->
+    <section class="fixed_background" id="bg">
+      <canvas id="space-canvas" aria-hidden="true"></canvas>
 
-        <canvas id="particle-canvas" aria-hidden="true"></canvas>
+      <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-        <div class="background">
-          <div class="blob blob1"></div>
-          <div class="blob blob2"></div>
-          <div class="blob blob3"></div>
+      <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+      </div>
+    </section>
+
+    <nav class="navbar" id="siteNav">
+      <div class="navbar-inner">
+        <a href="#" class="logo-wrap">
+          <img src="assets/IG Only Logo.png" alt="Insight Grid Logo" />
+        </a>
+
+        <div class="nav-center desktop-only">
+          <ul class="nav-list" id="desktopNavList"></ul>
         </div>
-      </section>
 
-      <nav class="navbar" id="siteNav">
-        <div class="navbar-inner">
-          <a href="#" class="logo-wrap">
-            <img src="assets/IG Only Logo.png" alt="Insight Grid Logo" />
-          </a>
-
-          <div class="nav-center desktop-only">
-            <ul class="nav-list" id="desktopNavList"></ul>
-          </div>
-
-          <div class="nav-right">
-            <div
-              class="nav-actions desktop-only"
-              style="display: flex; gap: 0.6rem"
-            >
-              <a href="#" class="btn btn-ghost">Log in</a>
-              <a
-                href="contact-us.html"
-                class="primary_small_button"
-                id="bg_gradient_move"
-                >Request Quote</a
-              >
-            </div>
-
-            <button
-              class="hamburger mobile-only"
-              id="hamburgerBtn"
-              aria-label="Toggle menu"
-              aria-expanded="false"
-            >
-              <span class="bar bar1"></span>
-              <span class="bar bar2"></span>
-              <span class="bar bar3"></span>
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      <div class="mobile-overlay mobile-only" id="mobileOverlay">
-        <div class="mobile-overlay-inner">
-          <ul class="m-list" id="mobileNavList"></ul>
-          <div class="mobile-actions">
+        <div class="nav-right">
+          <div
+            class="nav-actions desktop-only"
+            style="display: flex; gap: 0.6rem"
+          >
             <a href="#" class="btn btn-ghost">Log in</a>
-            <a href="#" class="btn btn-solid">Sign up free</a>
+            <a
+              href="contact-us.html"
+              class="primary_small_button"
+              id="bg_gradient_move"
+              >Request Quote</a
+            >
           </div>
+
+          <button
+            class="hamburger mobile-only"
+            id="hamburgerBtn"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+          >
+            <span class="bar bar1"></span>
+            <span class="bar bar2"></span>
+            <span class="bar bar3"></span>
+          </button>
         </div>
       </div>
+    </nav>
 
-      <!-- ===================== HERO ===================== -->
-      <section class="sv-hero">
-        <div class="sv-blob sv-blob-1"></div>
-        <div class="sv-blob sv-blob-2"></div>
-        <div class="sv-eyebrow" id="svHeroEyebrow">Services</div>
-        <h1 id="svHeroHeading">
-          One platform, every repetitive task automated.
-        </h1>
-        <p id="svHeroSub">
-          From connecting your first two tools to running enterprise-scale
-          pipelines, Insight Grid's services cover the full range of what
-          "automation" actually means day to day.
-        </p>
-      </section>
-
-      <!-- ===================== SERVICES GRID ===================== -->
-      <section>
-        <div class="sv-label">What's included</div>
-        <h2 class="sv-section-heading">
-          Six ways Insight Grid removes the busywork.
-        </h2>
-        <p class="sv-sub">
-          Every plan includes access to all six — the difference between tiers
-          is scale, not capability.
-        </p>
-
-        <div class="sv-grid" id="svGrid">
-          <div class="sv-service-card">
-            <div class="sv-glare"></div>
-            <div class="sv-service-icon">01</div>
-            <h3>Workflow Automation</h3>
-            <p>Build multi-step automations without writing a line of code.</p>
-          </div>
-          <div class="sv-service-card">
-            <div class="sv-glare"></div>
-            <div class="sv-service-icon">02</div>
-            <h3>App Integrations</h3>
-            <p>Connect 200+ tools your team is already using today.</p>
-          </div>
-          <div class="sv-service-card">
-            <div class="sv-glare"></div>
-            <div class="sv-service-icon">03</div>
-            <h3>Data Sync &amp; Pipelines</h3>
-            <p>Keep every system speaking the same data, in real time.</p>
-          </div>
-          <div class="sv-service-card">
-            <div class="sv-glare"></div>
-            <div class="sv-service-icon">04</div>
-            <h3>Analytics &amp; Reporting</h3>
-            <p>
-              See exactly where time is being saved, and where it isn't yet.
-            </p>
-          </div>
-          <div class="sv-service-card">
-            <div class="sv-glare"></div>
-            <div class="sv-service-icon">05</div>
-            <h3>Enterprise Security</h3>
-            <p>SOC 2 Type II, SSO, and granular permissioning built in.</p>
-          </div>
-          <div class="sv-service-card">
-            <div class="sv-glare"></div>
-            <div class="sv-service-icon">06</div>
-            <h3>Developer API</h3>
-            <p>Build custom automations directly on top of our engine.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== DEEP-DIVE 1: Workflow Automation ===================== -->
-      <section>
-        <div class="sv-deepdive">
-          <div class="sv-deepdive-text">
-            <div class="sv-label">Workflow Automation</div>
-            <h2 class="sv-section-heading">
-              If it happens twice, it can happen automatically.
-            </h2>
-            <p class="sv-sub">
-              Set a trigger, add as many conditions and actions as the job
-              needs, and Insight Grid runs it exactly the same way every single
-              time — no missed steps, no "I forgot to update the sheet."
-            </p>
-            <ul>
-              <li>Visual builder — drag steps, don't write scripts</li>
-              <li>Conditional branching for real-world edge cases</li>
-              <li>Error handling with automatic retries</li>
-            </ul>
-          </div>
-          <div class="sv-deepdive-visual" id="svVisual1">
-            <div class="sv-node-chain">
-              <div class="sv-node" id="svNode1">
-                <span class="sv-node-tag">Trigger</span>New order placed in
-                Shopify
-              </div>
-              <div class="sv-node-connector">
-                <div class="sv-connector-fill" id="svFill1"></div>
-              </div>
-              <div class="sv-node" id="svNode2">
-                <span class="sv-node-tag">Condition</span>Order total is over
-                $200
-              </div>
-              <div class="sv-node-connector">
-                <div class="sv-connector-fill" id="svFill2"></div>
-              </div>
-              <div class="sv-node" id="svNode3">
-                <span class="sv-node-tag">Action</span>Notify #priority-orders
-                in Slack
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== DEEP-DIVE 2: Integrations ===================== -->
-      <section>
-        <div class="sv-deepdive sv-reverse">
-          <div class="sv-deepdive-text">
-            <div class="sv-label">App Integrations</div>
-            <h2 class="sv-section-heading">
-              Your tools, finally talking to each other.
-            </h2>
-            <p class="sv-sub">
-              Insight Grid sits in the middle of your stack so nothing has to be
-              copy-pasted between apps ever again — connect once, and every
-              workflow downstream just works.
-            </p>
-            <ul>
-              <li>200+ pre-built connectors, ready on day one</li>
-              <li>Two-way sync, not just one-directional triggers</li>
-              <li>Custom connectors available on Enterprise</li>
-            </ul>
-          </div>
-          <div class="sv-deepdive-visual" id="svVisual2">
-            <div class="sv-orbit-visual" id="svOrbitVisual">
-              <div class="sv-orbit-ring"></div>
-              <div class="sv-orbit-hub">IG</div>
-              <div class="sv-orbit-chip">Slack</div>
-              <div class="sv-orbit-chip">Sheets</div>
-              <div class="sv-orbit-chip">Stripe</div>
-              <div class="sv-orbit-chip">HubSpot</div>
-              <div class="sv-orbit-chip">GitHub</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== DEEP-DIVE 3: Analytics ===================== -->
-      <section>
-        <div class="sv-deepdive">
-          <div class="sv-deepdive-text">
-            <div class="sv-label">Analytics &amp; Reporting</div>
-            <h2 class="sv-section-heading">
-              See the hours you're actually getting back.
-            </h2>
-            <p class="sv-sub">
-              Every automation reports on itself — runs, failures, and time
-              saved — so you're never guessing whether a workflow is actually
-              pulling its weight.
-            </p>
-            <ul>
-              <li>Per-workflow time-saved estimates</li>
-              <li>Failure alerts before they become a backlog</li>
-              <li>Exportable reports for stakeholders</li>
-            </ul>
-          </div>
-          <div class="sv-deepdive-visual" id="svVisual3">
-            <div class="sv-bars-visual" id="svBarsVisual">
-              <div class="sv-bar" data-height="55%"></div>
-              <div class="sv-bar" data-height="80%"></div>
-              <div class="sv-bar" data-height="40%"></div>
-              <div class="sv-bar" data-height="95%"></div>
-              <div class="sv-bar" data-height="65%"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== PROCESS (horizontal pin) ===================== -->
-      <div class="sv-process-section" id="svProcessSection">
-        <div class="sv-process-track" id="svProcessTrack">
-          <div class="sv-process-heading-slide">
-            <div class="sv-label">How it works</div>
-            <h2 class="sv-section-heading">Four steps, start to finish.</h2>
-            <p class="sv-sub">
-              Most teams have their first automation live within an afternoon —
-              keep scrolling to see the whole process.
-            </p>
-          </div>
-          <div class="sv-process-card">
-            <span class="sv-step-num">01</span>
-            <h4>Connect</h4>
-            <p>
-              Link the tools you already use — no engineering ticket required.
-            </p>
-          </div>
-          <div class="sv-process-card">
-            <span class="sv-step-num">02</span>
-            <h4>Build</h4>
-            <p>
-              Drag together a trigger, a condition or two, and the actions you
-              want.
-            </p>
-          </div>
-          <div class="sv-process-card">
-            <span class="sv-step-num">03</span>
-            <h4>Automate</h4>
-            <p>
-              Turn it on. Insight Grid runs it exactly the same way, every
-              single time.
-            </p>
-          </div>
-          <div class="sv-process-card">
-            <span class="sv-step-num">04</span>
-            <h4>Monitor</h4>
-            <p>
-              Track runs, catch failures early, and see the hours it's saving
-              you.
-            </p>
-          </div>
+    <div class="mobile-overlay mobile-only" id="mobileOverlay">
+      <div class="mobile-overlay-inner">
+        <ul class="m-list" id="mobileNavList"></ul>
+        <div class="mobile-actions">
+          <a href="#" class="btn btn-ghost">Log in</a>
+          <a href="#" class="btn btn-solid">Sign up free</a>
         </div>
       </div>
-
-      <!-- ===================== INTEGRATIONS MARQUEE ===================== -->
-      <section style="max-width: none; padding: 4rem 0">
-        <div style="text-align: center; margin-bottom: 2rem">
-          <div class="sv-label" style="justify-content: center">
-            Works with what you already use
-          </div>
-        </div>
-        <div class="sv-marquee-wrap">
-          <div class="sv-marquee-track" id="svMarqueeTrack1">
-            <span>SLACK</span><span>SALESFORCE</span><span>HUBSPOT</span
-            ><span>NOTION</span><span>ZAPIER</span> <span>SLACK</span
-            ><span>SALESFORCE</span><span>HUBSPOT</span><span>NOTION</span
-            ><span>ZAPIER</span>
-          </div>
-        </div>
-        <div class="sv-marquee-wrap">
-          <div class="sv-marquee-track sv-marquee-row2" id="svMarqueeTrack2">
-            <span>GOOGLE SHEETS</span><span>STRIPE</span><span>GITHUB</span
-            ><span>ZENDESK</span><span>AIRTABLE</span> <span>GOOGLE SHEETS</span
-            ><span>STRIPE</span><span>GITHUB</span><span>ZENDESK</span
-            ><span>AIRTABLE</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== QUOTE (pinned zoom) ===================== -->
-      <div class="sv-quote-section" id="svQuoteSection">
-        <h2 class="sv-quote-text" id="svQuoteText">
-          Over <span class="sv-accent-word">10 million tasks</span> ran through
-          Insight Grid automations last month alone.
-        </h2>
-      </div>
-
-      <!-- ===================== CTA ===================== -->
-      <!-- ================= Footer ================= -->
-      <footer class="ft2-footer" id="ft2Footer">
-        <div class="ft2-columns" id="ft2Columns">
-          <div class="ft2-col">
-            <div class="ft1-logo">
-              Insight Grid<span class="ft1-dot">.</span>
-            </div>
-            <p class="ft2-brand-blurb">
-              The automation platform for teams who'd rather build the next
-              thing than repeat the last one.
-            </p>
-          </div>
-          <div class="ft2-col">
-            <h5>Product</h5>
-            <ul>
-              <li><a href="#">Workflow Builder</a></li>
-              <li><a href="#">Integrations</a></li>
-              <li><a href="#">Analytics</a></li>
-              <li><a href="#">Security</a></li>
-            </ul>
-          </div>
-          <div class="ft2-col">
-            <h5>Company</h5>
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Press</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div class="ft2-col">
-            <h5>Resources</h5>
-            <ul>
-              <li><a href="#">Documentation</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">API Reference</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="ft2-wordmark" id="ft2Wordmark">INSIGHT GRID</div>
-
-        <div class="ft2-bottom-bar">
-          <span>© 2019 Insight Grid, Inc.</span>
-          <button class="ft2-back-top" id="ft2BackTop">Back to top ↑</button>
-        </div>
-      </footer>
     </div>
+
+    <div class="hero-section">
+      <div class="hero-left">
+        <div class="section-label">BUSINESS AUTOMATION & DATA INTELLIGENCE</div>
+        <h1>Where Automation Meets Smarter Decision Making.</h1>
+        <p>
+          From automated reporting and workflow automation to powerful analytics
+          and custom dashboards, Insight Grid builds solutions that save time,
+          reduce errors, and empower better decisions.
+        </p>
+      </div>
+
+      <div class="hero-right">
+        <div class="cc-card-wrap" id="gx1Wrap">
+          <div class="cc-layer" id="gx1AfterLayer">
+            <div id="gx1AfterStars" style="position: absolute; inset: 0"></div>
+            <div class="cc-label cc-label-after">To Clarity</div>
+            <div class="cc-headline cc-headline-after">To Clarity</div>
+          </div>
+          <div class="cc-layer" id="gx1BeforeLayer">
+            <div id="gx1BeforeStars" style="position: absolute; inset: 0"></div>
+            <div class="cc-label">From Complexity</div>
+            <div class="cc-headline cc-headline-before">From Complexity</div>
+          </div>
+          <div class="cc-handle" id="gx1Handle"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= Section 2 ================= -->
+    <section class="section_2" id="sec-2">
+      <div class="top_half">
+        <div class="section-label">WHY BUSINESSES CHOOSE INSIGHT GRID</div>
+        <div class="curtain-line">
+          <h2 class="section-headline">Built to Eliminate Repetitive Work,</h2>
+        </div>
+        <div class="curtain-line">
+          <h2 class="section-headline2" style="color: var(--accent)">
+            Designed to Accelerate Better Decisions.
+          </h2>
+        </div>
+      </div>
+      <div class="bottom_half">
+        <div class="mat_container">
+          <!-- Card 1 -->
+          <div class="mat mat1">
+            <div class="sec2_upper_half">
+              <h1>Workflow Automation</h1>
+              <p>
+                Automate repetitive processes and free your team to focus on
+                high-value work.
+              </p>
+            </div>
+
+            <div class="sec2_lower_half">
+              <div class="sec2_circles">
+                <div class="ring-item" data-percent="90">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <circle class="bg" cx="55" cy="55" r="46"></circle>
+                    <circle class="progress" cx="55" cy="55" r="46"></circle>
+                  </svg>
+                  <div class="ring-content">
+                    <span class="ring-num">0%</span>
+                    <span class="ring-label">Efficiency</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sec2_vertical_divider"></div>
+
+              <ul class="sec2_lists">
+                <li>
+                  <i data-lucide="check-circle" class="list-icon"></i>
+                  <span>Automated workflows tailored to your business</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" class="list-icon"></i>
+                  <span>Eliminate repetitive manual processes</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" class="list-icon"></i>
+                  <span>Faster execution with fewer errors</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="mat mat2">
+            <div class="sec2_upper_half">
+              <h1>Unified Data Intelligence</h1>
+              <p>
+                Bring all your business data into one centralized, real-time
+                ecosystem.
+              </p>
+            </div>
+
+            <div class="sec2_lower_half">
+              <div class="sec2_circles">
+                <div class="ring-item" data-percent="99">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <circle class="bg" cx="55" cy="55" r="46"></circle>
+                    <circle class="progress" cx="55" cy="55" r="46"></circle>
+                  </svg>
+                  <div class="ring-content">
+                    <span class="ring-num">0%</span>
+                    <span class="ring-label">Accurate</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sec2_vertical_divider"></div>
+
+              <ul class="sec2_lists">
+                <li>
+                  <i data-lucide="code" class="list-icon"></i>
+                  <span>Integrate multiple platforms seamlessly</span>
+                </li>
+                <li>
+                  <i data-lucide="code" class="list-icon"></i>
+                  <span>Real-time reporting across departments</span>
+                </li>
+                <li>
+                  <i data-lucide="code" class="list-icon"></i>
+                  <span>Single source of truth for decision making</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="mat mat3">
+            <div class="sec2_upper_half">
+              <h1>Actionable Business Insights</h1>
+              <p>
+                Transform complex datasets into dashboards that drive smarter
+                business decisions.
+              </p>
+            </div>
+
+            <div class="sec2_lower_half">
+              <div class="sec2_circles">
+                <div class="ring-item" data-percent="75">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <circle class="bg" cx="55" cy="55" r="46"></circle>
+                    <circle class="progress" cx="55" cy="55" r="46"></circle>
+                  </svg>
+                  <div class="ring-content">
+                    <span class="ring-num">0%</span>
+                    <span class="ring-label">Faster</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sec2_vertical_divider"></div>
+
+              <ul class="sec2_lists">
+                <li>
+                  <i data-lucide="trending-up" class="list-icon"></i>
+                  <span>Interactive executive dashboards</span>
+                </li>
+                <li>
+                  <i data-lucide="trending-up" class="list-icon"></i>
+                  <span>AI-driven insights and forecasting</span>
+                </li>
+                <li>
+                  <i data-lucide="trending-up" class="list-icon"></i>
+                  <span>Custom KPIs tailored to your goals</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Section 3 ================= -->
+    <section class="section_3" id="sec-3">
+      <!-- ===================== HORIZONTAL PIN GALLERY ===================== -->
+      <div class="h-scroll-section" id="hScrollSection">
+        <div class="h-track" id="hTrack">
+          <div class="s3_content">
+            <div class="s3_tag">
+              <span></span>
+              Our Services
+            </div>
+
+            <h2>Solutions Designed Around Your Business</h2>
+
+            <p>
+              Every business operates differently. We combine automation,
+              analytics and custom software to remove repetitive work and give
+              teams complete visibility over their operations.
+            </p>
+
+            <div class="s3_stats">
+              <div class="stat">
+                <h3>5+</h3>
+                <span>Core Services</span>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="stat">
+                <h3>∞</h3>
+                <span>Automation Possibilities</span>
+              </div>
+            </div>
+          </div>
+          <div class="h-card">
+            <div class="card-top">
+              <span class="num">01</span>
+
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
+            </div>
+
+            <span class="eyebrow"> AUTOMATION </span>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Automated Reporting Systems</h3>
+
+              <p>
+                Replace repetitive reporting with automated dashboards that
+                deliver accurate insights whenever you need them.
+              </p>
+            </div>
+
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
+            </div>
+          </div>
+          <div class="h-card">
+            <div class="card-top">
+              <span class="num">02</span>
+
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
+            </div>
+
+            <span class="eyebrow"> VISUALIZATION </span>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Dashboard Design & Development</h3>
+
+              <p>
+                Interactive dashboards built to visualize your most important
+                metrics and support faster, data-driven decisions.
+              </p>
+            </div>
+
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
+            </div>
+          </div>
+          <div class="h-card">
+            <div class="card-top">
+              <span class="num">03</span>
+
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
+            </div>
+
+            <span class="eyebrow"> OPTIMIZATION </span>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Workflow Automation</h3>
+
+              <p>
+                Automate business processes, reduce manual effort, and improve
+                operational efficiency with intelligent workflows.
+              </p>
+            </div>
+
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
+            </div>
+          </div>
+          <div class="h-card">
+            <div class="card-top">
+              <span class="num">04</span>
+
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
+            </div>
+
+            <span class="eyebrow"> CONNECTIVITY </span>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Data Integration & Management</h3>
+
+              <p>
+                Connect your applications, databases, and cloud platforms to
+                create a single, reliable source of business data.
+              </p>
+            </div>
+
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
+            </div>
+          </div>
+          <div class="h-card">
+            <div class="card-top">
+              <span class="num">05</span>
+
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
+            </div>
+
+            <span class="eyebrow"> INTELLIGENCE </span>
+
+            <div class="service-icon">
+              <i data-lucide="layout-dashboard"></i>
+            </div>
+
+            <div class="card-content">
+              <h3>Predictive & Advanced Analytics</h3>
+
+              <p>
+                Leverage machine learning and advanced algorithms to uncover
+                hidden patterns, forecast future trends, and make informed
+                business decisions.
+              </p>
+            </div>
+
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Section 4 ================= -->
+    <section class="section_4" id="sec-4"></section>
+
+    <!-- ===================== COUNTERS ===================== -->
+    <section class="counter-section">
+      <div class="section-label">Insight Feed</div>
+      <h2 class="section-headline">Every number has a story.</h2>
+      <p class="section-sub">A few things that define how we work.</p>
+      <div class="counters">
+        <div class="counter-item">
+          <div class="num-display" data-target="5">0</div>
+          <div class="num-label">Specialized Services</div>
+        </div>
+        <div class="counter-item">
+          <div class="num-display" data-target="12">0</div>
+          <div class="num-label">Automation Workflows</div>
+        </div>
+        <div class="counter-item">
+          <div class="num-display" data-target="50">0</div>
+          <div class="num-label">Business Processes Optimized</div>
+        </div>
+        <div class="counter-item">
+          <div class="num-display" data-target="100">0</div>
+          <div class="num-label">Ideas Worth Exploring</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Section 5 ================= -->
+    <section id="option3" class="design-section space-y-8">
+      <!-- Pillars Canvas -->
+      <div
+        class="rounded-3xl bg-white/5 backdrop-blur-xl p-6 md:p-10 border border-slate-800 m-6"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Left Column: Navigation Buttons -->
+          <div class="lg:col-span-5 space-y-3">
+            <span
+              class="text-xs font-bold uppercase tracking-widest text-emerald-400"
+              >WHY INSIGHT GRID</span
+            >
+            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6">
+              Built to automate. Designed to scale.
+            </h3>
+
+            <!-- Interactive Selector Cards -->
+            <div class="space-y-3" id="pillar-controls">
+              <button
+                onclick="activatePillar(0)"
+                class="pillar-btn active w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-4 bg-slate-900 border-brand-500 text-white shadow-lg shadow-brand-500/10"
+              >
+                <div
+                  class="p-2.5 rounded-lg bg-brand-500/20 text-brand-400 shrink-0"
+                >
+                  <i data-lucide="cpu" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm">Business-First Approach</h4>
+                  <p class="text-xs text-slate-400 mt-0.5">
+                    Every automation begins by understanding your workflows.
+                  </p>
+                </div>
+              </button>
+
+              <button
+                onclick="activatePillar(1)"
+                class="pillar-btn w-full text-left p-4 rounded-xl border border-slate-800/80 bg-slate-900/40 text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-300 flex items-start gap-4"
+              >
+                <div
+                  class="p-2.5 rounded-lg bg-slate-800 text-slate-300 shrink-0"
+                >
+                  <i data-lucide="shield" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm">Connected Intelligence</h4>
+                  <p class="text-xs text-slate-400 mt-0.5">
+                    Bring all your business data together to create one reliable
+                    source of truth.
+                  </p>
+                </div>
+              </button>
+
+              <button
+                onclick="activatePillar(2)"
+                class="pillar-btn w-full text-left p-4 rounded-xl border border-slate-800/80 bg-slate-900/40 text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-300 flex items-start gap-4"
+              >
+                <div
+                  class="p-2.5 rounded-lg bg-slate-800 text-slate-300 shrink-0"
+                >
+                  <i data-lucide="activity" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm">Measurable Impact</h4>
+                  <p class="text-xs text-slate-400 mt-0.5">
+                    Every solution is built with clear business outcomes in
+                    mind—not just technical implementation.
+                  </p>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Stage Container -->
+          <div class="lg:col-span-7">
+            <div
+              class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 relative min-h-[380px] flex flex-col justify-between"
+              id="pillar-stage"
+            >
+              <!-- Dynamic Content View 0 -->
+              <div class="pillar-view space-y-6" id="pillar-view-0">
+                <div
+                  class="flex items-center justify-between border-b border-slate-800 pb-4"
+                >
+                  <span
+                    class="text-xs font-mono text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20"
+                    >01. Business Discovery</span
+                  >
+                  <span class="text-xs text-slate-500 font-mono"
+                    >WORKFLOW ANALYZED</span
+                  >
+                </div>
+                <h4 class="text-2xl font-bold text-white">
+                  Automation designed around the way your business actually
+                  operates.
+                </h4>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  We begin by understanding your existing processes, identifying
+                  repetitive tasks, and mapping opportunities for automation
+                  before any development begins.
+                </p>
+
+                <!-- Mock Visual Mockup -->
+                <div
+                  class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3 font-mono text-xs"
+                >
+                  <div class="flex items-center justify-between text-slate-400">
+                    <span>[DISCOVERY COMPLETE]</span>
+                    <span class="text-emerald-400">● Live Monitoring</span>
+                  </div>
+                  <div
+                    class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"
+                  >
+                    <div class="bg-brand-500 h-full w-3/4 animate-pulse"></div>
+                  </div>
+                  <div class="text-[11px] text-slate-400 flex justify-between">
+                    <span>Processes Mapped: 24</span>
+                    <span class="text-brand-400"
+                      >Automation Opportunities: 18</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dynamic Content View 1 (Hidden initially) -->
+              <div class="pillar-view space-y-6 hidden" id="pillar-view-1">
+                <div
+                  class="flex items-center justify-between border-b border-slate-800 pb-4"
+                >
+                  <span
+                    class="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20"
+                    >02. Unified Data</span
+                  >
+                  <span class="text-xs text-slate-500 font-mono"
+                    >LIVE CONNECTIONS</span
+                  >
+                </div>
+                <h4 class="text-2xl font-bold text-white">
+                  Every system connected. Every insight in one place.
+                </h4>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Dashboards become truly valuable when data from CRMs, ERPs,
+                  spreadsheets, APIs, and databases work together in real time.
+                </p>
+
+                <div
+                  class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3 font-mono text-xs"
+                >
+                  <div class="flex items-center justify-between text-slate-400">
+                    <span>[CONNECTION CHECK: ESTABLISHED]</span>
+                    <span class="text-emerald-400"
+                      >✓ All Systems Compliant</span
+                    >
+                  </div>
+                  <div
+                    class="grid grid-cols-2 gap-2 text-[11px] text-slate-300"
+                  >
+                    <div
+                      class="p-2 bg-slate-950 rounded border border-slate-800"
+                    >
+                      ERM: Synced
+                    </div>
+                    <div
+                      class="p-2 bg-slate-950 rounded border border-slate-800"
+                    >
+                      APIs: Live
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dynamic Content View 2 (Hidden initially) -->
+              <div class="pillar-view space-y-6 hidden" id="pillar-view-2">
+                <div
+                  class="flex items-center justify-between border-b border-slate-800 pb-4"
+                >
+                  <span
+                    class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20"
+                    >03. Business Growth</span
+                  >
+                  <span class="text-xs text-slate-500 font-mono"
+                    >RESULTS ANALYZED</span
+                  >
+                </div>
+                <h4 class="text-2xl font-bold text-white">
+                  Automation that continues creating value long after
+                  deployment.
+                </h4>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  By reducing manual work and improving operational visibility,
+                  businesses spend less time managing processes and more time
+                  driving growth.
+                </p>
+
+                <div
+                  class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-2 font-mono text-xs"
+                >
+                  <div class="flex justify-between items-center text-slate-400">
+                    <span>[PRODUCTIVITY: Optimized]</span>
+                    <span class="text-brand-400">Operational Efficiency</span>
+                  </div>
+                  <div class="flex items-end gap-1 h-12 pt-2">
+                    <div class="bg-brand-500/40 w-1/12 h-1/2 rounded-t"></div>
+                    <div class="bg-brand-500/60 w-1/12 h-3/4 rounded-t"></div>
+                    <div class="bg-brand-500 w-1/12 h-full rounded-t"></div>
+                    <div class="bg-brand-500/50 w-1/12 h-2/3 rounded-t"></div>
+                    <div class="bg-brand-500/70 w-1/12 h-4/5 rounded-t"></div>
+                    <div class="bg-brand-500/90 w-1/12 h-full rounded-t"></div>
+                    <div class="bg-brand-500/30 w-1/12 h-1/3 rounded-t"></div>
+                    <div class="bg-brand-500/80 w-1/12 h-5/6 rounded-t"></div>
+                    <div class="bg-brand-500 w-1/12 h-full rounded-t"></div>
+                    <div class="bg-brand-500/60 w-1/12 h-2/3 rounded-t"></div>
+                    <div class="bg-brand-500/40 w-1/12 h-1/2 rounded-t"></div>
+                    <div class="bg-brand-500/80 w-1/12 h-3/4 rounded-t"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Section 7 ================= -->
+    <!-- ===================== 2. EXPAND TO FULLSCREEN ===================== -->
+    <section class="section_7" id="sec-7">
+      <div class="section-label">CASE STUDIES</div>
+      <h2 class="section-headline">
+        From operational bottlenecks to automated workflows.
+      </h2>
+      <p class="section-sub">
+        See how we transform repetitive processes into streamlined systems that
+        save time, improve accuracy, and help businesses make smarter decisions
+        with confidence.
+      </p>
+      <div class="expand-grid" id="expandGrid">
+        <div class="expand-card">
+          <span class="tag">Case study</span>
+          <h3>Northbridge rebrand</h3>
+          <p>A full identity overhaul for a 40-year-old finance firm.</p>
+          <div class="expand-body">
+            <div class="case-tabs">
+              <div class="case-tabs-list">
+                <button class="active" data-target="ov">
+                  <span class="dot"></span> Overview
+                </button>
+                <button data-target="ap">
+                  <span class="dot"></span> Approach
+                </button>
+                <button data-target="dl">
+                  <span class="dot"></span> Deliverables
+                </button>
+                <button data-target="rs">
+                  <span class="dot"></span> Results
+                </button>
+                <button data-target="tm"><span class="dot"></span> Team</button>
+              </div>
+              <div class="case-tabs-content">
+                <div class="case-tab-item active" data-id="ov">
+                  <span class="mini-tag">Overview</span>
+                  <h4>A century-old feel, a modern-day mark</h4>
+                  <p>
+                    The brief called for a system that felt established but not
+                    stale — new type, a restrained palette, and a mark that
+                    reads at both business-card and billboard scale.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="ap">
+                  <span class="mini-tag">Approach</span>
+                  <h4>Audit, then rebuild from the inside out</h4>
+                  <p>
+                    We started with a full audit of every touchpoint, from
+                    letterhead to lobby signage, then rebuilt the identity
+                    around a small set of flexible rules the internal team could
+                    actually maintain.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="dl">
+                  <span class="mini-tag">Deliverables</span>
+                  <h4>A system built to hand off</h4>
+                  <p>
+                    We shipped a full identity system, a 90-page brand
+                    guideline, and a set of motion tokens for their product team
+                    to build from.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="rs">
+                  <span class="mini-tag">Results</span>
+                  <h4>Adopted company-wide within a quarter</h4>
+                  <p>
+                    Every business unit had migrated to the new system within
+                    one quarter, with internal teams reporting far fewer one-off
+                    design requests once the guidelines shipped.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="tm">
+                  <span class="mini-tag">Team</span>
+                  <h4>A small, senior team</h4>
+                  <p>
+                    Two brand designers, one motion designer, and a strategist
+                    worked directly with Northbridge's marketing lead over a
+                    twelve-week engagement.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="expand-close">✕</button>
+        </div>
+        <div class="expand-card">
+          <span class="tag">Case study</span>
+          <h3>Solstice app redesign</h3>
+          <p>Cutting checkout friction across mobile and web.</p>
+          <div class="expand-body">
+            <div class="case-tabs">
+              <div class="case-tabs-list">
+                <button class="active" data-target="ov">
+                  <span class="dot"></span> Overview
+                </button>
+                <button data-target="pr">
+                  <span class="dot"></span> Problem
+                </button>
+                <button data-target="so">
+                  <span class="dot"></span> Solution
+                </button>
+                <button data-target="rs">
+                  <span class="dot"></span> Results
+                </button>
+                <button data-target="tm"><span class="dot"></span> Team</button>
+              </div>
+              <div class="case-tabs-content">
+                <div class="case-tab-item active" data-id="ov">
+                  <span class="mini-tag">Overview</span>
+                  <h4>Same flow, mobile and web</h4>
+                  <p>
+                    Solstice needed one checkout experience that felt native on
+                    both mobile and web, without maintaining two separate flows
+                    in parallel.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="pr">
+                  <span class="mini-tag">Problem</span>
+                  <h4>Checkout was the bottleneck</h4>
+                  <p>
+                    Three rounds of usability testing pointed to the same
+                    drop-off point: checkout. Too many steps, vague error
+                    states, and no visible order summary once payment began.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="so">
+                  <span class="mini-tag">Solution</span>
+                  <h4>Fewer steps, clearer feedback</h4>
+                  <p>
+                    We rebuilt the flow around fewer steps, clearer inline error
+                    states, and a persistent order summary that stayed visible
+                    through every stage of payment.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="rs">
+                  <span class="mini-tag">Results</span>
+                  <h4>Abandonment dropped within a month</h4>
+                  <p>
+                    Cart abandonment dropped meaningfully within the first month
+                    post-launch, and support tickets tagged "checkout" fell
+                    sharply in the same window.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="tm">
+                  <span class="mini-tag">Team</span>
+                  <h4>Design paired with research</h4>
+                  <p>
+                    One product designer and one researcher ran the testing
+                    rounds, working alongside Solstice's in-house engineering
+                    team through implementation.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="expand-close">✕</button>
+        </div>
+        <div class="expand-card">
+          <span class="tag">Case study</span>
+          <h3>Ferrovia dashboard</h3>
+          <p>Real-time fleet monitoring for 400+ vehicles.</p>
+          <div class="expand-body">
+            <div class="case-tabs">
+              <div class="case-tabs-list">
+                <button class="active" data-target="ov">
+                  <span class="dot"></span> Overview
+                </button>
+                <button data-target="ch">
+                  <span class="dot"></span> Challenge
+                </button>
+                <button data-target="ds">
+                  <span class="dot"></span> Design
+                </button>
+                <button data-target="oc">
+                  <span class="dot"></span> Outcome
+                </button>
+                <button data-target="tm"><span class="dot"></span> Team</button>
+              </div>
+              <div class="case-tabs-content">
+                <div class="case-tab-item active" data-id="ov">
+                  <span class="mini-tag">Overview</span>
+                  <h4>A calm view over a busy fleet</h4>
+                  <p>
+                    Ferrovia needed a single dashboard for dispatchers to
+                    monitor over 400 vehicles in real time, without the screen
+                    turning into noise.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="ch">
+                  <span class="mini-tag">Challenge</span>
+                  <h4>Too much data, not enough signal</h4>
+                  <p>
+                    Dispatchers needed to track hundreds of vehicles at once,
+                    but earlier prototypes buried the vehicles that actually
+                    needed attention under everything else.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="ds">
+                  <span class="mini-tag">Design</span>
+                  <h4>A layered map, disclosed on demand</h4>
+                  <p>
+                    We designed a layered map view with progressive disclosure,
+                    so the default state stays calm and any vehicle's detail is
+                    only ever a click away.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="oc">
+                  <span class="mini-tag">Outcome</span>
+                  <h4>Faster response, fewer missed alerts</h4>
+                  <p>
+                    Dispatchers reported faster response times to flagged
+                    vehicles, and the layered view held up even during peak-hour
+                    load with the full fleet active.
+                  </p>
+                </div>
+                <div class="case-tab-item" data-id="tm">
+                  <span class="mini-tag">Team</span>
+                  <h4>Design and engineering, in lockstep</h4>
+                  <p>
+                    A product designer and two frontend engineers worked in
+                    weekly cycles with Ferrovia's dispatch operators to validate
+                    each iteration.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="expand-close">✕</button>
+        </div>
+      </div>
+    </section>
+    <div class="expand-overlay" id="expandOverlay"></div>
+
+    <!-- ================= Review Section ================= -->
+    <section class="rv-section">
+      <div class="rv2-marquee-wrap">
+        <div class="rv2-track" id="rv2Track1">
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>
+              Deploys that used to take an engineer half a day now run
+              themselves.
+            </p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #4dd8ff">PS</div>
+              <div>
+                <div class="name">Priya Sen</div>
+                <div class="company">CloudArc</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>
+              Support actually replies. That alone is rare in this category.
+            </p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #8b5cf6">TW</div>
+              <div>
+                <div class="name">Tom Walsh</div>
+                <div class="company">Ferrovia</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="4.5"></div>
+            <p>Migrated 40 legacy scripts in a weekend. Would not go back.</p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #34e5a1">AK</div>
+              <div>
+                <div class="name">Anaya Khatri</div>
+                <div class="company">Meridian Health</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>Our audit prep time dropped from weeks to a single afternoon.</p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #ffb84d">CL</div>
+              <div>
+                <div class="name">Carlos Lima</div>
+                <div class="company">Vantix</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>
+              Deploys that used to take an engineer half a day now run
+              themselves.
+            </p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #4dd8ff">PS</div>
+              <div>
+                <div class="name">Priya Sen</div>
+                <div class="company">CloudArc</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>
+              Support actually replies. That alone is rare in this category.
+            </p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #8b5cf6">TW</div>
+              <div>
+                <div class="name">Tom Walsh</div>
+                <div class="company">Ferrovia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv2-marquee-wrap">
+        <div class="rv2-track" id="rv2Track2">
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>We cut incident response time by 70% in the first month.</p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #ff5c7a">RK</div>
+              <div>
+                <div class="name">Rhea Kapoor</div>
+                <div class="company">Delta Systems</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>Our on-call rotation finally feels sane again.</p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #34e5a1">JM</div>
+              <div>
+                <div class="name">Jordan Meyer</div>
+                <div class="company">Northbeam</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="4.5"></div>
+            <p>The audit logs alone justified the switch for compliance.</p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #ffb84d">DT</div>
+              <div>
+                <div class="name">Deshawn Tran</div>
+                <div class="company">Vantix</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>Onboarding was faster than reading most tools' docs.</p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #8b5cf6">NF</div>
+              <div>
+                <div class="name">Nadia Farouk</div>
+                <div class="company">Bridgepoint</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>We cut incident response time by 70% in the first month.</p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #ff5c7a">RK</div>
+              <div>
+                <div class="name">Rhea Kapoor</div>
+                <div class="company">Delta Systems</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv2-card">
+            <div class="rv-stars" data-rating="5"></div>
+            <p>Our on-call rotation finally feels sane again.</p>
+            <div class="rv2-author">
+              <div class="rv2-avatar" style="background: #34e5a1">JM</div>
+              <div>
+                <div class="name">Jordan Meyer</div>
+                <div class="company">Northbeam</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Section 8 ================= -->
+    <section class="section_8" id="sec-8">
+      <div class="sec8_top">
+        <div class="section-label">FREQUENTLY ASKED QUESTIONS</div>
+        <h2 class="section-headline">
+          Everything you need to know before we start.
+        </h2>
+        <p class="section-sub">
+          Whether you're looking to automate workflows, build custom dashboards,
+          or integrate your business systems, we're here to make the process
+          simple and transparent.
+        </p>
+      </div>
+      <div class="accordion" id="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>What types of businesses do you work with?</span
+            ><span class="plus">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              We work with startups, SMEs, and growing enterprises across
+              industries. If your business relies on data, repetitive processes,
+              or multiple software tools, we can help streamline operations
+              through automation and analytics.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Can you integrate with our existing software?</span
+            ><span class="plus">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Yes. We build solutions that work with your existing technology
+              stack whenever possible. From CRMs and ERPs to spreadsheets, APIs,
+              databases, and cloud platforms, we focus on creating a connected
+              ecosystem rather than replacing your current tools.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>How long does a typical project take?</span
+            ><span class="plus">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Every project is different, but most engagements begin with a
+              discovery phase to understand your workflows and goals. Once the
+              scope is finalized, we provide a clear roadmap with timelines,
+              milestones, and regular progress updates throughout development.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Blog Section ================= -->
+    <section class="bl-section">
+      <div class="bl-head">
+        <div>
+          <div class="eyebrow" id="bl1Eyebrow">From the blog</div>
+          <h2 id="bl1Heading">
+            Notes on building automation that doesn't break at 2 AM.
+          </h2>
+        </div>
+        <div class="bl-view-all">View all articles →</div>
+      </div>
+
+      <div class="bl1-grid" id="bl1Grid">
+        <div class="bl1-card">
+          <div class="bl-glare"></div>
+          <div class="bl1-thumb"></div>
+          <div class="bl1-body">
+            <span class="bl1-tag">Engineering</span>
+            <h3>How we cut alert fatigue by 60% using smarter thresholds</h3>
+            <p>
+              A look at the incident-scoring model behind our newest release.
+            </p>
+            <div class="bl1-meta">
+              <span>Mar 14</span><span>6 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="bl1-card">
+          <div class="bl-glare"></div>
+          <div
+            class="bl1-thumb"
+            style="
+              background: linear-gradient(
+                135deg,
+                rgba(52, 229, 161, 0.18),
+                rgba(77, 216, 255, 0.18)
+              );
+            "
+          ></div>
+          <div class="bl1-body">
+            <span class="bl1-tag">Guide</span>
+            <h3>Migrating from cron jobs to event-driven workflows</h3>
+            <p>
+              A step-by-step guide for IT teams moving off legacy scheduling.
+            </p>
+            <div class="bl1-meta">
+              <span>Mar 02</span><span>9 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="bl1-card">
+          <div class="bl-glare"></div>
+          <div
+            class="bl1-thumb"
+            style="
+              background: linear-gradient(
+                135deg,
+                rgba(255, 184, 77, 0.18),
+                rgba(255, 92, 122, 0.18)
+              );
+            "
+          ></div>
+          <div class="bl1-body">
+            <span class="bl1-tag">Case Study</span>
+            <h3>Northbeam's on-call rotation, before and after</h3>
+            <p>What changed when a 40-person SRE team automated triage.</p>
+            <div class="bl1-meta">
+              <span>Feb 21</span><span>7 min read</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Section 9 ================= -->
+    <section class="section_9" id="sec-9">
+      <div class="section-label">LET'S BUILD SOMETHING SMARTER</div>
+      <p class="section-sub">
+        Whether you're looking to streamline operations, connect your data, or
+        build intelligent automation from the ground up, we're ready to help.
+        Let's discuss your goals and create a solution that works for your
+        business.
+      </p>
+      <h2
+        id="breatheText"
+        style="
+          font-size: clamp(1.8rem, 4.5vw, 3rem);
+          letter-spacing: 0.6em;
+          opacity: 0;
+        "
+      >
+        Feel Like Talking?
+      </h2>
+      <button class="primary_medium_button" id="bg_gradient_move">
+        Book a Free Consultation
+      </button>
+    </section>
+
+    <!-- ================= Footer ================= -->
+    <footer class="ft2-footer" id="ft2Footer">
+      <div class="ft2-columns" id="ft2Columns">
+        <div class="ft2-col">
+          <div class="ft1-logo">Insight Grid<span class="ft1-dot">.</span></div>
+          <p class="ft2-brand-blurb">
+            The automation platform for teams who'd rather build the next thing
+            than repeat the last one.
+          </p>
+        </div>
+        <div class="ft2-col">
+          <h5>Product</h5>
+          <ul>
+            <li><a href="#">Workflow Builder</a></li>
+            <li><a href="#">Integrations</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+        <div class="ft2-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft2-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft2-wordmark" id="ft2Wordmark">INSIGHT GRID</div>
+
+      <div class="ft2-bottom-bar">
+        <span>© 2019 Insight Grid, Inc.</span>
+        <button class="ft2-back-top" id="ft2BackTop">Back to top ↑</button>
+      </div>
+    </footer>
 
     <script>
       (function () {
         gsap.registerPlugin(ScrollTrigger);
 
-        /* ===================== Hero ===================== */
-        const svHeroHeading = document.getElementById("svHeroHeading");
-        const svHeroText = svHeroHeading.textContent;
-        svHeroHeading.innerHTML = svHeroText
-          .split("")
-          .map((ch) =>
-            ch === " " ? " " : `<span class="sv-char">${ch}</span>`,
-          )
-          .join("");
+        /* ===================== Sticky nav hide/show ===================== */
+        ScrollTrigger.create({
+          start: "top top",
+          end: "max",
+          onUpdate: (self) => {
+            const nav = document.getElementById("siteNav");
+            if (self.direction === 1 && self.scroll() > 120) {
+              gsap.to(nav, {
+                yPercent: -100,
+                duration: 0.35,
+                ease: "power2.out",
+              });
+            } else {
+              gsap.to(nav, { yPercent: 0, duration: 0.35, ease: "power2.out" });
+            }
+          },
+        });
 
-        gsap.set(".sv-hero .sv-char", { yPercent: 120, opacity: 0 });
+        /* ===================== DATA ===================== */
+        const navData = [
+          {
+            label: "Products",
+            children: [
+              {
+                label: "Analytics",
+                desc: "Understand usage in real time.",
+                children: [
+                  { label: "Real-time Dashboards", href: "contact-us.html" },
+                  { label: "Custom Reports", href: "#" },
+                  { label: "Data Export", href: "#" },
+                ],
+              },
+              {
+                label: "Automation",
+                desc: "Trigger workflows without code.",
+                href: "#",
+              },
+              {
+                label: "Integrations",
+                desc: "Connect the tools you already use.",
+                children: [
+                  { label: "Slack", href: "#" },
+                  { label: "Salesforce", href: "#" },
+                  { label: "Zapier", href: "#" },
+                ],
+              },
+              {
+                label: "Security",
+                desc: "SOC 2 Type II certified.",
+                href: "#",
+              },
+              {
+                label: "API Access",
+                desc: "Build on top of our platform.",
+                href: "#",
+              },
+            ],
+          },
+          {
+            label: "Solutions",
+            children: [
+              {
+                label: "For Startups",
+                desc: "Move fast without breaking things.",
+                href: "#",
+              },
+              {
+                label: "For Enterprise",
+                desc: "Scale with confidence.",
+                children: [
+                  { label: "Dedicated Support", href: "#" },
+                  { label: "SLA Guarantees", href: "#" },
+                ],
+              },
+              {
+                label: "For Agencies",
+                desc: "Manage multiple clients with ease.",
+                href: "#",
+              },
+              {
+                label: "Case Studies",
+                desc: "See how teams use us.",
+                href: "#",
+              },
+            ],
+          },
+          {
+            label: "Resources",
+            children: [
+              {
+                label: "Documentation",
+                desc: "Guides and API references.",
+                href: "#",
+              },
+              {
+                label: "Blog",
+                desc: "Ideas on product and design.",
+                href: "#",
+              },
+              {
+                label: "Community",
+                desc: "Talk to other builders.",
+                children: [
+                  { label: "Forum", href: "#" },
+                  { label: "Slack Community", href: "#" },
+                  { label: "Events", href: "#" },
+                ],
+              },
+              { label: "Webinars", desc: "Live sessions, monthly.", href: "#" },
+              {
+                label: "Help Center",
+                desc: "Answers to common questions.",
+                href: "#",
+              },
+            ],
+          },
+          {
+            label: "Pricing",
+            children: [
+              {
+                label: "Plans & Pricing",
+                desc: "Simple, transparent tiers.",
+                href: "#",
+              },
+              {
+                label: "Compare Plans",
+                desc: "Find the right fit.",
+                href: "#",
+              },
+              {
+                label: "Enterprise Pricing",
+                desc: "Custom quotes for larger teams.",
+                href: "#",
+              },
+              {
+                label: "FAQs",
+                desc: "Billing questions, answered.",
+                href: "#",
+              },
+            ],
+          },
+          {
+            label: "Company",
+            children: [
+              { label: "About Us", desc: "Our story so far.", href: "#" },
+              {
+                label: "Careers",
+                desc: "Join the team.",
+                children: [
+                  { label: "Open Roles", href: "#" },
+                  { label: "Life at Lumen", href: "#" },
+                  { label: "Benefits", href: "#" },
+                ],
+              },
+              { label: "Press", desc: "News and media kit.", href: "#" },
+              { label: "Contact", desc: "Get in touch with us.", href: "#" },
+            ],
+          },
+        ];
 
-        const svHeroTl = gsap.timeline({ delay: 0.2 });
-        svHeroTl
-          .to("#svHeroEyebrow", {
-            opacity: 1,
-            duration: 0.6,
-            ease: "power2.out",
-          })
-          .to(
-            ".sv-hero .sv-char",
-            {
-              yPercent: 0,
+        const chevronDownSvg =
+          '<svg class="chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        const chevronRightSvg =
+          '<svg class="chevron chevron-right" viewBox="0 0 24 24" width="14" height="14"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+        /* ===================== DESKTOP RENDER ===================== */
+        function renderDesktopTop(data) {
+          return data
+            .map((item) => {
+              const hasChildren = item.children && item.children.length;
+              return `
+      <li class="nav-item">
+        <button type="button" class="nav-link">
+          <span>${item.label}</span>
+          ${hasChildren ? chevronDownSvg : ""}
+        </button>
+        ${
+          hasChildren
+            ? `
+        <div class="dropdown-panel">
+          <div class="dropdown-inner">
+            <ul class="dropdown-list">
+              ${item.children.map(renderDesktopSub).join("")}
+            </ul>
+          </div>
+        </div>`
+            : ""
+        }
+      </li>`;
+            })
+            .join("");
+        }
+
+        function renderDesktopSub(child) {
+          const hasChildren = child.children && child.children.length;
+          const body = `
+    <span>
+      <span class="dropdown-link-title">${child.label}</span>
+      ${child.desc ? `<span class="dropdown-link-desc">${child.desc}</span>` : ""}
+    </span>`;
+
+          if (hasChildren) {
+            return `
+      <li class="dropdown-item has-flyout">
+        <button type="button" class="dropdown-link">
+          ${body}
+          ${chevronRightSvg}
+        </button>
+        <div class="flyout-panel">
+          <ul class="flyout-list">
+            ${child.children.map((sub) => `<li><a href="${sub.href || "#"}" class="flyout-link">${sub.label}</a></li>`).join("")}
+          </ul>
+        </div>
+      </li>`;
+          }
+
+          return `
+    <li class="dropdown-item">
+      <a href="${child.href || "#"}" class="dropdown-link">${body}</a>
+    </li>`;
+        }
+
+        document.getElementById("desktopNavList").innerHTML =
+          renderDesktopTop(navData);
+
+        /* ===================== MOBILE RENDER ===================== */
+        function renderMobile(data, depth) {
+          return data
+            .map((item) => {
+              const hasChildren = item.children && item.children.length;
+              if (hasChildren) {
+                return `
+        <li class="m-item" data-depth="${depth}">
+          <button type="button" class="m-link">
+            <span>${item.label}</span>
+            ${chevronDownSvg}
+          </button>
+          <div class="m-panel">
+            <div class="m-panel-inner">
+              <ul>${renderMobile(item.children, depth + 1)}</ul>
+            </div>
+          </div>
+        </li>`;
+              }
+              return `
+      <li class="m-item" data-depth="${depth}">
+        <a href="${item.href || "#"}" class="m-link m-leaf">${item.label}</a>
+      </li>`;
+            })
+            .join("");
+        }
+
+        document.getElementById("mobileNavList").innerHTML = renderMobile(
+          navData,
+          0,
+        );
+
+        /* ===================== DESKTOP INTERACTIONS ===================== */
+        const topItems = Array.from(
+          document.querySelectorAll("#desktopNavList > .nav-item"),
+        );
+
+        // Align first/last dropdown panels so they don't overflow the viewport edge
+        if (topItems.length) {
+          const firstPanel = topItems[0].querySelector(
+            ":scope > .dropdown-panel",
+          );
+          const lastPanel = topItems[topItems.length - 1].querySelector(
+            ":scope > .dropdown-panel",
+          );
+          if (firstPanel) firstPanel.classList.add("align-start");
+          if (lastPanel) {
+            lastPanel.classList.add("align-end");
+            lastPanel
+              .querySelectorAll(":scope .has-flyout")
+              .forEach((el) => el.classList.add("flyout-left"));
+          }
+        }
+
+        function togglePin(el, siblings) {
+          const wasPinned = el.classList.contains("pinned");
+          siblings.forEach((sib) => {
+            if (sib !== el) {
+              sib.classList.remove("pinned");
+              sib
+                .querySelectorAll(".pinned")
+                .forEach((nested) => nested.classList.remove("pinned"));
+            }
+          });
+          if (wasPinned) {
+            el.classList.remove("pinned");
+            el.querySelectorAll(".pinned").forEach((nested) =>
+              nested.classList.remove("pinned"),
+            );
+          } else {
+            el.classList.add("pinned");
+          }
+        }
+
+        function closeAllDesktopPins() {
+          document
+            .querySelectorAll(".navbar .pinned")
+            .forEach((el) => el.classList.remove("pinned"));
+        }
+
+        topItems.forEach((item) => {
+          const link = item.querySelector(":scope > .nav-link");
+          link.addEventListener("click", (e) => {
+            e.stopPropagation();
+            togglePin(item, topItems);
+          });
+
+          // level-3 flyout toggles, scoped to this top-level item's own submenu
+          const flyoutParents = Array.from(
+            item.querySelectorAll(".has-flyout"),
+          );
+          flyoutParents.forEach((fp) => {
+            const fpLink = fp.querySelector(":scope > .dropdown-link");
+            const siblingGroup = Array.from(
+              fp.parentElement.querySelectorAll(":scope > .has-flyout"),
+            );
+            fpLink.addEventListener("click", (e) => {
+              e.stopPropagation();
+              togglePin(fp, siblingGroup);
+            });
+          });
+
+          // leaf links close everything after "navigating"
+          item
+            .querySelectorAll("a.dropdown-link, a.flyout-link")
+            .forEach((leaf) => {
+              leaf.addEventListener("click", (e) => {
+                e.preventDefault();
+                closeAllDesktopPins();
+              });
+            });
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".navbar")) closeAllDesktopPins();
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeAllDesktopPins();
+        });
+
+        /* ===================== MOBILE INTERACTIONS ===================== */
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const mobileOverlay = document.getElementById("mobileOverlay");
+        const mobileNavList = document.getElementById("mobileNavList");
+        let mobileOpen = false;
+
+        function morphHamburger(open) {
+          if (open) {
+            gsap.to("#hamburgerBtn .bar1", {
+              y: 9,
+              rotate: 45,
+              duration: 0.35,
+              ease: "power2.inOut",
+            });
+            gsap.to("#hamburgerBtn .bar2", { opacity: 0, duration: 0.2 });
+            gsap.to("#hamburgerBtn .bar3", {
+              y: -9,
+              rotate: -45,
+              duration: 0.35,
+              ease: "power2.inOut",
+            });
+          } else {
+            gsap.to("#hamburgerBtn .bar1", {
+              y: 0,
+              rotate: 0,
+              duration: 0.35,
+              ease: "power2.inOut",
+            });
+            gsap.to("#hamburgerBtn .bar2", {
               opacity: 1,
-              duration: 0.9,
-              ease: "power4.out",
-              stagger: 0.012,
-            },
-            "-=0.2",
-          )
-          .to(
-            "#svHeroSub",
-            { opacity: 1, duration: 0.8, ease: "power2.out" },
-            "-=0.4",
+              duration: 0.2,
+              delay: 0.15,
+            });
+            gsap.to("#hamburgerBtn .bar3", {
+              y: 0,
+              rotate: 0,
+              duration: 0.35,
+              ease: "power2.inOut",
+            });
+          }
+        }
+
+        function collapseAllMobileAccordions() {
+          mobileNavList.querySelectorAll(".m-item.open").forEach((li) => {
+            li.classList.remove("open");
+            const panel = li.querySelector(":scope > .m-panel");
+            const chevron = li.querySelector(":scope > .m-link .chevron");
+            gsap.set(panel, { height: 0 });
+            if (chevron) gsap.set(chevron, { rotate: 0 });
+          });
+        }
+
+        function openMobileOverlay() {
+          mobileOpen = true;
+          hamburgerBtn.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+          morphHamburger(true);
+
+          gsap.set(mobileOverlay, { display: "block" });
+          gsap.fromTo(
+            mobileOverlay,
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.35, ease: "power2.out" },
           );
 
-        gsap.to(".sv-blob-1", {
-          y: 40,
-          x: -20,
-          duration: 6,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-        gsap.to(".sv-blob-2", {
-          y: -30,
-          x: 30,
-          duration: 7,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-
-        /* ===================== Services grid: reveal + tilt ===================== */
-        gsap.set(".sv-service-card", { opacity: 0, y: 30 });
-
-        ScrollTrigger.batch(".sv-service-card", {
-          start: "top 88%",
-          onEnter: (batch) =>
-            gsap.to(batch, {
-              opacity: 1,
+          const items = mobileNavList.querySelectorAll(":scope > .m-item");
+          gsap.fromTo(
+            items,
+            { y: 16, opacity: 0 },
+            {
               y: 0,
-              duration: 0.7,
-              ease: "power3.out",
-              stagger: 0.1,
-            }),
-          once: true,
-        });
-
-        document.querySelectorAll(".sv-service-card").forEach((card) => {
-          const rotateX = gsap.quickTo(card, "rotateX", {
-            duration: 0.5,
-            ease: "power3",
-          });
-          const rotateY = gsap.quickTo(card, "rotateY", {
-            duration: 0.5,
-            ease: "power3",
-          });
-          const glare = card.querySelector(".sv-glare");
-
-          card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const relX = (e.clientX - rect.left) / rect.width;
-            const relY = (e.clientY - rect.top) / rect.height;
-            rotateY((relX - 0.5) * 14);
-            rotateX(-(relY - 0.5) * 14);
-            glare.style.setProperty("--gx", relX * 100 + "%");
-            glare.style.setProperty("--gy", relY * 100 + "%");
-          });
-
-          card.addEventListener("mouseleave", () => {
-            rotateX(0);
-            rotateY(0);
-          });
-        });
-
-        /* ===================== Deep-dive 1: node chain ===================== */
-        ScrollTrigger.create({
-          trigger: "#svVisual1",
-          start: "top 75%",
-          once: true,
-          onEnter: () => {
-            const nodeTl = gsap.timeline();
-            nodeTl
-              .to("#svNode1", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power3.out",
-              })
-              .to("#svFill1", { height: "100%", duration: 0.5, ease: "none" })
-              .to(
-                "#svNode2",
-                { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
-                "-=0.15",
-              )
-              .to("#svFill2", { height: "100%", duration: 0.5, ease: "none" })
-              .to(
-                "#svNode3",
-                { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
-                "-=0.15",
-              );
-          },
-        });
-
-        /* ===================== Deep-dive 2: orbit hub ===================== */
-        const svOrbitChips = document.querySelectorAll(
-          "#svOrbitVisual .sv-orbit-chip",
-        );
-        const svOrbitRadius = 115;
-        const svOrbitCount = svOrbitChips.length;
-
-        gsap.set("#svOrbitVisual", { opacity: 0, scale: 0.85 });
-        gsap.set(svOrbitChips, { opacity: 0 });
-
-        ScrollTrigger.create({
-          trigger: "#svVisual2",
-          start: "top 75%",
-          once: true,
-          onEnter: () => {
-            gsap.to("#svOrbitVisual", {
               opacity: 1,
-              scale: 1,
-              duration: 0.7,
+              duration: 0.45,
+              stagger: 0.05,
+              delay: 0.1,
               ease: "power3.out",
-            });
-            gsap.to(svOrbitChips, {
-              opacity: 1,
-              duration: 0.6,
-              stagger: 0.08,
-              delay: 0.2,
-            });
-
-            svOrbitChips.forEach((chip, i) => {
-              const state = { angle: (Math.PI * 2 * i) / svOrbitCount };
-              gsap.to(state, {
-                angle: state.angle + Math.PI * 2,
-                duration: 16,
-                repeat: -1,
-                ease: "none",
-                onUpdate: () => {
-                  const x = Math.cos(state.angle) * svOrbitRadius;
-                  const y = Math.sin(state.angle) * svOrbitRadius;
-                  gsap.set(chip, { x, y });
-                },
-              });
-            });
-          },
-        });
-
-        /* ===================== Deep-dive 3: analytics bars ===================== */
-        ScrollTrigger.create({
-          trigger: "#svVisual3",
-          start: "top 75%",
-          once: true,
-          onEnter: () => {
-            document
-              .querySelectorAll("#svBarsVisual .sv-bar")
-              .forEach((bar, i) => {
-                gsap.to(bar, {
-                  height: bar.getAttribute("data-height"),
-                  duration: 1,
-                  delay: i * 0.1,
-                  ease: "power3.out",
-                });
-              });
-          },
-        });
-
-        /* ===================== Process: horizontal pin ===================== */
-        const svProcessTrack = document.getElementById("svProcessTrack");
-        gsap.to(svProcessTrack, {
-          x: () => -(svProcessTrack.scrollWidth - window.innerWidth + 100),
-          ease: "none",
-          scrollTrigger: {
-            trigger: "#svProcessSection",
-            start: "top top",
-            end: () =>
-              `+=${svProcessTrack.scrollWidth - window.innerWidth + 100}`,
-            scrub: 1,
-            pin: true,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        /* ===================== Integrations marquee ===================== */
-        const svTrack1 = document.getElementById("svMarqueeTrack1");
-        const svTrack2 = document.getElementById("svMarqueeTrack2");
-
-        gsap.to(svTrack1, {
-          x: -(svTrack1.scrollWidth / 2),
-          duration: 20,
-          ease: "none",
-          repeat: -1,
-        });
-        gsap.fromTo(
-          svTrack2,
-          { x: -(svTrack2.scrollWidth / 2) },
-          { x: 0, duration: 22, ease: "none", repeat: -1 },
-        );
-
-        /* ===================== Quote: pinned zoom ===================== */
-        gsap.fromTo(
-          "#svQuoteText",
-          { scale: 0.55, opacity: 0.3 },
-          {
-            scale: 1,
-            opacity: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: "#svQuoteSection",
-              start: "top top",
-              end: "+=90%",
-              scrub: true,
-              pin: true,
             },
-          },
-        );
+          );
+          gsap.fromTo(
+            ".mobile-actions",
+            { y: 16, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.45,
+              delay: 0.1 + items.length * 0.05,
+              ease: "power3.out",
+            },
+          );
+        }
 
-        /* ===================== CTA: magnetic buttons ===================== */
-        document.querySelectorAll(".sv-btn").forEach((btn) => {
-          const xTo = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3" });
-          const yTo = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3" });
+        function closeMobileOverlay() {
+          mobileOpen = false;
+          hamburgerBtn.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+          morphHamburger(false);
 
-          btn.addEventListener("mousemove", (e) => {
-            const rect = btn.getBoundingClientRect();
-            xTo((e.clientX - rect.left - rect.width / 2) * 0.35);
-            yTo((e.clientY - rect.top - rect.height / 2) * 0.45);
+          gsap.to(mobileOverlay, {
+            autoAlpha: 0,
+            duration: 0.3,
+            ease: "power2.in",
+            onComplete: () => {
+              gsap.set(mobileOverlay, { display: "none" });
+              collapseAllMobileAccordions();
+            },
+          });
+        }
+
+        hamburgerBtn.addEventListener("click", () => {
+          if (mobileOpen) closeMobileOverlay();
+          else openMobileOverlay();
+        });
+
+        function toggleMobileItem(li) {
+          const isOpen = li.classList.contains("open");
+          const panel = li.querySelector(":scope > .m-panel");
+          const inner = panel.querySelector(":scope > .m-panel-inner");
+          const chevron = li.querySelector(":scope > .m-link .chevron");
+
+          if (isOpen) {
+            li.classList.remove("open");
+            gsap.to(panel, { height: 0, duration: 0.35, ease: "power2.inOut" });
+            if (chevron) gsap.to(chevron, { rotate: 0, duration: 0.3 });
+          } else {
+            li.classList.add("open");
+            const targetHeight = inner.offsetHeight;
+            gsap.fromTo(
+              panel,
+              { height: 0 },
+              { height: targetHeight, duration: 0.35, ease: "power2.inOut" },
+            );
+            if (chevron) gsap.to(chevron, { rotate: 180, duration: 0.3 });
+          }
+        }
+
+        mobileNavList
+          .querySelectorAll(".m-link:not(.m-leaf)")
+          .forEach((btn) => {
+            btn.addEventListener("click", () =>
+              toggleMobileItem(btn.closest(".m-item")),
+            );
           });
 
-          btn.addEventListener("mouseleave", () => {
-            xTo(0);
-            yTo(0);
+        mobileNavList.querySelectorAll(".m-leaf").forEach((leaf) => {
+          leaf.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeMobileOverlay();
           });
         });
 
-        window.addEventListener("load", () => ScrollTrigger.refresh());
+        window.addEventListener("resize", () => {
+          if (window.innerWidth >= 960 && mobileOpen) closeMobileOverlay();
+        });
       })();
+    </script>
+
+    <script>
+      (function () {
+        gsap.registerPlugin(Draggable);
+
+        /* ===================== drag-reveal wiring ===================== */
+        function initDragReveal(wrapId, beforeLayerId, handleId) {
+          const wrap = document.getElementById(wrapId);
+          const beforeLayer = document.getElementById(beforeLayerId);
+          const handle = document.getElementById(handleId);
+          const wrapWidth = wrap.getBoundingClientRect().width;
+
+          gsap.set(handle, { x: wrapWidth / 2 });
+          beforeLayer.style.clipPath = "inset(0 50% 0 0)";
+
+          Draggable.create(handle, {
+            type: "x",
+            bounds: { minX: 0, maxX: wrapWidth },
+            onDrag: function () {
+              const percent = gsap.utils.clamp(
+                0,
+                100,
+                (this.x / wrapWidth) * 100,
+              );
+              beforeLayer.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+            },
+          });
+        }
+
+        initDragReveal("gx1Wrap", "gx1BeforeLayer", "gx1Handle");
+
+        /* ===================== nebula backdrop ===================== */
+        function addNebula(layer) {
+          const colors = ["#7c93ff", "#cda45e", "#ff8fd6"];
+          for (let i = 0; i < 3; i++) {
+            const blob = document.createElement("div");
+            blob.className = "gx-nebula";
+            const size = gsap.utils.random(140, 220);
+            blob.style.width = size + "px";
+            blob.style.height = size + "px";
+            blob.style.background = colors[i % colors.length];
+            blob.style.left = gsap.utils.random(0, 80) + "%";
+            blob.style.top = gsap.utils.random(0, 80) + "%";
+            layer.appendChild(blob);
+
+            gsap.to(blob, {
+              x: gsap.utils.random(-20, 20),
+              y: gsap.utils.random(-20, 20),
+              duration: gsap.utils.random(10, 16),
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+            });
+          }
+        }
+
+        /* ===================== scattered "before" starfield ===================== */
+        function buildScatteredStars(container) {
+          addNebula(container.parentElement);
+          const COUNT = 90;
+          const starColors = [
+            "#ffffff",
+            "#ffffff",
+            "#ffffff",
+            "#bcd0ff",
+            "#ffe9bf",
+          ];
+
+          for (let i = 0; i < COUNT; i++) {
+            const star = document.createElement("div");
+            star.className = "gx-star";
+            const size = gsap.utils.random(1, 2.6);
+            const isBright = Math.random() > 0.85;
+            star.style.width = (isBright ? size + 1.2 : size) + "px";
+            star.style.height = (isBright ? size + 1.2 : size) + "px";
+            star.style.left = gsap.utils.random(2, 98) + "%";
+            star.style.top = gsap.utils.random(4, 96) + "%";
+            star.style.background =
+              starColors[Math.floor(Math.random() * starColors.length)];
+            star.style.opacity = gsap.utils.random(0.25, 0.95);
+            if (isBright) {
+              star.style.boxShadow = "0 0 4px 1px rgba(255,255,255,0.55)";
+            }
+            container.appendChild(star);
+
+            gsap.to(star, {
+              opacity: () => gsap.utils.random(0.1, 1),
+              scale: () => gsap.utils.random(0.7, 1.5),
+              duration: () => gsap.utils.random(2, 5),
+              repeat: -1,
+              yoyo: true,
+              repeatRefresh: true,
+              ease: "sine.inOut",
+              delay: gsap.utils.random(0, 3),
+            });
+
+            if (Math.random() > 0.6) {
+              gsap.to(star, {
+                x: gsap.utils.random(-6, 6),
+                y: gsap.utils.random(-6, 6),
+                duration: gsap.utils.random(8, 16),
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+              });
+            }
+          }
+        }
+
+        buildScatteredStars(document.getElementById("gx1BeforeStars"));
+
+        /* ===================== glowing core ===================== */
+        function addCoreGlow(layer, size, color) {
+          const glow = document.createElement("div");
+          glow.className = "gx-core-glow";
+          glow.style.width = size + "px";
+          glow.style.height = size + "px";
+          glow.style.marginLeft = -(size / 2) + "px";
+          glow.style.marginTop = -(size / 2) + "px";
+          glow.style.background = color;
+          layer.appendChild(glow);
+          gsap.to(glow, {
+            opacity: 0.5,
+            scale: 1.15,
+            duration: 2.4,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
+          return glow;
+        }
+
+        /* ===================== halo ring ===================== */
+        const gx1AfterLayer = document.getElementById("gx1AfterLayer");
+        const gx1AfterStars = document.getElementById("gx1AfterStars");
+        addCoreGlow(gx1AfterLayer, 90, "rgba(205, 164, 94, 0.55)");
+
+        const GX1_RING_COUNT = 140;
+        const gx1RingWrap = document.createElement("div");
+        gx1RingWrap.style.position = "absolute";
+        gx1RingWrap.style.inset = "0";
+        gx1AfterStars.appendChild(gx1RingWrap);
+
+        for (let i = 0; i < GX1_RING_COUNT; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          // gaussian-ish radius clustering using the average of three randoms
+          const spread = (Math.random() + Math.random() + Math.random()) / 3;
+          const radius = 45 + spread * 60;
+
+          const star = document.createElement("div");
+          star.className = "gx-star";
+          const size = gsap.utils.random(1.2, 3);
+          star.style.width = size + "px";
+          star.style.height = size + "px";
+          star.style.left = "50%";
+          star.style.top = "50%";
+          star.style.marginLeft = Math.cos(angle) * radius + "px";
+          star.style.marginTop = Math.sin(angle) * radius + "px";
+          const bright = Math.random() > 0.8;
+          star.style.background = bright ? "#fff4dd" : "#ffffff";
+          if (bright)
+            star.style.boxShadow = "0 0 5px 1px rgba(255, 230, 180, 0.6)";
+          star.style.opacity = gsap.utils.random(0.4, 1);
+          gx1RingWrap.appendChild(star);
+
+          gsap.to(star, {
+            opacity: () => gsap.utils.random(0.3, 1),
+            duration: () => gsap.utils.random(1.5, 4),
+            repeat: -1,
+            yoyo: true,
+            repeatRefresh: true,
+            ease: "sine.inOut",
+            delay: gsap.utils.random(0, 3),
+          });
+        }
+
+        gsap.to(gx1RingWrap, {
+          rotation: 360,
+          duration: 50,
+          repeat: -1,
+          ease: "none",
+          transformOrigin: "50% 50%",
+        });
+      })();
+    </script>
+
+    <!-- Register plugins -->
+    <script>
+      gsap.registerPlugin(
+        ScrollTrigger,
+        ScrollToPlugin,
+        Draggable,
+        MotionPathPlugin,
+        Flip,
+      );
     </script>
 
     <!-- Section JS -->
     <script src="js/fixed-bg.js"></script>
+    <script src="js/home_sec2.js"></script>
+    <script src="js/home_sec3.js"></script>
+    <script src="js/home_sec5.js"></script>
+    <script src="js/home_counter.js"></script>
+    <script src="js/home_sec8.js"></script>
+    <script src="js/review-comp.js"></script>
+    <script src="js/blog-comp.js"></script>
+    <script src="js/home_sec9.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/tabbed-view.js"></script>
+    <script src="js/home_case_studies.js"></script>
+    <script src="js/type_in_motion.js"></script>
+    <script src="js/drag_card.js"></script>
+    <script src="js/circular-motion.js"></script>
+
+    <!-- Main script remains at the last -->
+    <script src="js/script.js"></script>
   </body>
 </html>
