@@ -2,7 +2,8 @@
      FOOTER 2 — Columns + giant wordmark
   ========================================================= */
   .ft2-footer {
-    padding: 6rem 1.5rem 0;
+    /* padding: 6rem 1.5rem 0; */
+    padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
     border-top: 1px solid var(--line);
     overflow: hidden;
     /* Glass Effect */

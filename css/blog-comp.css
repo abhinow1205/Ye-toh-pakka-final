@@ -1,4 +1,10 @@
-  .bl-head {
+.bl-section {
+    width: 100%;
+    padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+    background: var(--card);
+  }
+
+.bl-head {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;

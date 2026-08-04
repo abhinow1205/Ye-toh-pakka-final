@@ -4,7 +4,7 @@
   }
 
   .curtain-line h2 {
-    font-size: clamp(1.8rem, 4vw, 3rem);
+    /* font-size: clamp(1.8rem, 4vw, 3rem); */
     margin: 0;
     line-height: 1.25;
     transform: translateY(115%);
@@ -47,16 +47,27 @@
 
 /* Base Card Styles */
 .mat {
-  /* background-color: #cecccc; */
-  background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+  background: linear-gradient(
+    135deg,
+    rgba(92, 225, 230, 0.18),
+    rgba(140, 82, 255, 0.12)
+);
+
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
+
+border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
-  border: 1px solid #e2e8f0;
   box-shadow: 0 4px 12px rgba(233, 231, 231, 0.05);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  width: 100%;
+}
+
+.mat:hover {
+  box-shadow: 0 4px 12px rgba(233, 231, 231, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease
 }
 
 /* Upper Half Section */
@@ -75,18 +86,24 @@
   border-bottom: 1px solid #e2e8f0; /* Horizontal divider between top and bottom halves */
 }
 
+@media (max-width: 768px) {
+    .sec2_upper_half {
+      padding: 1rem;
+    }
+}
+
 .sec2_upper_half h1 {
   margin: 0 0 0.5rem 0;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #0f172a;
+  font-size: var(--fs-sub-title);
+  font-weight: 600;
+  color: var(--color-text-primary);
 }
 
 .sec2_upper_half p {
   margin: 0;
-  font-size: 0.925rem;
+  font-size: var(--fs-sub-desc);
   line-height: 1.5;
-  color: #64748b;
+  color: var(--color-text-secondary);
 }
 
 /* Lower Half Section - Horizontal Alignment */
@@ -98,6 +115,12 @@
   justify-content: space-between;
   gap: 1.25rem;
   flex: 1;
+}
+
+@media (max-width: 768px) {
+    .sec2_lower_half {
+      padding: 1rem;
+    }
 }
 
 /* Circular Ring Container */
@@ -148,16 +171,16 @@
 }
 
 .ring-num {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #ffffff;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 0.75rem + 0.3vw, 0.95rem);
+  color: var(--color-text-secondary);
 }
 
 .ring-label {
-  font-size: 0.75rem;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  /* text-transform: uppercase; */
+  /* letter-spacing: 0.5px; */
 }
 
 /* Vertical Divider in Lower Half */
@@ -183,8 +206,8 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 0.9rem;
-  color: #334155;
+  font-size: var(--fs-sub-desc);
+  color: var(--color-text-secondary);
   font-weight: 500;
 }
 
@@ -192,6 +215,6 @@
 .list-icon {
   width: 18px;
   height: 18px;
-  color: #2563eb;
+  color: var(--color-text-secondary);
   flex-shrink: 0;
 }

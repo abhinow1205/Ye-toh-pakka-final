@@ -1,8 +1,7 @@
   section.rv-section {
-    /* max-width: 1200px; */
     width: 100%;
-    margin: 0 auto 7rem;
-    padding: 0 1.5rem;
+    background: var(--card);
+    padding: clamp(2rem, 5vw, 3rem) 0;
   }
 
   .rv-head {
