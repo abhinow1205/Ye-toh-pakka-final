@@ -1,0 +1,357 @@
+  .au-page h1, .au-page h2, .au-page h3, .au-page .au-display {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+  }
+
+  .au-page section {
+    position: relative;
+    padding: 8rem 1.5rem;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .au-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .au-label::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .au-sub {
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  /* ===================== HERO ===================== */
+  .au-hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+    overflow: hidden;
+  }
+
+  .au-hero .au-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+  }
+
+  .au-hero h1 {
+    font-size: clamp(2.6rem, 6.6vw, 5rem);
+    line-height: 1.08;
+    margin: 0 0 1.75rem;
+    max-width: 980px;
+  }
+
+  .au-hero h1 .au-char {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  .au-hero h1 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .au-hero p {
+    color: var(--muted);
+    max-width: 520px;
+    font-size: 1.08rem;
+    line-height: 1.7;
+    opacity: 0;
+  }
+
+  .au-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.28;
+    z-index: -1;
+  }
+
+  .au-blob-1 { width: 420px; height: 420px; background: var(--accent); top: -100px; right: -80px; }
+  .au-blob-2 { width: 320px; height: 320px; background: var(--accent-2); bottom: -80px; left: 8%; }
+
+  /* ===================== MANIFESTO (pinned zoom) ===================== */
+  .au-manifesto-section {
+    max-width: none;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .au-manifesto-text {
+    font-size: clamp(1.8rem, 5.4vw, 3.6rem);
+    text-align: center;
+    line-height: 1.35;
+    max-width: 90vw;
+  }
+
+  .au-manifesto-text .au-accent-word { color: var(--accent); }
+
+  /* ===================== STATS ===================== */
+  .au-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .au-stat .au-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .au-stat .au-stat-label {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+  }
+
+  /* ===================== TIMELINE ===================== */
+  .au-timeline {
+    position: relative;
+    margin-top: 3rem;
+  }
+
+  .au-timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line);
+    transform: translateX(-50%);
+  }
+
+  .au-timeline-fill {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 0%;
+    background: var(--accent);
+    transform: translateX(-50%);
+  }
+
+  .au-tl-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+
+  .au-tl-card {
+    width: calc(50% - 3rem);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1.75rem;
+    opacity: 0;
+  }
+
+  .au-tl-item.au-tl-left .au-tl-card { margin-right: auto; transform: translateX(-30px); }
+  .au-tl-item.au-tl-right .au-tl-card { margin-left: auto; transform: translateX(30px); }
+
+  .au-tl-year {
+    font-family: 'Fraunces', serif;
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .au-tl-card p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+  .au-tl-dot {
+    position: absolute;
+    left: 50%;
+    top: 0.4rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    transform: translate(-50%, 0) scale(0);
+    z-index: 2;
+  }
+
+  @media (max-width: 720px) {
+    .au-timeline-line, .au-timeline-fill { left: 6px; }
+    .au-tl-card { width: 100%; margin-left: 2rem !important; margin-right: 0 !important; transform: translateX(0) !important; }
+    .au-tl-dot { left: 6px; }
+  }
+
+  /* ===================== VALUES ===================== */
+  .au-values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    perspective: 1100px;
+    margin-top: 3rem;
+  }
+
+  .au-value-card {
+    position: relative;
+    border-radius: 18px;
+    background: linear-gradient(160deg, var(--card-2), var(--card));
+    border: 1px solid var(--line);
+    padding: 2rem;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transform-style: preserve-3d;
+    will-change: transform;
+    overflow: hidden;
+  }
+
+  .au-value-card .au-glare {
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,0.1), transparent 45%);
+    pointer-events: none;
+  }
+
+  .au-value-num {
+    position: absolute;
+    top: 1.5rem;
+    left: 2rem;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .au-value-card h3 { font-size: 1.2rem; margin: 0 0 0.4rem; transform: translateZ(20px); }
+  .au-value-card p { margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.5; transform: translateZ(15px); }
+
+  /* ===================== TEAM ===================== */
+  .au-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .au-team-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.75rem;
+    text-align: center;
+    opacity: 0;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .au-team-card:hover { border-color: #3a3d45; transform: translateY(-4px); }
+
+  .au-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    margin: 0 auto 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #14100a;
+  }
+
+  .au-team-card h4 { margin: 0 0 0.2rem; font-size: 1.05rem; }
+  .au-team-card .au-role { color: var(--accent); font-size: 0.8rem; margin-bottom: 0.6rem; }
+  .au-team-card p { margin: 0; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+
+  /* ===================== CULTURE STRIP (horizontal pin) ===================== */
+  .au-culture-section {
+    max-width: none;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .au-culture-track {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    gap: 1.75rem;
+    padding-left: 8vw;
+    width: max-content;
+  }
+
+  .au-culture-heading-slide {
+    width: 40vw;
+    max-width: 480px;
+    flex-shrink: 0;
+    padding-right: 3rem;
+  }
+
+  .au-culture-card {
+    width: 300px;
+    height: 380px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .au-culture-card h4 { margin: 0 0 0.35rem; font-size: 1.1rem; }
+  .au-culture-card p { margin: 0; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+
+  .au-culture-card:nth-child(2) { background: linear-gradient(160deg, #2a2416, var(--card)); }
+  .au-culture-card:nth-child(3) { background: linear-gradient(160deg, #1a2340, var(--card)); }
+  .au-culture-card:nth-child(4) { background: linear-gradient(160deg, #3a1c1c, var(--card)); }
+  .au-culture-card:nth-child(5) { background: linear-gradient(160deg, #1c3a2c, var(--card)); }
+  .au-culture-card:nth-child(6) { background: linear-gradient(160deg, #241c3a, var(--card)); }
+
+  /* ===================== CTA ===================== */
+  .au-cta-section {
+    text-align: center;
+    padding-bottom: 12rem;
+  }
+
+  .au-cta-section h2 {
+    font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+    max-width: 700px;
+    margin: 0 auto 1rem;
+  }
+
+  .au-cta-btn {
+    position: relative;
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 1.15rem 2.75rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #1a1305;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+  }

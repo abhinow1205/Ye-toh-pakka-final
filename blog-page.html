@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us</title>
+    <title>Blog Page</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="css/border_styles.css" />
     <link rel="stylesheet" href="css/fixed-bg.css" />
     <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/about-us_page.css" />
+    <link rel="stylesheet" href="css/blog_page.css" />
 
     <!-- GSAP Libraries to be declared first -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -565,315 +565,226 @@
       </div>
     </div>
 
-    <div class="au-page">
-      <!-- ===================== HERO ===================== -->
-      <section class="au-hero">
-        <div class="au-eyebrow" id="auHeroEyebrow">About Insight Grid</div>
-        <h1 id="auHeroHeading">
-          We build the software that does the work you never wanted to.
-        </h1>
-        <p id="auHeroSub">
-          Insight Grid turns repetitive, manual busywork into automated
-          workflows — so the people on your team can spend their hours on the
-          parts of the job only a person can do.
-        </p>
-      </section>
-
-      <!-- ===================== MANIFESTO ===================== -->
-      <div class="au-manifesto-section" id="auManifestoSection">
-        <h2 class="au-manifesto-text" id="auManifestoText">
-          We started Insight Grid because we were tired of watching
-          <span class="au-accent-word">talented people</span> spend their best
-          hours copying data between tabs.
-        </h2>
-      </div>
-
-      <!-- ===================== STATS ===================== -->
-      <section>
-        <div class="au-label">By the numbers</div>
-        <h2 style="font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: 0 0 0.5rem">
-          A small team, a lot of hours given back.
-        </h2>
-        <p class="au-sub">
-          We measure ourselves less by revenue and more by how much time we've
-          handed back to the people who use Insight Grid every day.
-        </p>
-
-        <div class="au-stats-grid" id="auStatsGrid">
-          <div class="au-stat">
-            <div class="au-stat-num" data-target="40" data-suffix="K+">0</div>
-            <div class="au-stat-label">Teams automating with Insight Grid</div>
-          </div>
-          <div class="au-stat">
-            <div class="au-stat-num" data-target="12" data-suffix="M+">0</div>
-            <div class="au-stat-label">Hours saved every month</div>
-          </div>
-          <div class="au-stat">
-            <div class="au-stat-num" data-target="99.98" data-suffix="%">0</div>
-            <div class="au-stat-label">Platform uptime</div>
-          </div>
-          <div class="au-stat">
-            <div class="au-stat-num" data-target="120" data-suffix="+">0</div>
-            <div class="au-stat-label">Countries running Insight Grid</div>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Blog</span>
+          <h1>Ideas on product,<br /><em>data</em>, and the space between.</h1>
+          <p class="hero-sub">
+            Notes from the team building Insight Grid — on shipping real-time
+            systems, reading the numbers right, and the decisions in between.
+          </p>
+          <div class="filter-row" id="filterRow">
+            <button class="filter-pill is-active" data-filter="all">All</button>
+            <button class="filter-pill" data-filter="product">Product</button>
+            <button class="filter-pill" data-filter="engineering">
+              Engineering
+            </button>
+            <button class="filter-pill" data-filter="data">Data</button>
           </div>
         </div>
-      </section>
 
-      <!-- ===================== TIMELINE ===================== -->
-      <section>
-        <div class="au-label">Our story</div>
-        <h2 style="font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: 0 0 0.5rem">
-          Five years, one steady idea.
-        </h2>
-        <p class="au-sub">
-          Automation shouldn't require an engineering team to set up. That
-          belief hasn't changed since day one — everything else has just gotten
-          better at proving it.
-        </p>
-
-        <div class="au-timeline" id="auTimeline">
-          <div class="au-timeline-line"></div>
-          <div class="au-timeline-fill" id="auTimelineFill"></div>
-
-          <div class="au-tl-item au-tl-left">
-            <div class="au-tl-dot"></div>
-            <div class="au-tl-card">
-              <div class="au-tl-year">2021</div>
-              <p>
-                Founded in a two-bedroom apartment. The first version of the
-                automation engine was built and shipped over a single weekend.
-              </p>
+        <div class="hero-visual">
+          <div class="featured-card" id="featuredCard">
+            <span class="featured-tag">Featured</span>
+            <h3>What 2.4 billion events taught us about scale.</h3>
+            <p>
+              The infrastructure decisions that let us process a week of usage
+              data without anyone noticing we were under the hood.
+            </p>
+            <div class="post-meta">
+              <span class="avatar-dot"></span>
+              <strong>Sam Ruiz</strong>
+              <span class="dot-sep"></span>
+              <span>Aug 1, 2026</span>
+              <span class="dot-sep"></span>
+              <span>10 min read</span>
             </div>
-          </div>
-
-          <div class="au-tl-item au-tl-right">
-            <div class="au-tl-dot"></div>
-            <div class="au-tl-card">
-              <div class="au-tl-year">2022</div>
-              <p>
-                Crossed 1,000 paying teams and shipped the visual workflow
-                builder — no code required to connect two tools together.
-              </p>
-            </div>
-          </div>
-
-          <div class="au-tl-item au-tl-left">
-            <div class="au-tl-dot"></div>
-            <div class="au-tl-card">
-              <div class="au-tl-year">2023</div>
-              <p>
-                Raised our Series A and crossed 10 million automated tasks run
-                through the platform in a single year.
-              </p>
-            </div>
-          </div>
-
-          <div class="au-tl-item au-tl-right">
-            <div class="au-tl-dot"></div>
-            <div class="au-tl-card">
-              <div class="au-tl-year">2024</div>
-              <p>
-                Launched the enterprise tier and opened our first office — still
-                small enough that everyone knows everyone.
-              </p>
-            </div>
-          </div>
-
-          <div class="au-tl-item au-tl-left">
-            <div class="au-tl-dot"></div>
-            <div class="au-tl-card">
-              <div class="au-tl-year">2026</div>
-              <p>
-                Today, over 40,000 teams across 120 countries run their busywork
-                through Insight Grid. We're just getting started.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== VALUES ===================== -->
-      <section>
-        <div class="au-label">What we care about</div>
-        <h2 style="font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: 0 0 0.5rem">
-          Four things we don't compromise on.
-        </h2>
-        <p class="au-sub">
-          Values are easy to write down and hard to hold onto once a company
-          grows. These are the four we check ourselves against.
-        </p>
-
-        <div class="au-values-grid" id="auValuesGrid">
-          <div class="au-value-card">
-            <div class="au-glare"></div>
-            <span class="au-value-num">01</span>
-            <h3>Clarity</h3>
-            <p>
-              If a workflow needs a manual to understand, we haven't finished
-              designing it.
-            </p>
-          </div>
-          <div class="au-value-card">
-            <div class="au-glare"></div>
-            <span class="au-value-num">02</span>
-            <h3>Momentum</h3>
-            <p>
-              We'd rather ship a smaller thing this week than a perfect thing
-              next quarter.
-            </p>
-          </div>
-          <div class="au-value-card">
-            <div class="au-glare"></div>
-            <span class="au-value-num">03</span>
-            <h3>Trust</h3>
-            <p>
-              Your data and your workflows are yours. We build like someone's
-              checking.
-            </p>
-          </div>
-          <div class="au-value-card">
-            <div class="au-glare"></div>
-            <span class="au-value-num">04</span>
-            <h3>Craft</h3>
-            <p>
-              Automation should feel invisible. That takes far more care than it
-              looks like.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== TEAM ===================== -->
-      <section>
-        <div class="au-label">Leadership</div>
-        <h2 style="font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: 0 0 0.5rem">
-          The people steering the ship.
-        </h2>
-        <p class="au-sub">
-          A deliberately small leadership team — we've found it keeps decisions
-          fast and honest.
-        </p>
-
-        <div class="au-team-grid" id="auTeamGrid">
-          <div class="au-team-card">
-            <div
-              class="au-avatar"
-              style="background: linear-gradient(150deg, #cda45e, #f0c98a)"
-            >
-              MC
-            </div>
-            <h4>Maya Chen</h4>
-            <div class="au-role">Co-founder &amp; CEO</div>
-            <p>
-              Previously led product at two other startups. Still writes the
-              occasional workflow herself.
-            </p>
-          </div>
-          <div class="au-team-card">
-            <div
-              class="au-avatar"
-              style="background: linear-gradient(150deg, #7c93ff, #a9b9ff)"
-            >
-              DO
-            </div>
-            <h4>Devon Okafor</h4>
-            <div class="au-role">Co-founder &amp; CTO</div>
-            <p>
-              Built the first version of Insight Grid's automation engine over
-              one long weekend in 2021.
-            </p>
-          </div>
-          <div class="au-team-card">
-            <div
-              class="au-avatar"
-              style="background: linear-gradient(150deg, #ff9d7c, #ffc09e)"
-            >
-              PR
-            </div>
-            <h4>Priya Raman</h4>
-            <div class="au-role">Head of Design</div>
-            <p>
-              Obsessed with making complex workflows feel like they explain
-              themselves.
-            </p>
-          </div>
-          <div class="au-team-card">
-            <div
-              class="au-avatar"
-              style="background: linear-gradient(150deg, #8fe3a5, #b8f0c8)"
-            >
-              SW
-            </div>
-            <h4>Sam Whitfield</h4>
-            <div class="au-role">Head of Customer Success</div>
-            <p>
-              Talks to more customers in a week than most of us do in a quarter.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== CULTURE (horizontal pin) ===================== -->
-      <div class="au-culture-section" id="auCultureSection">
-        <div class="au-culture-track" id="auCultureTrack">
-          <div class="au-culture-heading-slide">
-            <div class="au-label">Life at Insight Grid</div>
-            <h2
-              style="
-                font-size: clamp(1.8rem, 3.6vw, 2.6rem);
-                margin: 0 0 0.75rem;
-              "
-            >
-              Small team, real momentum.
-            </h2>
-            <p class="au-sub">
-              A few snapshots of how we actually work — keep scrolling this
-              section sideways.
-            </p>
-          </div>
-          <div class="au-culture-card">
-            <h4>Remote-first, always</h4>
-            <p>
-              Across 9 time zones, with two in-person meetups a year to actually
-              be in a room together.
-            </p>
-          </div>
-          <div class="au-culture-card">
-            <h4>No-meeting Wednesdays</h4>
-            <p>One full day a week protected for deep, uninterrupted work.</p>
-          </div>
-          <div class="au-culture-card">
-            <h4>Ship day, every Friday</h4>
-            <p>
-              Whatever's ready goes out — small and often beats big and rare.
-            </p>
-          </div>
-          <div class="au-culture-card">
-            <h4>Customers in standup</h4>
-            <p>Real support tickets get read out loud every single morning.</p>
-          </div>
-          <div class="au-culture-card">
-            <h4>Built by 40 people</h4>
-            <p>
-              Still small enough that your onboarding email gets a reply from a
-              founder.
-            </p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- ===================== CTA ===================== -->
-      <section class="au-cta-section">
-        <div class="au-label" style="justify-content: center">Join us</div>
-        <h2>
-          We're always looking for people who'd rather fix the process than
-          complain about it.
-        </h2>
-        <p class="au-sub" style="margin-left: auto; margin-right: auto">
-          Open roles across engineering, design, and customer success —
-          remote-first, always.
-        </p>
-        <button class="au-cta-btn" id="auCtaBtn">View open roles</button>
+    <!-- ===================== RAIL SECTIONS ===================== -->
+    <div class="rail-wrapper" id="railWrapper">
+      <div class="pulse-line" id="pulseLine"></div>
+
+      <!-- LATEST -->
+      <section class="rail-section" data-rail>
+        <span class="rail-node"></span>
+        <span class="rail-label">Latest</span>
+        <div class="wrap" style="padding: 0">
+          <div class="section-inner">
+            <span class="eyebrow section-tag">Fresh off the press</span>
+            <h2 class="section-title">Latest from the team.</h2>
+            <p class="section-desc">
+              Six posts, three categories. Filter by topic above — the grid
+              follows.
+            </p>
+          </div>
+
+          <div class="post-grid" id="postGrid">
+            <article class="post-card" data-category="product">
+              <span class="post-cat">Product</span>
+              <h3>Why real-time beats real-enough.</h3>
+              <p>
+                The difference between "the data is technically correct" and
+                "the data is useful right now" — and why we bet the product on
+                the second one.
+              </p>
+              <div class="post-meta">
+                <span class="avatar-dot"></span><strong>Jordan Ale</strong
+                ><span class="dot-sep"></span><span>Jul 30, 2026</span
+                ><span class="dot-sep"></span><span>6 min</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-category="engineering">
+              <span class="post-cat">Engineering</span>
+              <h3>Inside our event pipeline: click to chart in 140ms.</h3>
+              <p>
+                A walkthrough of the ingestion path — from the snippet in your
+                app to the bar moving on your dashboard.
+              </p>
+              <div class="post-meta">
+                <span class="avatar-dot"></span><strong>Priya Shah</strong
+                ><span class="dot-sep"></span><span>Jul 28, 2026</span
+                ><span class="dot-sep"></span><span>9 min</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-category="data">
+              <span class="post-cat">Data</span>
+              <h3>The three metrics that actually predict churn.</h3>
+              <p>
+                We looked at 40,000 accounts. Most of the metrics people obsess
+                over turned out to be noise — these three weren't.
+              </p>
+              <div class="post-meta">
+                <span class="avatar-dot"></span><strong>Sam Ruiz</strong
+                ><span class="dot-sep"></span><span>Jul 24, 2026</span
+                ><span class="dot-sep"></span><span>7 min</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-category="engineering">
+              <span class="post-cat">Engineering</span>
+              <h3>How we onboard a new integration in a week.</h3>
+              <p>
+                The internal checklist — and the two shortcuts we no longer let
+                ourselves take.
+              </p>
+              <div class="post-meta">
+                <span class="avatar-dot"></span><strong>Priya Shah</strong
+                ><span class="dot-sep"></span><span>Jul 19, 2026</span
+                ><span class="dot-sep"></span><span>5 min</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-category="product">
+              <span class="post-cat">Product</span>
+              <h3>Designing dashboards nobody has to learn.</h3>
+              <p>
+                Every default view should answer a question a new user already
+                had — here's how we chose ours.
+              </p>
+              <div class="post-meta">
+                <span class="avatar-dot"></span><strong>Jordan Ale</strong
+                ><span class="dot-sep"></span><span>Jul 14, 2026</span
+                ><span class="dot-sep"></span><span>8 min</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-category="data">
+              <span class="post-cat">Data</span>
+              <h3>What 2.4 billion events taught us about scale.</h3>
+              <p>
+                The infrastructure decisions that let us process a week of usage
+                data without anyone noticing.
+              </p>
+              <div class="post-meta">
+                <span class="avatar-dot"></span><strong>Sam Ruiz</strong
+                ><span class="dot-sep"></span><span>Jul 9, 2026</span
+                ><span class="dot-sep"></span><span>10 min</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOPICS -->
+      <section class="rail-section" data-rail>
+        <span class="rail-node"></span>
+        <span class="rail-label">Topics</span>
+        <div class="wrap" style="padding: 0">
+          <div class="section-inner">
+            <span class="eyebrow section-tag">Browse by topic</span>
+            <h2 class="section-title">Or go straight to what you're after.</h2>
+          </div>
+          <div class="topic-cloud">
+            <a href="#" class="topic-chip"
+              ><span style="font-size: 1.3rem">Engineering</span
+              ><span>24</span></a
+            >
+            <a href="#" class="topic-chip"
+              ><span style="font-size: 1.1rem">Product</span><span>18</span></a
+            >
+            <a href="#" class="topic-chip"
+              ><span style="font-size: 1.05rem">Data</span><span>15</span></a
+            >
+            <a href="#" class="topic-chip"
+              ><span style="font-size: 1rem">Release notes</span
+              ><span>12</span></a
+            >
+            <a href="#" class="topic-chip"
+              ><span style="font-size: 0.95rem">Culture</span><span>9</span></a
+            >
+            <a href="#" class="topic-chip"
+              ><span style="font-size: 0.9rem">Guides</span><span>7</span></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- SUBSCRIBE -->
+      <section class="rail-section" data-rail>
+        <span class="rail-node"></span>
+        <span class="rail-label">Subscribe</span>
+        <div class="wrap" style="padding: 0">
+          <div class="section-inner">
+            <span class="eyebrow section-tag">Stay in the loop</span>
+            <h2 class="section-title">One email, twice a month. No fluff.</h2>
+          </div>
+          <div class="subscribe-panel">
+            <div>
+              <p
+                style="
+                  color: var(--muted);
+                  font-size: 0.95rem;
+                  line-height: 1.65;
+                  max-width: 420px;
+                "
+              >
+                New posts, product notes, and the occasional deep dive —
+                straight to your inbox, never more than twice a month.
+              </p>
+              <form class="subscribe-form" onsubmit="return false;">
+                <input
+                  class="subscribe-input"
+                  type="email"
+                  placeholder="you@company.com"
+                />
+                <button class="btn btn-primary">Subscribe</button>
+              </form>
+            </div>
+            <div class="subscribe-stats">
+              <div class="subscribe-count" data-count-to="2481">0</div>
+              <div class="subscribe-count-label">Already reading</div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -1631,6 +1542,6 @@
     \
     <script src="js/footer.js"></script>
     <!-- Main script remains at the last -->
-    <script src="js/about-us_page.js"></script>
+    <script src="js/blog_page.js"></script>
   </body>
 </html>

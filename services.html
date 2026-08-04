@@ -58,195 +58,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 
     <style>
-      /* ===================== hero split layout ===================== */
-      .hero-section {
-        display: flex;
-        align-items: center;
-        min-height: 100vh;
-        gap: clamp(1.5rem, 4vw, 4rem);
-        padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
-      }
-
-      .hero-left {
-        flex: 0 0 50%;
-        max-width: 50%;
-      }
-
-      .hero-right {
-        flex: 0 0 50%;
-        max-width: 50%;
-        display: flex;
-        justify-content: center;
-      }
-
-      .hero-left h1 {
-        font-size: clamp(2.2rem, 4vw, 3.4rem);
-        font-weight: 700;
-        font-family: var(--font-primary);
-        line-height: 1.12;
-        margin: 0 0 1.25rem;
-
-        background: linear-gradient(120deg, #5ce1e6, #7fa8ff, #8c52ff, #d26cff);
-
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .hero-left p {
-        color: var(--muted);
-        line-height: 1.7;
-        font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-        max-width: 460px;
-      }
-
-      @media (max-width: 780px) {
-        .hero-section {
-          flex-direction: column;
-          align-items: stretch;
-          min-height: unset;
-          padding: 3.5rem 1.5rem;
-          gap: 2.5rem;
-        }
-        .hero-left,
-        .hero-right {
-          max-width: 100%;
-          flex: none;
-        }
-        .hero-left p {
-          max-width: 100%;
-        }
-      }
-
-      /* ===================== card shell ===================== */
-      .cc-card-wrap {
-        position: relative;
-        width: 100%;
-        max-width: 520px;
-        height: 400px;
-        margin: 0;
-        border-radius: 22px;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        cursor: ew-resize;
-        background: #000;
-        /*
-        isolation gives the whole card its own stacking context, so
-        everything inside it (including the draggable handle, which
-        needs its own z-index to sit above the before/after layers)
-        is painted as one unit. Without this, the handle's z-index is
-        compared directly against unrelated elements elsewhere on the
-        page — like the fixed navbar and mobile menu overlay — and can
-        end up rendering on top of them even while they're "open".
-      */
-        isolation: isolate;
-      }
-
-      .cc-layer {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-        /*
-        isolation gives each layer its own stacking context so their
-        z-indexed labels/headlines are compared fairly by DOM order,
-        rather than one layer's content escaping to always render on
-        top regardless of drag position. The background makes each
-        layer an actually opaque surface — without it, the "before"
-        layer could sit on top correctly but still not visually cover
-        anything underneath it, since it would just be transparent
-        space with a few small stars on it.
-      */
-        isolation: isolate;
-        background: var(--bg);
-      }
-
-      .cc-label {
-        position: absolute;
-        top: 1.5rem;
-        left: 1.75rem;
-        font-size: 0.72rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: rgba(245, 241, 232, 0.55);
-        z-index: 5;
-      }
-
-      .cc-label-after {
-        left: auto;
-        right: 1.75rem;
-        color: rgba(244, 242, 236, 0.7);
-      }
-
-      .cc-headline {
-        position: absolute;
-        bottom: 1.75rem;
-        left: 1.75rem;
-        right: 1.75rem;
-        font-family: "Fraunces", serif;
-        font-size: clamp(1.2rem, 2.5vw, 1.7rem);
-        z-index: 5;
-        pointer-events: none;
-      }
-
-      .cc-headline-before {
-        color: var(--ink);
-        text-align: right;
-      }
-      .cc-headline-after {
-        color: var(--ink);
-        text-align: left;
-      }
-
-      .cc-handle {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 2px;
-        height: 100%;
-        background: rgba(244, 242, 236, 0.5);
-        z-index: 10;
-      }
-
-      .cc-handle::after {
-        content: "⇔";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: var(--ink);
-        color: #08080a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-      }
-
-      /* ===================== galaxy backdrop ===================== */
-      .gx-nebula {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(50px);
-        opacity: 0.16;
-        pointer-events: none;
-      }
-
-      .gx-star {
-        position: absolute;
-        border-radius: 50%;
-        background: #ffffff;
-      }
-
-      .gx-core-glow {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        border-radius: 50%;
-        pointer-events: none;
-        filter: blur(18px);
-      }
-
       /* ===================== NAVBAR SHELL ===================== */
       .navbar {
         position: fixed;
@@ -760,15 +571,17 @@
       <h1 id="svHeroHeading">One platform, every repetitive task automated.</h1>
       <p id="svHeroSub">
         From connecting your first two tools to running enterprise-scale
-        pipelines, Lumen's services cover the full range of what "automation"
-        actually means day to day.
+        pipelines, Insight Grid's services cover the full range of what
+        "automation" actually means day to day.
       </p>
     </section>
 
     <!-- ===================== SERVICES GRID ===================== -->
     <section>
       <div class="sv-label">What's included</div>
-      <h2 class="sv-section-heading">Six ways Lumen removes the busywork.</h2>
+      <h2 class="sv-section-heading">
+        Six ways Insight Grid removes the busywork.
+      </h2>
       <p class="sv-sub">
         Every plan includes access to all six — the difference between tiers is
         scale, not capability.
@@ -824,8 +637,8 @@
           </h2>
           <p class="sv-sub">
             Set a trigger, add as many conditions and actions as the job needs,
-            and Lumen runs it exactly the same way every single time — no missed
-            steps, no "I forgot to update the sheet."
+            and Insight Grid runs it exactly the same way every single time — no
+            missed steps, no "I forgot to update the sheet."
           </p>
           <ul>
             <li>Visual builder — drag steps, don't write scripts</li>
@@ -866,7 +679,7 @@
             Your tools, finally talking to each other.
           </h2>
           <p class="sv-sub">
-            Lumen sits in the middle of your stack so nothing has to be
+            Insight Grid sits in the middle of your stack so nothing has to be
             copy-pasted between apps ever again — connect once, and every
             workflow downstream just works.
           </p>
@@ -879,7 +692,7 @@
         <div class="sv-deepdive-visual" id="svVisual2">
           <div class="sv-orbit-visual" id="svOrbitVisual">
             <div class="sv-orbit-ring"></div>
-            <div class="sv-orbit-hub">Lumen</div>
+            <div class="sv-orbit-hub">Insight Grid</div>
             <div class="sv-orbit-chip">Slack</div>
             <div class="sv-orbit-chip">Sheets</div>
             <div class="sv-orbit-chip">Stripe</div>
@@ -951,7 +764,8 @@
           <span class="sv-step-num">03</span>
           <h4>Automate</h4>
           <p>
-            Turn it on. Lumen runs it exactly the same way, every single time.
+            Turn it on. Insight Grid runs it exactly the same way, every single
+            time.
           </p>
         </div>
         <div class="sv-process-card">
@@ -996,7 +810,7 @@
     <div class="sv-quote-section" id="svQuoteSection">
       <h2 class="sv-quote-text" id="svQuoteText">
         Over <span class="sv-accent-word">10 million tasks</span> ran through
-        Lumen automations last month alone.
+        Insight Grid automations last month alone.
       </h2>
     </div>
 
@@ -1204,7 +1018,7 @@
                 desc: "Join the team.",
                 children: [
                   { label: "Open Roles", href: "#" },
-                  { label: "Life at Lumen", href: "#" },
+                  { label: "Life at Insight Grid", href: "#" },
                   { label: "Benefits", href: "#" },
                 ],
               },
