@@ -41,26 +41,13 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="icon" type="image/png" href="assets/IG Only Logo.png" />
-    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/buttons.css" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/border_styles.css" />
     <link rel="stylesheet" href="css/fixed-bg.css" />
-    <link rel="stylesheet" href="css/home_sec2.css" />
-    <link rel="stylesheet" href="css/home_sec3.css" />
-    <link rel="stylesheet" href="css/home_sec5.css" />
-    <link rel="stylesheet" href="css/home_counter.css" />
-    <link rel="stylesheet" href="css/home_case_studies.css" />
-    <link rel="stylesheet" href="css/review-comp.css" />
-    <link rel="stylesheet" href="css/home_sec8.css" />
-    <link rel="stylesheet" href="css/blog-comp.css" />
-    <link rel="stylesheet" href="css/home_sec9.css" />
-    <link rel="stylesheet" href="css/type_in_motion.css" />
     <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/drag_card.css" />
-    <link rel="stylesheet" href="css/circular-motion.css" />
-    <link rel="stylesheet" href="css/tabbed-view.css" />
+    <link rel="stylesheet" href="css/services_page.css" />
 
     <!-- GSAP Libraries to be declared first -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -707,7 +694,7 @@
   </head>
   <body>
     <!-- ================= Background ================= -->
-    <section class="fixed_background" id="bg">
+    <div class="fixed_background" id="bg">
       <canvas id="space-canvas" aria-hidden="true"></canvas>
 
       <canvas id="particle-canvas" aria-hidden="true"></canvas>
@@ -717,7 +704,7 @@
         <div class="blob blob2"></div>
         <div class="blob blob3"></div>
       </div>
-    </section>
+    </div>
 
     <nav class="navbar" id="siteNav">
       <div class="navbar-inner">
@@ -767,1181 +754,254 @@
       </div>
     </div>
 
-    <div class="hero-section">
-      <div class="hero-left">
-        <div class="section-label">BUSINESS AUTOMATION & DATA INTELLIGENCE</div>
-        <h1>Where Automation Meets Smarter Decision Making.</h1>
-        <p>
-          From automated reporting and workflow automation to powerful analytics
-          and custom dashboards, Insight Grid builds solutions that save time,
-          reduce errors, and empower better decisions.
-        </p>
-      </div>
+    <!-- ===================== HERO ===================== -->
+    <section class="sv-hero">
+      <div class="sv-eyebrow" id="svHeroEyebrow">Services</div>
+      <h1 id="svHeroHeading">One platform, every repetitive task automated.</h1>
+      <p id="svHeroSub">
+        From connecting your first two tools to running enterprise-scale
+        pipelines, Lumen's services cover the full range of what "automation"
+        actually means day to day.
+      </p>
+    </section>
 
-      <div class="hero-right">
-        <div class="cc-card-wrap" id="gx1Wrap">
-          <div class="cc-layer" id="gx1AfterLayer">
-            <div id="gx1AfterStars" style="position: absolute; inset: 0"></div>
-            <div class="cc-label cc-label-after">To Clarity</div>
-            <div class="cc-headline cc-headline-after">To Clarity</div>
+    <!-- ===================== SERVICES GRID ===================== -->
+    <section>
+      <div class="sv-label">What's included</div>
+      <h2 class="sv-section-heading">Six ways Lumen removes the busywork.</h2>
+      <p class="sv-sub">
+        Every plan includes access to all six — the difference between tiers is
+        scale, not capability.
+      </p>
+
+      <div class="sv-grid" id="svGrid">
+        <div class="sv-service-card">
+          <div class="sv-glare"></div>
+          <div class="sv-service-icon">01</div>
+          <h3>Workflow Automation</h3>
+          <p>Build multi-step automations without writing a line of code.</p>
+        </div>
+        <div class="sv-service-card">
+          <div class="sv-glare"></div>
+          <div class="sv-service-icon">02</div>
+          <h3>App Integrations</h3>
+          <p>Connect 200+ tools your team is already using today.</p>
+        </div>
+        <div class="sv-service-card">
+          <div class="sv-glare"></div>
+          <div class="sv-service-icon">03</div>
+          <h3>Data Sync &amp; Pipelines</h3>
+          <p>Keep every system speaking the same data, in real time.</p>
+        </div>
+        <div class="sv-service-card">
+          <div class="sv-glare"></div>
+          <div class="sv-service-icon">04</div>
+          <h3>Analytics &amp; Reporting</h3>
+          <p>See exactly where time is being saved, and where it isn't yet.</p>
+        </div>
+        <div class="sv-service-card">
+          <div class="sv-glare"></div>
+          <div class="sv-service-icon">05</div>
+          <h3>Enterprise Security</h3>
+          <p>SOC 2 Type II, SSO, and granular permissioning built in.</p>
+        </div>
+        <div class="sv-service-card">
+          <div class="sv-glare"></div>
+          <div class="sv-service-icon">06</div>
+          <h3>Developer API</h3>
+          <p>Build custom automations directly on top of our engine.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEEP-DIVE 1: Workflow Automation ===================== -->
+    <section>
+      <div class="sv-deepdive">
+        <div class="sv-deepdive-text">
+          <div class="sv-label">Workflow Automation</div>
+          <h2 class="sv-section-heading">
+            If it happens twice, it can happen automatically.
+          </h2>
+          <p class="sv-sub">
+            Set a trigger, add as many conditions and actions as the job needs,
+            and Lumen runs it exactly the same way every single time — no missed
+            steps, no "I forgot to update the sheet."
+          </p>
+          <ul>
+            <li>Visual builder — drag steps, don't write scripts</li>
+            <li>Conditional branching for real-world edge cases</li>
+            <li>Error handling with automatic retries</li>
+          </ul>
+        </div>
+        <div class="sv-deepdive-visual" id="svVisual1">
+          <div class="sv-node-chain">
+            <div class="sv-node" id="svNode1">
+              <span class="sv-node-tag">Trigger</span>New order placed in
+              Shopify
+            </div>
+            <div class="sv-node-connector">
+              <div class="sv-connector-fill" id="svFill1"></div>
+            </div>
+            <div class="sv-node" id="svNode2">
+              <span class="sv-node-tag">Condition</span>Order total is over $200
+            </div>
+            <div class="sv-node-connector">
+              <div class="sv-connector-fill" id="svFill2"></div>
+            </div>
+            <div class="sv-node" id="svNode3">
+              <span class="sv-node-tag">Action</span>Notify #priority-orders in
+              Slack
+            </div>
           </div>
-          <div class="cc-layer" id="gx1BeforeLayer">
-            <div id="gx1BeforeStars" style="position: absolute; inset: 0"></div>
-            <div class="cc-label">From Complexity</div>
-            <div class="cc-headline cc-headline-before">From Complexity</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEEP-DIVE 2: Integrations ===================== -->
+    <section>
+      <div class="sv-deepdive sv-reverse">
+        <div class="sv-deepdive-text">
+          <div class="sv-label">App Integrations</div>
+          <h2 class="sv-section-heading">
+            Your tools, finally talking to each other.
+          </h2>
+          <p class="sv-sub">
+            Lumen sits in the middle of your stack so nothing has to be
+            copy-pasted between apps ever again — connect once, and every
+            workflow downstream just works.
+          </p>
+          <ul>
+            <li>200+ pre-built connectors, ready on day one</li>
+            <li>Two-way sync, not just one-directional triggers</li>
+            <li>Custom connectors available on Enterprise</li>
+          </ul>
+        </div>
+        <div class="sv-deepdive-visual" id="svVisual2">
+          <div class="sv-orbit-visual" id="svOrbitVisual">
+            <div class="sv-orbit-ring"></div>
+            <div class="sv-orbit-hub">Lumen</div>
+            <div class="sv-orbit-chip">Slack</div>
+            <div class="sv-orbit-chip">Sheets</div>
+            <div class="sv-orbit-chip">Stripe</div>
+            <div class="sv-orbit-chip">HubSpot</div>
+            <div class="sv-orbit-chip">GitHub</div>
           </div>
-          <div class="cc-handle" id="gx1Handle"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEEP-DIVE 3: Analytics ===================== -->
+    <section>
+      <div class="sv-deepdive">
+        <div class="sv-deepdive-text">
+          <div class="sv-label">Analytics &amp; Reporting</div>
+          <h2 class="sv-section-heading">
+            See the hours you're actually getting back.
+          </h2>
+          <p class="sv-sub">
+            Every automation reports on itself — runs, failures, and time saved
+            — so you're never guessing whether a workflow is actually pulling
+            its weight.
+          </p>
+          <ul>
+            <li>Per-workflow time-saved estimates</li>
+            <li>Failure alerts before they become a backlog</li>
+            <li>Exportable reports for stakeholders</li>
+          </ul>
+        </div>
+        <div class="sv-deepdive-visual" id="svVisual3">
+          <div class="sv-bars-visual" id="svBarsVisual">
+            <div class="sv-bar" data-height="55%"></div>
+            <div class="sv-bar" data-height="80%"></div>
+            <div class="sv-bar" data-height="40%"></div>
+            <div class="sv-bar" data-height="95%"></div>
+            <div class="sv-bar" data-height="65%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROCESS (horizontal pin) ===================== -->
+    <div class="sv-process-section" id="svProcessSection">
+      <div class="sv-process-track" id="svProcessTrack">
+        <div class="sv-process-heading-slide">
+          <div class="sv-label">How it works</div>
+          <h2 class="sv-section-heading">Four steps, start to finish.</h2>
+          <p class="sv-sub">
+            Most teams have their first automation live within an afternoon —
+            keep scrolling to see the whole process.
+          </p>
+        </div>
+        <div class="sv-process-card">
+          <span class="sv-step-num">01</span>
+          <h4>Connect</h4>
+          <p>
+            Link the tools you already use — no engineering ticket required.
+          </p>
+        </div>
+        <div class="sv-process-card">
+          <span class="sv-step-num">02</span>
+          <h4>Build</h4>
+          <p>
+            Drag together a trigger, a condition or two, and the actions you
+            want.
+          </p>
+        </div>
+        <div class="sv-process-card">
+          <span class="sv-step-num">03</span>
+          <h4>Automate</h4>
+          <p>
+            Turn it on. Lumen runs it exactly the same way, every single time.
+          </p>
+        </div>
+        <div class="sv-process-card">
+          <span class="sv-step-num">04</span>
+          <h4>Monitor</h4>
+          <p>
+            Track runs, catch failures early, and see the hours it's saving you.
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- ================= Section 2 ================= -->
-    <section class="section_2" id="sec-2">
-      <div class="top_half">
-        <div class="section-label">WHY BUSINESSES CHOOSE INSIGHT GRID</div>
-        <div class="curtain-line">
-          <h2 class="section-headline">Built to Eliminate Repetitive Work,</h2>
-        </div>
-        <div class="curtain-line">
-          <h2 class="section-headline2" style="color: var(--accent)">
-            Designed to Accelerate Better Decisions.
-          </h2>
+    <!-- ===================== Filler Section ===================== -->
+    <section class="filler_section"></section>
+
+    <!-- ===================== INTEGRATIONS MARQUEE ===================== -->
+    <section style="max-width: none; padding: 4rem 0">
+      <div style="text-align: center; margin-bottom: 2rem">
+        <div class="sv-label" style="justify-content: center">
+          Works with what you already use
         </div>
       </div>
-      <div class="bottom_half">
-        <div class="mat_container">
-          <!-- Card 1 -->
-          <div class="mat mat1">
-            <div class="sec2_upper_half">
-              <h1>Workflow Automation</h1>
-              <p>
-                Automate repetitive processes and free your team to focus on
-                high-value work.
-              </p>
-            </div>
-
-            <div class="sec2_lower_half">
-              <div class="sec2_circles">
-                <div class="ring-item" data-percent="90">
-                  <svg width="110" height="110" viewBox="0 0 110 110">
-                    <circle class="bg" cx="55" cy="55" r="46"></circle>
-                    <circle class="progress" cx="55" cy="55" r="46"></circle>
-                  </svg>
-                  <div class="ring-content">
-                    <span class="ring-num">0%</span>
-                    <span class="ring-label">Efficiency</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="sec2_vertical_divider"></div>
-
-              <ul class="sec2_lists">
-                <li>
-                  <i data-lucide="check-circle" class="list-icon"></i>
-                  <span>Automated workflows tailored to your business</span>
-                </li>
-                <li>
-                  <i data-lucide="check-circle" class="list-icon"></i>
-                  <span>Eliminate repetitive manual processes</span>
-                </li>
-                <li>
-                  <i data-lucide="check-circle" class="list-icon"></i>
-                  <span>Faster execution with fewer errors</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="mat mat2">
-            <div class="sec2_upper_half">
-              <h1>Unified Data Intelligence</h1>
-              <p>
-                Bring all your business data into one centralized, real-time
-                ecosystem.
-              </p>
-            </div>
-
-            <div class="sec2_lower_half">
-              <div class="sec2_circles">
-                <div class="ring-item" data-percent="99">
-                  <svg width="110" height="110" viewBox="0 0 110 110">
-                    <circle class="bg" cx="55" cy="55" r="46"></circle>
-                    <circle class="progress" cx="55" cy="55" r="46"></circle>
-                  </svg>
-                  <div class="ring-content">
-                    <span class="ring-num">0%</span>
-                    <span class="ring-label">Accurate</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="sec2_vertical_divider"></div>
-
-              <ul class="sec2_lists">
-                <li>
-                  <i data-lucide="code" class="list-icon"></i>
-                  <span>Integrate multiple platforms seamlessly</span>
-                </li>
-                <li>
-                  <i data-lucide="code" class="list-icon"></i>
-                  <span>Real-time reporting across departments</span>
-                </li>
-                <li>
-                  <i data-lucide="code" class="list-icon"></i>
-                  <span>Single source of truth for decision making</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="mat mat3">
-            <div class="sec2_upper_half">
-              <h1>Actionable Business Insights</h1>
-              <p>
-                Transform complex datasets into dashboards that drive smarter
-                business decisions.
-              </p>
-            </div>
-
-            <div class="sec2_lower_half">
-              <div class="sec2_circles">
-                <div class="ring-item" data-percent="75">
-                  <svg width="110" height="110" viewBox="0 0 110 110">
-                    <circle class="bg" cx="55" cy="55" r="46"></circle>
-                    <circle class="progress" cx="55" cy="55" r="46"></circle>
-                  </svg>
-                  <div class="ring-content">
-                    <span class="ring-num">0%</span>
-                    <span class="ring-label">Faster</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="sec2_vertical_divider"></div>
-
-              <ul class="sec2_lists">
-                <li>
-                  <i data-lucide="trending-up" class="list-icon"></i>
-                  <span>Interactive executive dashboards</span>
-                </li>
-                <li>
-                  <i data-lucide="trending-up" class="list-icon"></i>
-                  <span>AI-driven insights and forecasting</span>
-                </li>
-                <li>
-                  <i data-lucide="trending-up" class="list-icon"></i>
-                  <span>Custom KPIs tailored to your goals</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+      <div class="sv-marquee-wrap">
+        <div class="sv-marquee-track" id="svMarqueeTrack1">
+          <span>SLACK</span><span>SALESFORCE</span><span>HUBSPOT</span
+          ><span>NOTION</span><span>ZAPIER</span> <span>SLACK</span
+          ><span>SALESFORCE</span><span>HUBSPOT</span><span>NOTION</span
+          ><span>ZAPIER</span>
+        </div>
+      </div>
+      <div class="sv-marquee-wrap">
+        <div class="sv-marquee-track sv-marquee-row2" id="svMarqueeTrack2">
+          <span>GOOGLE SHEETS</span><span>STRIPE</span><span>GITHUB</span
+          ><span>ZENDESK</span><span>AIRTABLE</span> <span>GOOGLE SHEETS</span
+          ><span>STRIPE</span><span>GITHUB</span><span>ZENDESK</span
+          ><span>AIRTABLE</span>
         </div>
       </div>
     </section>
 
-    <!-- ================= Section 3 ================= -->
-    <section class="section_3" id="sec-3">
-      <!-- ===================== HORIZONTAL PIN GALLERY ===================== -->
-      <div class="h-scroll-section" id="hScrollSection">
-        <div class="h-track" id="hTrack">
-          <div class="s3_content">
-            <div class="s3_tag">
-              <span></span>
-              Our Services
-            </div>
-
-            <h2>Solutions Designed Around Your Business</h2>
-
-            <p>
-              Every business operates differently. We combine automation,
-              analytics and custom software to remove repetitive work and give
-              teams complete visibility over their operations.
-            </p>
-
-            <div class="s3_stats">
-              <div class="stat">
-                <h3>5+</h3>
-                <span>Core Services</span>
-              </div>
-
-              <div class="divider"></div>
-
-              <div class="stat">
-                <h3>∞</h3>
-                <span>Automation Possibilities</span>
-              </div>
-            </div>
-          </div>
-          <div class="h-card">
-            <div class="card-top">
-              <span class="num">01</span>
-
-              <div class="status">
-                <span class="pulse"></span>
-                LIVE
-              </div>
-            </div>
-
-            <span class="eyebrow"> AUTOMATION </span>
-
-            <div class="service-icon">
-              <i data-lucide="layout-dashboard"></i>
-            </div>
-
-            <div class="card-content">
-              <h3>Automated Reporting Systems</h3>
-
-              <p>
-                Replace repetitive reporting with automated dashboards that
-                deliver accurate insights whenever you need them.
-              </p>
-            </div>
-
-            <div class="card-bottom">
-              <span class="link"> View Service </span>
-
-              <div class="card-arrow">
-                <i data-lucide="arrow-right"></i>
-              </div>
-            </div>
-          </div>
-          <div class="h-card">
-            <div class="card-top">
-              <span class="num">02</span>
-
-              <div class="status">
-                <span class="pulse"></span>
-                LIVE
-              </div>
-            </div>
-
-            <span class="eyebrow"> VISUALIZATION </span>
-
-            <div class="service-icon">
-              <i data-lucide="layout-dashboard"></i>
-            </div>
-
-            <div class="card-content">
-              <h3>Dashboard Design & Development</h3>
-
-              <p>
-                Interactive dashboards built to visualize your most important
-                metrics and support faster, data-driven decisions.
-              </p>
-            </div>
-
-            <div class="card-bottom">
-              <span class="link"> View Service </span>
-
-              <div class="card-arrow">
-                <i data-lucide="arrow-right"></i>
-              </div>
-            </div>
-          </div>
-          <div class="h-card">
-            <div class="card-top">
-              <span class="num">03</span>
-
-              <div class="status">
-                <span class="pulse"></span>
-                LIVE
-              </div>
-            </div>
-
-            <span class="eyebrow"> OPTIMIZATION </span>
-
-            <div class="service-icon">
-              <i data-lucide="layout-dashboard"></i>
-            </div>
-
-            <div class="card-content">
-              <h3>Workflow Automation</h3>
-
-              <p>
-                Automate business processes, reduce manual effort, and improve
-                operational efficiency with intelligent workflows.
-              </p>
-            </div>
-
-            <div class="card-bottom">
-              <span class="link"> View Service </span>
-
-              <div class="card-arrow">
-                <i data-lucide="arrow-right"></i>
-              </div>
-            </div>
-          </div>
-          <div class="h-card">
-            <div class="card-top">
-              <span class="num">04</span>
-
-              <div class="status">
-                <span class="pulse"></span>
-                LIVE
-              </div>
-            </div>
-
-            <span class="eyebrow"> CONNECTIVITY </span>
-
-            <div class="service-icon">
-              <i data-lucide="layout-dashboard"></i>
-            </div>
-
-            <div class="card-content">
-              <h3>Data Integration & Management</h3>
-
-              <p>
-                Connect your applications, databases, and cloud platforms to
-                create a single, reliable source of business data.
-              </p>
-            </div>
-
-            <div class="card-bottom">
-              <span class="link"> View Service </span>
-
-              <div class="card-arrow">
-                <i data-lucide="arrow-right"></i>
-              </div>
-            </div>
-          </div>
-          <div class="h-card">
-            <div class="card-top">
-              <span class="num">05</span>
-
-              <div class="status">
-                <span class="pulse"></span>
-                LIVE
-              </div>
-            </div>
-
-            <span class="eyebrow"> INTELLIGENCE </span>
-
-            <div class="service-icon">
-              <i data-lucide="layout-dashboard"></i>
-            </div>
-
-            <div class="card-content">
-              <h3>Predictive & Advanced Analytics</h3>
-
-              <p>
-                Leverage machine learning and advanced algorithms to uncover
-                hidden patterns, forecast future trends, and make informed
-                business decisions.
-              </p>
-            </div>
-
-            <div class="card-bottom">
-              <span class="link"> View Service </span>
-
-              <div class="card-arrow">
-                <i data-lucide="arrow-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= Section 4 ================= -->
-    <section class="section_4" id="sec-4"></section>
-
-    <!-- ===================== COUNTERS ===================== -->
-    <section class="counter-section">
-      <div class="section-label">Insight Feed</div>
-      <h2 class="section-headline">Every number has a story.</h2>
-      <p class="section-sub">A few things that define how we work.</p>
-      <div class="counters">
-        <div class="counter-item">
-          <div class="num-display" data-target="5">0</div>
-          <div class="num-label">Specialized Services</div>
-        </div>
-        <div class="counter-item">
-          <div class="num-display" data-target="12">0</div>
-          <div class="num-label">Automation Workflows</div>
-        </div>
-        <div class="counter-item">
-          <div class="num-display" data-target="50">0</div>
-          <div class="num-label">Business Processes Optimized</div>
-        </div>
-        <div class="counter-item">
-          <div class="num-display" data-target="100">0</div>
-          <div class="num-label">Ideas Worth Exploring</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= Section 5 ================= -->
-    <section id="option3" class="design-section space-y-8">
-      <!-- Pillars Canvas -->
-      <div
-        class="rounded-3xl bg-white/5 backdrop-blur-xl p-6 md:p-10 border border-slate-800 m-6"
-      >
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <!-- Left Column: Navigation Buttons -->
-          <div class="lg:col-span-5 space-y-3">
-            <span
-              class="text-xs font-bold uppercase tracking-widest text-emerald-400"
-              >WHY INSIGHT GRID</span
-            >
-            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6">
-              Built to automate. Designed to scale.
-            </h3>
-
-            <!-- Interactive Selector Cards -->
-            <div class="space-y-3" id="pillar-controls">
-              <button
-                onclick="activatePillar(0)"
-                class="pillar-btn active w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-4 bg-slate-900 border-brand-500 text-white shadow-lg shadow-brand-500/10"
-              >
-                <div
-                  class="p-2.5 rounded-lg bg-brand-500/20 text-brand-400 shrink-0"
-                >
-                  <i data-lucide="cpu" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-sm">Business-First Approach</h4>
-                  <p class="text-xs text-slate-400 mt-0.5">
-                    Every automation begins by understanding your workflows.
-                  </p>
-                </div>
-              </button>
-
-              <button
-                onclick="activatePillar(1)"
-                class="pillar-btn w-full text-left p-4 rounded-xl border border-slate-800/80 bg-slate-900/40 text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-300 flex items-start gap-4"
-              >
-                <div
-                  class="p-2.5 rounded-lg bg-slate-800 text-slate-300 shrink-0"
-                >
-                  <i data-lucide="shield" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-sm">Connected Intelligence</h4>
-                  <p class="text-xs text-slate-400 mt-0.5">
-                    Bring all your business data together to create one reliable
-                    source of truth.
-                  </p>
-                </div>
-              </button>
-
-              <button
-                onclick="activatePillar(2)"
-                class="pillar-btn w-full text-left p-4 rounded-xl border border-slate-800/80 bg-slate-900/40 text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-300 flex items-start gap-4"
-              >
-                <div
-                  class="p-2.5 rounded-lg bg-slate-800 text-slate-300 shrink-0"
-                >
-                  <i data-lucide="activity" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-sm">Measurable Impact</h4>
-                  <p class="text-xs text-slate-400 mt-0.5">
-                    Every solution is built with clear business outcomes in
-                    mind—not just technical implementation.
-                  </p>
-                </div>
-              </button>
-            </div>
-          </div>
-
-          <!-- Right Column: Interactive Stage Container -->
-          <div class="lg:col-span-7">
-            <div
-              class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 relative min-h-[380px] flex flex-col justify-between"
-              id="pillar-stage"
-            >
-              <!-- Dynamic Content View 0 -->
-              <div class="pillar-view space-y-6" id="pillar-view-0">
-                <div
-                  class="flex items-center justify-between border-b border-slate-800 pb-4"
-                >
-                  <span
-                    class="text-xs font-mono text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20"
-                    >01. Business Discovery</span
-                  >
-                  <span class="text-xs text-slate-500 font-mono"
-                    >WORKFLOW ANALYZED</span
-                  >
-                </div>
-                <h4 class="text-2xl font-bold text-white">
-                  Automation designed around the way your business actually
-                  operates.
-                </h4>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                  We begin by understanding your existing processes, identifying
-                  repetitive tasks, and mapping opportunities for automation
-                  before any development begins.
-                </p>
-
-                <!-- Mock Visual Mockup -->
-                <div
-                  class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3 font-mono text-xs"
-                >
-                  <div class="flex items-center justify-between text-slate-400">
-                    <span>[DISCOVERY COMPLETE]</span>
-                    <span class="text-emerald-400">● Live Monitoring</span>
-                  </div>
-                  <div
-                    class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"
-                  >
-                    <div class="bg-brand-500 h-full w-3/4 animate-pulse"></div>
-                  </div>
-                  <div class="text-[11px] text-slate-400 flex justify-between">
-                    <span>Processes Mapped: 24</span>
-                    <span class="text-brand-400"
-                      >Automation Opportunities: 18</span
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <!-- Dynamic Content View 1 (Hidden initially) -->
-              <div class="pillar-view space-y-6 hidden" id="pillar-view-1">
-                <div
-                  class="flex items-center justify-between border-b border-slate-800 pb-4"
-                >
-                  <span
-                    class="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20"
-                    >02. Unified Data</span
-                  >
-                  <span class="text-xs text-slate-500 font-mono"
-                    >LIVE CONNECTIONS</span
-                  >
-                </div>
-                <h4 class="text-2xl font-bold text-white">
-                  Every system connected. Every insight in one place.
-                </h4>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                  Dashboards become truly valuable when data from CRMs, ERPs,
-                  spreadsheets, APIs, and databases work together in real time.
-                </p>
-
-                <div
-                  class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3 font-mono text-xs"
-                >
-                  <div class="flex items-center justify-between text-slate-400">
-                    <span>[CONNECTION CHECK: ESTABLISHED]</span>
-                    <span class="text-emerald-400"
-                      >✓ All Systems Compliant</span
-                    >
-                  </div>
-                  <div
-                    class="grid grid-cols-2 gap-2 text-[11px] text-slate-300"
-                  >
-                    <div
-                      class="p-2 bg-slate-950 rounded border border-slate-800"
-                    >
-                      ERM: Synced
-                    </div>
-                    <div
-                      class="p-2 bg-slate-950 rounded border border-slate-800"
-                    >
-                      APIs: Live
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Dynamic Content View 2 (Hidden initially) -->
-              <div class="pillar-view space-y-6 hidden" id="pillar-view-2">
-                <div
-                  class="flex items-center justify-between border-b border-slate-800 pb-4"
-                >
-                  <span
-                    class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20"
-                    >03. Business Growth</span
-                  >
-                  <span class="text-xs text-slate-500 font-mono"
-                    >RESULTS ANALYZED</span
-                  >
-                </div>
-                <h4 class="text-2xl font-bold text-white">
-                  Automation that continues creating value long after
-                  deployment.
-                </h4>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                  By reducing manual work and improving operational visibility,
-                  businesses spend less time managing processes and more time
-                  driving growth.
-                </p>
-
-                <div
-                  class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-2 font-mono text-xs"
-                >
-                  <div class="flex justify-between items-center text-slate-400">
-                    <span>[PRODUCTIVITY: Optimized]</span>
-                    <span class="text-brand-400">Operational Efficiency</span>
-                  </div>
-                  <div class="flex items-end gap-1 h-12 pt-2">
-                    <div class="bg-brand-500/40 w-1/12 h-1/2 rounded-t"></div>
-                    <div class="bg-brand-500/60 w-1/12 h-3/4 rounded-t"></div>
-                    <div class="bg-brand-500 w-1/12 h-full rounded-t"></div>
-                    <div class="bg-brand-500/50 w-1/12 h-2/3 rounded-t"></div>
-                    <div class="bg-brand-500/70 w-1/12 h-4/5 rounded-t"></div>
-                    <div class="bg-brand-500/90 w-1/12 h-full rounded-t"></div>
-                    <div class="bg-brand-500/30 w-1/12 h-1/3 rounded-t"></div>
-                    <div class="bg-brand-500/80 w-1/12 h-5/6 rounded-t"></div>
-                    <div class="bg-brand-500 w-1/12 h-full rounded-t"></div>
-                    <div class="bg-brand-500/60 w-1/12 h-2/3 rounded-t"></div>
-                    <div class="bg-brand-500/40 w-1/12 h-1/2 rounded-t"></div>
-                    <div class="bg-brand-500/80 w-1/12 h-3/4 rounded-t"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= Section 7 ================= -->
-    <!-- ===================== 2. EXPAND TO FULLSCREEN ===================== -->
-    <section class="section_7" id="sec-7">
-      <div class="section-label">CASE STUDIES</div>
-      <h2 class="section-headline">
-        From operational bottlenecks to automated workflows.
+    <!-- ===================== QUOTE (pinned zoom) ===================== -->
+    <div class="sv-quote-section" id="svQuoteSection">
+      <h2 class="sv-quote-text" id="svQuoteText">
+        Over <span class="sv-accent-word">10 million tasks</span> ran through
+        Lumen automations last month alone.
       </h2>
-      <p class="section-sub">
-        See how we transform repetitive processes into streamlined systems that
-        save time, improve accuracy, and help businesses make smarter decisions
-        with confidence.
-      </p>
-      <div class="expand-grid" id="expandGrid">
-        <div class="expand-card">
-          <span class="tag">Case study</span>
-          <h3>Northbridge rebrand</h3>
-          <p>A full identity overhaul for a 40-year-old finance firm.</p>
-          <div class="expand-body">
-            <div class="case-tabs">
-              <div class="case-tabs-list">
-                <button class="active" data-target="ov">
-                  <span class="dot"></span> Overview
-                </button>
-                <button data-target="ap">
-                  <span class="dot"></span> Approach
-                </button>
-                <button data-target="dl">
-                  <span class="dot"></span> Deliverables
-                </button>
-                <button data-target="rs">
-                  <span class="dot"></span> Results
-                </button>
-                <button data-target="tm"><span class="dot"></span> Team</button>
-              </div>
-              <div class="case-tabs-content">
-                <div class="case-tab-item active" data-id="ov">
-                  <span class="mini-tag">Overview</span>
-                  <h4>A century-old feel, a modern-day mark</h4>
-                  <p>
-                    The brief called for a system that felt established but not
-                    stale — new type, a restrained palette, and a mark that
-                    reads at both business-card and billboard scale.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="ap">
-                  <span class="mini-tag">Approach</span>
-                  <h4>Audit, then rebuild from the inside out</h4>
-                  <p>
-                    We started with a full audit of every touchpoint, from
-                    letterhead to lobby signage, then rebuilt the identity
-                    around a small set of flexible rules the internal team could
-                    actually maintain.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="dl">
-                  <span class="mini-tag">Deliverables</span>
-                  <h4>A system built to hand off</h4>
-                  <p>
-                    We shipped a full identity system, a 90-page brand
-                    guideline, and a set of motion tokens for their product team
-                    to build from.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="rs">
-                  <span class="mini-tag">Results</span>
-                  <h4>Adopted company-wide within a quarter</h4>
-                  <p>
-                    Every business unit had migrated to the new system within
-                    one quarter, with internal teams reporting far fewer one-off
-                    design requests once the guidelines shipped.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="tm">
-                  <span class="mini-tag">Team</span>
-                  <h4>A small, senior team</h4>
-                  <p>
-                    Two brand designers, one motion designer, and a strategist
-                    worked directly with Northbridge's marketing lead over a
-                    twelve-week engagement.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="expand-close">✕</button>
-        </div>
-        <div class="expand-card">
-          <span class="tag">Case study</span>
-          <h3>Solstice app redesign</h3>
-          <p>Cutting checkout friction across mobile and web.</p>
-          <div class="expand-body">
-            <div class="case-tabs">
-              <div class="case-tabs-list">
-                <button class="active" data-target="ov">
-                  <span class="dot"></span> Overview
-                </button>
-                <button data-target="pr">
-                  <span class="dot"></span> Problem
-                </button>
-                <button data-target="so">
-                  <span class="dot"></span> Solution
-                </button>
-                <button data-target="rs">
-                  <span class="dot"></span> Results
-                </button>
-                <button data-target="tm"><span class="dot"></span> Team</button>
-              </div>
-              <div class="case-tabs-content">
-                <div class="case-tab-item active" data-id="ov">
-                  <span class="mini-tag">Overview</span>
-                  <h4>Same flow, mobile and web</h4>
-                  <p>
-                    Solstice needed one checkout experience that felt native on
-                    both mobile and web, without maintaining two separate flows
-                    in parallel.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="pr">
-                  <span class="mini-tag">Problem</span>
-                  <h4>Checkout was the bottleneck</h4>
-                  <p>
-                    Three rounds of usability testing pointed to the same
-                    drop-off point: checkout. Too many steps, vague error
-                    states, and no visible order summary once payment began.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="so">
-                  <span class="mini-tag">Solution</span>
-                  <h4>Fewer steps, clearer feedback</h4>
-                  <p>
-                    We rebuilt the flow around fewer steps, clearer inline error
-                    states, and a persistent order summary that stayed visible
-                    through every stage of payment.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="rs">
-                  <span class="mini-tag">Results</span>
-                  <h4>Abandonment dropped within a month</h4>
-                  <p>
-                    Cart abandonment dropped meaningfully within the first month
-                    post-launch, and support tickets tagged "checkout" fell
-                    sharply in the same window.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="tm">
-                  <span class="mini-tag">Team</span>
-                  <h4>Design paired with research</h4>
-                  <p>
-                    One product designer and one researcher ran the testing
-                    rounds, working alongside Solstice's in-house engineering
-                    team through implementation.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="expand-close">✕</button>
-        </div>
-        <div class="expand-card">
-          <span class="tag">Case study</span>
-          <h3>Ferrovia dashboard</h3>
-          <p>Real-time fleet monitoring for 400+ vehicles.</p>
-          <div class="expand-body">
-            <div class="case-tabs">
-              <div class="case-tabs-list">
-                <button class="active" data-target="ov">
-                  <span class="dot"></span> Overview
-                </button>
-                <button data-target="ch">
-                  <span class="dot"></span> Challenge
-                </button>
-                <button data-target="ds">
-                  <span class="dot"></span> Design
-                </button>
-                <button data-target="oc">
-                  <span class="dot"></span> Outcome
-                </button>
-                <button data-target="tm"><span class="dot"></span> Team</button>
-              </div>
-              <div class="case-tabs-content">
-                <div class="case-tab-item active" data-id="ov">
-                  <span class="mini-tag">Overview</span>
-                  <h4>A calm view over a busy fleet</h4>
-                  <p>
-                    Ferrovia needed a single dashboard for dispatchers to
-                    monitor over 400 vehicles in real time, without the screen
-                    turning into noise.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="ch">
-                  <span class="mini-tag">Challenge</span>
-                  <h4>Too much data, not enough signal</h4>
-                  <p>
-                    Dispatchers needed to track hundreds of vehicles at once,
-                    but earlier prototypes buried the vehicles that actually
-                    needed attention under everything else.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="ds">
-                  <span class="mini-tag">Design</span>
-                  <h4>A layered map, disclosed on demand</h4>
-                  <p>
-                    We designed a layered map view with progressive disclosure,
-                    so the default state stays calm and any vehicle's detail is
-                    only ever a click away.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="oc">
-                  <span class="mini-tag">Outcome</span>
-                  <h4>Faster response, fewer missed alerts</h4>
-                  <p>
-                    Dispatchers reported faster response times to flagged
-                    vehicles, and the layered view held up even during peak-hour
-                    load with the full fleet active.
-                  </p>
-                </div>
-                <div class="case-tab-item" data-id="tm">
-                  <span class="mini-tag">Team</span>
-                  <h4>Design and engineering, in lockstep</h4>
-                  <p>
-                    A product designer and two frontend engineers worked in
-                    weekly cycles with Ferrovia's dispatch operators to validate
-                    each iteration.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="expand-close">✕</button>
-        </div>
-      </div>
-    </section>
-    <div class="expand-overlay" id="expandOverlay"></div>
+    </div>
 
-    <!-- ================= Review Section ================= -->
-    <section class="rv-section">
-      <div class="rv2-marquee-wrap">
-        <div class="rv2-track" id="rv2Track1">
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>
-              Deploys that used to take an engineer half a day now run
-              themselves.
-            </p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #4dd8ff">PS</div>
-              <div>
-                <div class="name">Priya Sen</div>
-                <div class="company">CloudArc</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>
-              Support actually replies. That alone is rare in this category.
-            </p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #8b5cf6">TW</div>
-              <div>
-                <div class="name">Tom Walsh</div>
-                <div class="company">Ferrovia</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="4.5"></div>
-            <p>Migrated 40 legacy scripts in a weekend. Would not go back.</p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #34e5a1">AK</div>
-              <div>
-                <div class="name">Anaya Khatri</div>
-                <div class="company">Meridian Health</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>Our audit prep time dropped from weeks to a single afternoon.</p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #ffb84d">CL</div>
-              <div>
-                <div class="name">Carlos Lima</div>
-                <div class="company">Vantix</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>
-              Deploys that used to take an engineer half a day now run
-              themselves.
-            </p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #4dd8ff">PS</div>
-              <div>
-                <div class="name">Priya Sen</div>
-                <div class="company">CloudArc</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>
-              Support actually replies. That alone is rare in this category.
-            </p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #8b5cf6">TW</div>
-              <div>
-                <div class="name">Tom Walsh</div>
-                <div class="company">Ferrovia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rv2-marquee-wrap">
-        <div class="rv2-track" id="rv2Track2">
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>We cut incident response time by 70% in the first month.</p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #ff5c7a">RK</div>
-              <div>
-                <div class="name">Rhea Kapoor</div>
-                <div class="company">Delta Systems</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>Our on-call rotation finally feels sane again.</p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #34e5a1">JM</div>
-              <div>
-                <div class="name">Jordan Meyer</div>
-                <div class="company">Northbeam</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="4.5"></div>
-            <p>The audit logs alone justified the switch for compliance.</p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #ffb84d">DT</div>
-              <div>
-                <div class="name">Deshawn Tran</div>
-                <div class="company">Vantix</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>Onboarding was faster than reading most tools' docs.</p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #8b5cf6">NF</div>
-              <div>
-                <div class="name">Nadia Farouk</div>
-                <div class="company">Bridgepoint</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>We cut incident response time by 70% in the first month.</p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #ff5c7a">RK</div>
-              <div>
-                <div class="name">Rhea Kapoor</div>
-                <div class="company">Delta Systems</div>
-              </div>
-            </div>
-          </div>
-          <div class="rv2-card">
-            <div class="rv-stars" data-rating="5"></div>
-            <p>Our on-call rotation finally feels sane again.</p>
-            <div class="rv2-author">
-              <div class="rv2-avatar" style="background: #34e5a1">JM</div>
-              <div>
-                <div class="name">Jordan Meyer</div>
-                <div class="company">Northbeam</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= Section 8 ================= -->
-    <section class="section_8" id="sec-8">
-      <div class="sec8_top">
-        <div class="section-label">FREQUENTLY ASKED QUESTIONS</div>
-        <h2 class="section-headline">
-          Everything you need to know before we start.
-        </h2>
-        <p class="section-sub">
-          Whether you're looking to automate workflows, build custom dashboards,
-          or integrate your business systems, we're here to make the process
-          simple and transparent.
-        </p>
-      </div>
-      <div class="accordion" id="accordion">
-        <div class="accordion-item">
-          <button class="accordion-header">
-            <span>What types of businesses do you work with?</span
-            ><span class="plus">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">
-              We work with startups, SMEs, and growing enterprises across
-              industries. If your business relies on data, repetitive processes,
-              or multiple software tools, we can help streamline operations
-              through automation and analytics.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-header">
-            <span>Can you integrate with our existing software?</span
-            ><span class="plus">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">
-              Yes. We build solutions that work with your existing technology
-              stack whenever possible. From CRMs and ERPs to spreadsheets, APIs,
-              databases, and cloud platforms, we focus on creating a connected
-              ecosystem rather than replacing your current tools.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-header">
-            <span>How long does a typical project take?</span
-            ><span class="plus">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">
-              Every project is different, but most engagements begin with a
-              discovery phase to understand your workflows and goals. Once the
-              scope is finalized, we provide a clear roadmap with timelines,
-              milestones, and regular progress updates throughout development.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= Blog Section ================= -->
-    <section class="bl-section">
-      <div class="bl-head">
-        <div>
-          <div class="eyebrow" id="bl1Eyebrow">From the blog</div>
-          <h2 id="bl1Heading">
-            Notes on building automation that doesn't break at 2 AM.
-          </h2>
-        </div>
-        <div class="bl-view-all">View all articles →</div>
-      </div>
-
-      <div class="bl1-grid" id="bl1Grid">
-        <div class="bl1-card">
-          <div class="bl-glare"></div>
-          <div class="bl1-thumb"></div>
-          <div class="bl1-body">
-            <span class="bl1-tag">Engineering</span>
-            <h3>How we cut alert fatigue by 60% using smarter thresholds</h3>
-            <p>
-              A look at the incident-scoring model behind our newest release.
-            </p>
-            <div class="bl1-meta">
-              <span>Mar 14</span><span>6 min read</span>
-            </div>
-          </div>
-        </div>
-        <div class="bl1-card">
-          <div class="bl-glare"></div>
-          <div
-            class="bl1-thumb"
-            style="
-              background: linear-gradient(
-                135deg,
-                rgba(52, 229, 161, 0.18),
-                rgba(77, 216, 255, 0.18)
-              );
-            "
-          ></div>
-          <div class="bl1-body">
-            <span class="bl1-tag">Guide</span>
-            <h3>Migrating from cron jobs to event-driven workflows</h3>
-            <p>
-              A step-by-step guide for IT teams moving off legacy scheduling.
-            </p>
-            <div class="bl1-meta">
-              <span>Mar 02</span><span>9 min read</span>
-            </div>
-          </div>
-        </div>
-        <div class="bl1-card">
-          <div class="bl-glare"></div>
-          <div
-            class="bl1-thumb"
-            style="
-              background: linear-gradient(
-                135deg,
-                rgba(255, 184, 77, 0.18),
-                rgba(255, 92, 122, 0.18)
-              );
-            "
-          ></div>
-          <div class="bl1-body">
-            <span class="bl1-tag">Case Study</span>
-            <h3>Northbeam's on-call rotation, before and after</h3>
-            <p>What changed when a 40-person SRE team automated triage.</p>
-            <div class="bl1-meta">
-              <span>Feb 21</span><span>7 min read</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= Section 9 ================= -->
-    <section class="section_9" id="sec-9">
-      <div class="section-label">LET'S BUILD SOMETHING SMARTER</div>
-      <p class="section-sub">
-        Whether you're looking to streamline operations, connect your data, or
-        build intelligent automation from the ground up, we're ready to help.
-        Let's discuss your goals and create a solution that works for your
-        business.
-      </p>
-      <h2
-        id="breatheText"
-        style="
-          font-size: clamp(1.8rem, 4.5vw, 3rem);
-          letter-spacing: 0.6em;
-          opacity: 0;
-        "
-      >
-        Feel Like Talking?
-      </h2>
-      <button class="primary_medium_button" id="bg_gradient_move">
-        Book a Free Consultation
-      </button>
-    </section>
+    <!-- ===================== Filler Section ===================== -->
+    <section class="filler_section"></section>
 
     <!-- ================= Footer ================= -->
     <footer class="ft2-footer" id="ft2Footer">
@@ -2694,22 +1754,9 @@
 
     <!-- Section JS -->
     <script src="js/fixed-bg.js"></script>
-    <script src="js/home_sec2.js"></script>
-    <script src="js/home_sec3.js"></script>
-    <script src="js/home_sec5.js"></script>
-    <script src="js/home_counter.js"></script>
-    <script src="js/home_sec8.js"></script>
-    <script src="js/review-comp.js"></script>
-    <script src="js/blog-comp.js"></script>
-    <script src="js/home_sec9.js"></script>
+    \
     <script src="js/footer.js"></script>
-    <script src="js/tabbed-view.js"></script>
-    <script src="js/home_case_studies.js"></script>
-    <script src="js/type_in_motion.js"></script>
-    <script src="js/drag_card.js"></script>
-    <script src="js/circular-motion.js"></script>
-
     <!-- Main script remains at the last -->
-    <script src="js/script.js"></script>
+    <script src="js/services_script.js"></script>
   </body>
 </html>
