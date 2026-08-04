@@ -1,840 +1,1097 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Services — Lumen</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services — Lumen</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-<style>
-  /*
+    <style>
+      /*
     NOTE ON NAMING: every class/ID on this page is prefixed "sv-" (Services)
     — a different prefix from the "au-" used on the About page — so the two
     can sit in the same site without any risk of colliding with each other.
   */
 
-  :root {
-    --bg: #0b0b0d;
-    --panel: #131317;
-    --card: #17181c;
-    --card-2: #1c1d22;
-    --ink: #f5f1e8;
-    --muted: #91918c;
-    --line: #26272d;
-    --accent: #cda45e;
-    --accent-2: #7c93ff;
-  }
-
-  * { box-sizing: border-box; }
-
-  body.sv-body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-  }
-
-  .sv-page h1, .sv-page h2, .sv-page h3, .sv-page .sv-display {
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-  }
-
-  .sv-page section {
-    position: relative;
-    padding: 8rem 1.5rem;
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-
-  .sv-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.25rem;
-  }
-
-  .sv-label::before {
-    content: '';
-    width: 20px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  .sv-sub {
-    color: var(--muted);
-    max-width: 560px;
-    line-height: 1.7;
-    font-size: 1rem;
-  }
-
-  .sv-section-heading {
-    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
-    margin: 0 0 0.5rem;
-  }
-
-  /* ===================== HERO ===================== */
-  .sv-hero {
-    min-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 6rem;
-    overflow: hidden;
-  }
-
-  .sv-hero .sv-eyebrow {
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-  }
-
-  .sv-hero h1 {
-    font-size: clamp(2.5rem, 6.2vw, 4.6rem);
-    line-height: 1.1;
-    margin: 0 0 1.75rem;
-    max-width: 920px;
-  }
-
-  .sv-hero h1 .sv-char {
-    display: inline-block;
-    will-change: transform;
-  }
-
-  .sv-hero p {
-    color: var(--muted);
-    max-width: 520px;
-    font-size: 1.08rem;
-    line-height: 1.7;
-    opacity: 0;
-  }
-
-  .sv-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    opacity: 0.26;
-    z-index: -1;
-  }
-
-  .sv-blob-1 { width: 400px; height: 400px; background: var(--accent-2); top: -90px; right: -70px; }
-  .sv-blob-2 { width: 300px; height: 300px; background: var(--accent); bottom: -70px; left: 6%; }
-
-  /* ===================== SERVICES GRID ===================== */
-  .sv-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    perspective: 1100px;
-    margin-top: 3rem;
-  }
-
-  .sv-service-card {
-    position: relative;
-    border-radius: 18px;
-    background: linear-gradient(160deg, var(--card-2), var(--card));
-    border: 1px solid var(--line);
-    padding: 2rem;
-    height: 230px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    transform-style: preserve-3d;
-    will-change: transform;
-    overflow: hidden;
-  }
-
-  .sv-service-card .sv-glare {
-    position: absolute;
-    inset: -50%;
-    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,0.1), transparent 45%);
-    pointer-events: none;
-  }
-
-  .sv-service-icon {
-    position: absolute;
-    top: 1.6rem;
-    left: 2rem;
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: rgba(205, 164, 94, 0.12);
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    transform: translateZ(25px);
-  }
-
-  .sv-service-card h3 { font-size: 1.15rem; margin: 0 0 0.4rem; transform: translateZ(20px); }
-  .sv-service-card p { margin: 0; color: var(--muted); font-size: 0.87rem; line-height: 1.55; transform: translateZ(15px); }
-
-  /* ===================== DEEP-DIVE SECTIONS ===================== */
-  .sv-deepdive {
-    display: flex;
-    align-items: center;
-    gap: clamp(2rem, 6vw, 5rem);
-    flex-wrap: wrap;
-  }
-
-  .sv-deepdive.sv-reverse { flex-direction: row-reverse; }
-
-  .sv-deepdive-text {
-    flex: 1 1 360px;
-    min-width: 280px;
-  }
-
-  .sv-deepdive-visual {
-    flex: 1 1 380px;
-    min-width: 280px;
-    height: 380px;
-    border-radius: 20px;
-    border: 1px solid var(--line);
-    background: var(--panel);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .sv-deepdive-text ul {
-    list-style: none;
-    margin: 1.5rem 0 0;
-    padding: 0;
-  }
-
-  .sv-deepdive-text li {
-    color: var(--muted);
-    font-size: 0.92rem;
-    padding: 0.6rem 0;
-    border-top: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .sv-deepdive-text li::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  /* ---- Visual: workflow node chain ---- */
-  .sv-node-chain {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    width: 220px;
-  }
-
-  .sv-node {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 0.9rem 1.1rem;
-    font-size: 0.82rem;
-    color: var(--ink);
-    opacity: 0;
-    transform: translateY(14px);
-  }
-
-  .sv-node .sv-node-tag {
-    display: block;
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.3rem;
-  }
-
-  .sv-node-connector {
-    width: 1px;
-    height: 34px;
-    background: var(--line);
-    margin-left: 1.1rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .sv-node-connector .sv-connector-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0%;
-    background: var(--accent);
-  }
-
-  /* ---- Visual: orbit hub ---- */
-  .sv-orbit-visual {
-    position: relative;
-    width: 280px;
-    height: 280px;
-  }
-
-  .sv-orbit-hub {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 76px;
-    height: 76px;
-    margin: -38px 0 0 -38px;
-    border-radius: 50%;
-    background: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: #1a1305;
-    z-index: 2;
-  }
-
-  .sv-orbit-ring {
-    position: absolute;
-    inset: 0;
-    border: 1px dashed var(--line);
-    border-radius: 50%;
-  }
-
-  .sv-orbit-chip {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 54px;
-    height: 54px;
-    margin: -27px 0 0 -27px;
-    border-radius: 50%;
-    background: var(--card);
-    border: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.68rem;
-    color: var(--muted);
-    text-align: center;
-  }
-
-  /* ---- Visual: analytics bars ---- */
-  .sv-bars-visual {
-    width: 260px;
-    display: flex;
-    align-items: flex-end;
-    gap: 1rem;
-    height: 200px;
-  }
-
-  .sv-bar {
-    flex: 1;
-    background: linear-gradient(180deg, var(--accent), #8a6f38);
-    border-radius: 6px 6px 0 0;
-    height: 0%;
-  }
-
-  .sv-bar:nth-child(2) { background: linear-gradient(180deg, var(--accent-2), #4d5fb0); }
-  .sv-bar:nth-child(4) { background: linear-gradient(180deg, var(--accent-2), #4d5fb0); }
-
-  /* ===================== PROCESS (horizontal pin) ===================== */
-  .sv-process-section {
-    max-width: none;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .sv-process-track {
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    gap: 1.75rem;
-    padding-left: 8vw;
-    width: max-content;
-  }
-
-  .sv-process-heading-slide {
-    width: 40vw;
-    max-width: 460px;
-    flex-shrink: 0;
-    padding-right: 3rem;
-  }
-
-  .sv-process-card {
-    width: 300px;
-    height: 380px;
-    flex-shrink: 0;
-    border-radius: 18px;
-    border: 1px solid var(--line);
-    padding: 2.25rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  .sv-process-card .sv-step-num {
-    position: absolute;
-    top: 2rem;
-    font-family: 'Fraunces', serif;
-    font-size: 2.4rem;
-    color: rgba(205, 164, 94, 0.35);
-  }
-
-  .sv-process-card h4 { margin: 0 0 0.4rem; font-size: 1.15rem; }
-  .sv-process-card p { margin: 0; color: var(--muted); font-size: 0.87rem; line-height: 1.55; }
-
-  .sv-process-card:nth-child(2) { background: linear-gradient(160deg, #2a2416, var(--card)); }
-  .sv-process-card:nth-child(3) { background: linear-gradient(160deg, #1a2340, var(--card)); }
-  .sv-process-card:nth-child(4) { background: linear-gradient(160deg, #3a1c1c, var(--card)); }
-  .sv-process-card:nth-child(5) { background: linear-gradient(160deg, #1c3a2c, var(--card)); }
-
-  /* ===================== INTEGRATIONS MARQUEE ===================== */
-  .sv-marquee-wrap {
-    max-width: none;
-    padding: 2.5rem 0;
-    overflow: hidden;
-  }
-
-  .sv-marquee-track {
-    display: flex;
-    width: max-content;
-    gap: 2.5rem;
-  }
-
-  .sv-marquee-track span {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.6rem, 3.6vw, 2.4rem);
-    color: transparent;
-    -webkit-text-stroke: 1px var(--line);
-    white-space: nowrap;
-  }
-
-  .sv-marquee-track.sv-marquee-row2 span {
-    -webkit-text-stroke: 1px var(--accent-2);
-  }
-
-  /* ===================== QUOTE (pinned zoom) ===================== */
-  .sv-quote-section {
-    max-width: none;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .sv-quote-text {
-    font-size: clamp(1.8rem, 5vw, 3.4rem);
-    text-align: center;
-    line-height: 1.35;
-    max-width: 85vw;
-  }
-
-  .sv-quote-text .sv-accent-word { color: var(--accent); }
-
-  /* ===================== CTA ===================== */
-  .sv-cta-section {
-    text-align: center;
-    padding-bottom: 12rem;
-  }
-
-  .sv-cta-section h2 {
-    font-size: clamp(1.9rem, 4.4vw, 3.2rem);
-    max-width: 680px;
-    margin: 0 auto 1rem;
-  }
-
-  .sv-cta-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1.75rem;
-    flex-wrap: wrap;
-  }
-
-  .sv-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.05rem 2.4rem;
-    border-radius: 999px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .sv-btn-solid {
-    background: var(--accent);
-    color: #1a1305;
-    border: none;
-  }
-
-  .sv-btn-ghost {
-    background: transparent;
-    color: var(--ink);
-    border: 1px solid var(--line);
-  }
-
-  @media (max-width: 720px) {
-    .sv-deepdive-visual { height: 320px; }
-  }
-</style>
-</head>
-<body class="sv-body">
-
-<div class="sv-page">
-
-  <!-- ===================== HERO ===================== -->
-  <section class="sv-hero">
-    <div class="sv-blob sv-blob-1"></div>
-    <div class="sv-blob sv-blob-2"></div>
-    <div class="sv-eyebrow" id="svHeroEyebrow">Services</div>
-    <h1 id="svHeroHeading">One platform, every repetitive task automated.</h1>
-    <p id="svHeroSub">From connecting your first two tools to running enterprise-scale pipelines, Lumen's services cover the full range of what "automation" actually means day to day.</p>
-  </section>
-
-  <!-- ===================== SERVICES GRID ===================== -->
-  <section>
-    <div class="sv-label">What's included</div>
-    <h2 class="sv-section-heading">Six ways Lumen removes the busywork.</h2>
-    <p class="sv-sub">Every plan includes access to all six — the difference between tiers is scale, not capability.</p>
-
-    <div class="sv-grid" id="svGrid">
-      <div class="sv-service-card"><div class="sv-glare"></div><div class="sv-service-icon">01</div><h3>Workflow Automation</h3><p>Build multi-step automations without writing a line of code.</p></div>
-      <div class="sv-service-card"><div class="sv-glare"></div><div class="sv-service-icon">02</div><h3>App Integrations</h3><p>Connect 200+ tools your team is already using today.</p></div>
-      <div class="sv-service-card"><div class="sv-glare"></div><div class="sv-service-icon">03</div><h3>Data Sync &amp; Pipelines</h3><p>Keep every system speaking the same data, in real time.</p></div>
-      <div class="sv-service-card"><div class="sv-glare"></div><div class="sv-service-icon">04</div><h3>Analytics &amp; Reporting</h3><p>See exactly where time is being saved, and where it isn't yet.</p></div>
-      <div class="sv-service-card"><div class="sv-glare"></div><div class="sv-service-icon">05</div><h3>Enterprise Security</h3><p>SOC 2 Type II, SSO, and granular permissioning built in.</p></div>
-      <div class="sv-service-card"><div class="sv-glare"></div><div class="sv-service-icon">06</div><h3>Developer API</h3><p>Build custom automations directly on top of our engine.</p></div>
-    </div>
-  </section>
-
-  <!-- ===================== DEEP-DIVE 1: Workflow Automation ===================== -->
-  <section>
-    <div class="sv-deepdive">
-      <div class="sv-deepdive-text">
-        <div class="sv-label">Workflow Automation</div>
-        <h2 class="sv-section-heading">If it happens twice, it can happen automatically.</h2>
-        <p class="sv-sub">Set a trigger, add as many conditions and actions as the job needs, and Lumen runs it exactly the same way every single time — no missed steps, no "I forgot to update the sheet."</p>
-        <ul>
-          <li>Visual builder — drag steps, don't write scripts</li>
-          <li>Conditional branching for real-world edge cases</li>
-          <li>Error handling with automatic retries</li>
-        </ul>
-      </div>
-      <div class="sv-deepdive-visual" id="svVisual1">
-        <div class="sv-node-chain">
-          <div class="sv-node" id="svNode1"><span class="sv-node-tag">Trigger</span>New order placed in Shopify</div>
-          <div class="sv-node-connector"><div class="sv-connector-fill" id="svFill1"></div></div>
-          <div class="sv-node" id="svNode2"><span class="sv-node-tag">Condition</span>Order total is over $200</div>
-          <div class="sv-node-connector"><div class="sv-connector-fill" id="svFill2"></div></div>
-          <div class="sv-node" id="svNode3"><span class="sv-node-tag">Action</span>Notify #priority-orders in Slack</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== DEEP-DIVE 2: Integrations ===================== -->
-  <section>
-    <div class="sv-deepdive sv-reverse">
-      <div class="sv-deepdive-text">
-        <div class="sv-label">App Integrations</div>
-        <h2 class="sv-section-heading">Your tools, finally talking to each other.</h2>
-        <p class="sv-sub">Lumen sits in the middle of your stack so nothing has to be copy-pasted between apps ever again — connect once, and every workflow downstream just works.</p>
-        <ul>
-          <li>200+ pre-built connectors, ready on day one</li>
-          <li>Two-way sync, not just one-directional triggers</li>
-          <li>Custom connectors available on Enterprise</li>
-        </ul>
-      </div>
-      <div class="sv-deepdive-visual" id="svVisual2">
-        <div class="sv-orbit-visual" id="svOrbitVisual">
-          <div class="sv-orbit-ring"></div>
-          <div class="sv-orbit-hub">Lumen</div>
-          <div class="sv-orbit-chip">Slack</div>
-          <div class="sv-orbit-chip">Sheets</div>
-          <div class="sv-orbit-chip">Stripe</div>
-          <div class="sv-orbit-chip">HubSpot</div>
-          <div class="sv-orbit-chip">GitHub</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== DEEP-DIVE 3: Analytics ===================== -->
-  <section>
-    <div class="sv-deepdive">
-      <div class="sv-deepdive-text">
-        <div class="sv-label">Analytics &amp; Reporting</div>
-        <h2 class="sv-section-heading">See the hours you're actually getting back.</h2>
-        <p class="sv-sub">Every automation reports on itself — runs, failures, and time saved — so you're never guessing whether a workflow is actually pulling its weight.</p>
-        <ul>
-          <li>Per-workflow time-saved estimates</li>
-          <li>Failure alerts before they become a backlog</li>
-          <li>Exportable reports for stakeholders</li>
-        </ul>
-      </div>
-      <div class="sv-deepdive-visual" id="svVisual3">
-        <div class="sv-bars-visual" id="svBarsVisual">
-          <div class="sv-bar" data-height="55%"></div>
-          <div class="sv-bar" data-height="80%"></div>
-          <div class="sv-bar" data-height="40%"></div>
-          <div class="sv-bar" data-height="95%"></div>
-          <div class="sv-bar" data-height="65%"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PROCESS (horizontal pin) ===================== -->
-  <div class="sv-process-section" id="svProcessSection">
-    <div class="sv-process-track" id="svProcessTrack">
-      <div class="sv-process-heading-slide">
-        <div class="sv-label">How it works</div>
-        <h2 class="sv-section-heading">Four steps, start to finish.</h2>
-        <p class="sv-sub">Most teams have their first automation live within an afternoon — keep scrolling to see the whole process.</p>
-      </div>
-      <div class="sv-process-card"><span class="sv-step-num">01</span><h4>Connect</h4><p>Link the tools you already use — no engineering ticket required.</p></div>
-      <div class="sv-process-card"><span class="sv-step-num">02</span><h4>Build</h4><p>Drag together a trigger, a condition or two, and the actions you want.</p></div>
-      <div class="sv-process-card"><span class="sv-step-num">03</span><h4>Automate</h4><p>Turn it on. Lumen runs it exactly the same way, every single time.</p></div>
-      <div class="sv-process-card"><span class="sv-step-num">04</span><h4>Monitor</h4><p>Track runs, catch failures early, and see the hours it's saving you.</p></div>
-    </div>
-  </div>
-
-  <!-- ===================== INTEGRATIONS MARQUEE ===================== -->
-  <section style="max-width: none; padding: 4rem 0;">
-    <div style="text-align:center; margin-bottom: 2rem;">
-      <div class="sv-label" style="justify-content:center;">Works with what you already use</div>
-    </div>
-    <div class="sv-marquee-wrap">
-      <div class="sv-marquee-track" id="svMarqueeTrack1">
-        <span>SLACK</span><span>SALESFORCE</span><span>HUBSPOT</span><span>NOTION</span><span>ZAPIER</span>
-        <span>SLACK</span><span>SALESFORCE</span><span>HUBSPOT</span><span>NOTION</span><span>ZAPIER</span>
-      </div>
-    </div>
-    <div class="sv-marquee-wrap">
-      <div class="sv-marquee-track sv-marquee-row2" id="svMarqueeTrack2">
-        <span>GOOGLE SHEETS</span><span>STRIPE</span><span>GITHUB</span><span>ZENDESK</span><span>AIRTABLE</span>
-        <span>GOOGLE SHEETS</span><span>STRIPE</span><span>GITHUB</span><span>ZENDESK</span><span>AIRTABLE</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== QUOTE (pinned zoom) ===================== -->
-  <div class="sv-quote-section" id="svQuoteSection">
-    <h2 class="sv-quote-text" id="svQuoteText">
-      Over <span class="sv-accent-word">10 million tasks</span> ran through Lumen automations last month alone.
-    </h2>
-  </div>
-
-  <!-- ===================== CTA ===================== -->
-  <section class="sv-cta-section">
-    <div class="sv-label" style="justify-content:center;">Get started</div>
-    <h2>Ready to give your team back their week?</h2>
-    <p class="sv-sub" style="margin-left:auto; margin-right:auto;">No credit card required to try it — most teams have their first automation running within the hour.</p>
-    <div class="sv-cta-actions">
-      <button class="sv-btn sv-btn-solid" id="svCtaSolid">Start free trial</button>
-      <button class="sv-btn sv-btn-ghost" id="svCtaGhost">Talk to sales</button>
-    </div>
-  </section>
-
-</div>
-
-<script>
-(function () {
-  gsap.registerPlugin(ScrollTrigger);
-
-  /* ===================== Hero ===================== */
-  const svHeroHeading = document.getElementById('svHeroHeading');
-  const svHeroText = svHeroHeading.textContent;
-  svHeroHeading.innerHTML = svHeroText.split('').map((ch) =>
-    ch === ' ' ? ' ' : `<span class="sv-char">${ch}</span>`
-  ).join('');
-
-  gsap.set('.sv-hero .sv-char', { yPercent: 120, opacity: 0 });
-
-  const svHeroTl = gsap.timeline({ delay: 0.2 });
-  svHeroTl
-    .to('#svHeroEyebrow', { opacity: 1, duration: 0.6, ease: 'power2.out' })
-    .to('.sv-hero .sv-char', { yPercent: 0, opacity: 1, duration: 0.9, ease: 'power4.out', stagger: 0.012 }, '-=0.2')
-    .to('#svHeroSub', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4');
-
-  gsap.to('.sv-blob-1', { y: 40, x: -20, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-  gsap.to('.sv-blob-2', { y: -30, x: 30, duration: 7, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-
-  /* ===================== Services grid: reveal + tilt ===================== */
-  gsap.set('.sv-service-card', { opacity: 0, y: 30 });
-
-  ScrollTrigger.batch('.sv-service-card', {
-    start: 'top 88%',
-    onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1 }),
-    once: true
-  });
-
-  document.querySelectorAll('.sv-service-card').forEach((card) => {
-    const rotateX = gsap.quickTo(card, 'rotateX', { duration: 0.5, ease: 'power3' });
-    const rotateY = gsap.quickTo(card, 'rotateY', { duration: 0.5, ease: 'power3' });
-    const glare = card.querySelector('.sv-glare');
-
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width;
-      const relY = (e.clientY - rect.top) / rect.height;
-      rotateY((relX - 0.5) * 14);
-      rotateX(-(relY - 0.5) * 14);
-      glare.style.setProperty('--gx', (relX * 100) + '%');
-      glare.style.setProperty('--gy', (relY * 100) + '%');
-    });
-
-    card.addEventListener('mouseleave', () => {
-      rotateX(0);
-      rotateY(0);
-    });
-  });
-
-  /* ===================== Deep-dive 1: node chain ===================== */
-  ScrollTrigger.create({
-    trigger: '#svVisual1',
-    start: 'top 75%',
-    once: true,
-    onEnter: () => {
-      const nodeTl = gsap.timeline();
-      nodeTl
-        .to('#svNode1', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
-        .to('#svFill1', { height: '100%', duration: 0.5, ease: 'none' })
-        .to('#svNode2', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.15')
-        .to('#svFill2', { height: '100%', duration: 0.5, ease: 'none' })
-        .to('#svNode3', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.15');
-    }
-  });
-
-  /* ===================== Deep-dive 2: orbit hub ===================== */
-  const svOrbitChips = document.querySelectorAll('#svOrbitVisual .sv-orbit-chip');
-  const svOrbitRadius = 115;
-  const svOrbitCount = svOrbitChips.length;
-
-  gsap.set('#svOrbitVisual', { opacity: 0, scale: 0.85 });
-  gsap.set(svOrbitChips, { opacity: 0 });
-
-  ScrollTrigger.create({
-    trigger: '#svVisual2',
-    start: 'top 75%',
-    once: true,
-    onEnter: () => {
-      gsap.to('#svOrbitVisual', { opacity: 1, scale: 1, duration: 0.7, ease: 'power3.out' });
-      gsap.to(svOrbitChips, { opacity: 1, duration: 0.6, stagger: 0.08, delay: 0.2 });
-
-      svOrbitChips.forEach((chip, i) => {
-        const state = { angle: (Math.PI * 2 * i) / svOrbitCount };
-        gsap.to(state, {
-          angle: state.angle + Math.PI * 2,
-          duration: 16,
-          repeat: -1,
-          ease: 'none',
-          onUpdate: () => {
-            const x = Math.cos(state.angle) * svOrbitRadius;
-            const y = Math.sin(state.angle) * svOrbitRadius;
-            gsap.set(chip, { x, y });
-          }
-        });
-      });
-    }
-  });
-
-  /* ===================== Deep-dive 3: analytics bars ===================== */
-  ScrollTrigger.create({
-    trigger: '#svVisual3',
-    start: 'top 75%',
-    once: true,
-    onEnter: () => {
-      document.querySelectorAll('#svBarsVisual .sv-bar').forEach((bar, i) => {
-        gsap.to(bar, {
-          height: bar.getAttribute('data-height'),
-          duration: 1,
-          delay: i * 0.1,
-          ease: 'power3.out'
-        });
-      });
-    }
-  });
-
-  /* ===================== Process: horizontal pin ===================== */
-  const svProcessTrack = document.getElementById('svProcessTrack');
-  gsap.to(svProcessTrack, {
-    x: () => -(svProcessTrack.scrollWidth - window.innerWidth + 100),
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#svProcessSection',
-      start: 'top top',
-      end: () => `+=${svProcessTrack.scrollWidth - window.innerWidth + 100}`,
-      scrub: 1,
-      pin: true,
-      invalidateOnRefresh: true
-    }
-  });
-
-  /* ===================== Integrations marquee ===================== */
-  const svTrack1 = document.getElementById('svMarqueeTrack1');
-  const svTrack2 = document.getElementById('svMarqueeTrack2');
-
-  gsap.to(svTrack1, { x: -(svTrack1.scrollWidth / 2), duration: 20, ease: 'none', repeat: -1 });
-  gsap.fromTo(svTrack2, { x: -(svTrack2.scrollWidth / 2) }, { x: 0, duration: 22, ease: 'none', repeat: -1 });
-
-  /* ===================== Quote: pinned zoom ===================== */
-  gsap.fromTo('#svQuoteText',
-    { scale: 0.55, opacity: 0.3 },
-    {
-      scale: 1,
-      opacity: 1,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#svQuoteSection',
-        start: 'top top',
-        end: '+=90%',
-        scrub: true,
-        pin: true
+      :root {
+        --bg: #0b0b0d;
+        --panel: #131317;
+        --card: #17181c;
+        --card-2: #1c1d22;
+        --ink: #f5f1e8;
+        --muted: #91918c;
+        --line: #26272d;
+        --accent: #8c52ff;
+        --accent-2: #7c93ff;
       }
-    }
-  );
 
-  /* ===================== CTA: magnetic buttons ===================== */
-  document.querySelectorAll('.sv-btn').forEach((btn) => {
-    const xTo = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3' });
-    const yTo = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3' });
+      * {
+        box-sizing: border-box;
+      }
 
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      xTo((e.clientX - rect.left - rect.width / 2) * 0.35);
-      yTo((e.clientY - rect.top - rect.height / 2) * 0.45);
-    });
+      body.sv-body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+      }
 
-    btn.addEventListener('mouseleave', () => {
-      xTo(0);
-      yTo(0);
-    });
-  });
+      .sv-page h1,
+      .sv-page h2,
+      .sv-page h3,
+      .sv-page .sv-display {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+      }
 
-  window.addEventListener('load', () => ScrollTrigger.refresh());
-})();
-</script>
+      .sv-page section {
+        position: relative;
+        padding: 8rem 1.5rem;
+        max-width: 1180px;
+        margin: 0 auto;
+      }
 
-</body>
+      .sv-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+      }
+
+      .sv-label::before {
+        content: "";
+        width: 20px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .sv-sub {
+        color: var(--muted);
+        max-width: 560px;
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+
+      .sv-section-heading {
+        font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+        margin: 0 0 0.5rem;
+      }
+
+      /* ===================== HERO ===================== */
+      .sv-hero {
+        min-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 6rem;
+        overflow: hidden;
+      }
+
+      .sv-hero .sv-eyebrow {
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 1.5rem;
+        opacity: 0;
+      }
+
+      .sv-hero h1 {
+        font-size: clamp(2.5rem, 6.2vw, 4.6rem);
+        line-height: 1.1;
+        margin: 0 0 1.75rem;
+        max-width: 920px;
+      }
+
+      .sv-hero h1 .sv-char {
+        display: inline-block;
+        will-change: transform;
+      }
+
+      .sv-hero p {
+        color: var(--muted);
+        max-width: 520px;
+        font-size: 1.08rem;
+        line-height: 1.7;
+        opacity: 0;
+      }
+
+      .sv-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.26;
+        z-index: -1;
+      }
+
+      .sv-blob-1 {
+        width: 400px;
+        height: 400px;
+        background: var(--accent-2);
+        top: -90px;
+        right: -70px;
+      }
+      .sv-blob-2 {
+        width: 300px;
+        height: 300px;
+        background: var(--accent);
+        bottom: -70px;
+        left: 6%;
+      }
+
+      /* ===================== SERVICES GRID ===================== */
+      .sv-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        perspective: 1100px;
+        margin-top: 3rem;
+      }
+
+      .sv-service-card {
+        position: relative;
+        border-radius: 18px;
+        background: linear-gradient(160deg, var(--card-2), var(--card));
+        border: 1px solid var(--line);
+        padding: 2rem;
+        height: 230px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        transform-style: preserve-3d;
+        will-change: transform;
+        overflow: hidden;
+      }
+
+      .sv-service-card .sv-glare {
+        position: absolute;
+        inset: -50%;
+        background: radial-gradient(
+          circle at var(--gx, 50%) var(--gy, 50%),
+          rgba(255, 255, 255, 0.1),
+          transparent 45%
+        );
+        pointer-events: none;
+      }
+
+      .sv-service-icon {
+        position: absolute;
+        top: 1.6rem;
+        left: 2rem;
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: rgba(205, 164, 94, 0.12);
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        transform: translateZ(25px);
+      }
+
+      .sv-service-card h3 {
+        font-size: 1.15rem;
+        margin: 0 0 0.4rem;
+        transform: translateZ(20px);
+      }
+      .sv-service-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.87rem;
+        line-height: 1.55;
+        transform: translateZ(15px);
+      }
+
+      /* ===================== DEEP-DIVE SECTIONS ===================== */
+      .sv-deepdive {
+        display: flex;
+        align-items: center;
+        gap: clamp(2rem, 6vw, 5rem);
+        flex-wrap: wrap;
+      }
+
+      .sv-deepdive.sv-reverse {
+        flex-direction: row-reverse;
+      }
+
+      .sv-deepdive-text {
+        flex: 1 1 360px;
+        min-width: 280px;
+      }
+
+      .sv-deepdive-visual {
+        flex: 1 1 380px;
+        min-width: 280px;
+        height: 380px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sv-deepdive-text ul {
+        list-style: none;
+        margin: 1.5rem 0 0;
+        padding: 0;
+      }
+
+      .sv-deepdive-text li {
+        color: var(--muted);
+        font-size: 0.92rem;
+        padding: 0.6rem 0;
+        border-top: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .sv-deepdive-text li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* ---- Visual: workflow node chain ---- */
+      .sv-node-chain {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: 220px;
+      }
+
+      .sv-node {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 0.9rem 1.1rem;
+        font-size: 0.82rem;
+        color: var(--ink);
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      .sv-node .sv-node-tag {
+        display: block;
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.3rem;
+      }
+
+      .sv-node-connector {
+        width: 1px;
+        height: 34px;
+        background: var(--line);
+        margin-left: 1.1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sv-node-connector .sv-connector-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0%;
+        background: var(--accent);
+      }
+
+      /* ---- Visual: orbit hub ---- */
+      .sv-orbit-visual {
+        position: relative;
+        width: 280px;
+        height: 280px;
+      }
+
+      .sv-orbit-hub {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 76px;
+        height: 76px;
+        margin: -38px 0 0 -38px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #1a1305;
+        z-index: 2;
+      }
+
+      .sv-orbit-ring {
+        position: absolute;
+        inset: 0;
+        border: 1px dashed var(--line);
+        border-radius: 50%;
+      }
+
+      .sv-orbit-chip {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 54px;
+        height: 54px;
+        margin: -27px 0 0 -27px;
+        border-radius: 50%;
+        background: var(--card);
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.68rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      /* ---- Visual: analytics bars ---- */
+      .sv-bars-visual {
+        width: 260px;
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
+        height: 200px;
+      }
+
+      .sv-bar {
+        flex: 1;
+        background: linear-gradient(180deg, var(--accent), #8a6f38);
+        border-radius: 6px 6px 0 0;
+        height: 0%;
+      }
+
+      .sv-bar:nth-child(2) {
+        background: linear-gradient(180deg, var(--accent-2), #4d5fb0);
+      }
+      .sv-bar:nth-child(4) {
+        background: linear-gradient(180deg, var(--accent-2), #4d5fb0);
+      }
+
+      /* ===================== PROCESS (horizontal pin) ===================== */
+      .sv-process-section {
+        max-width: none;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .sv-process-track {
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        gap: 1.75rem;
+        padding-left: 8vw;
+        width: max-content;
+      }
+
+      .sv-process-heading-slide {
+        width: 40vw;
+        max-width: 460px;
+        flex-shrink: 0;
+        padding-right: 3rem;
+      }
+
+      .sv-process-card {
+        width: 300px;
+        height: 380px;
+        flex-shrink: 0;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        padding: 2.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .sv-process-card .sv-step-num {
+        position: absolute;
+        top: 2rem;
+        font-family: "Fraunces", serif;
+        font-size: 2.4rem;
+        color: rgba(205, 164, 94, 0.35);
+      }
+
+      .sv-process-card h4 {
+        margin: 0 0 0.4rem;
+        font-size: 1.15rem;
+      }
+      .sv-process-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.87rem;
+        line-height: 1.55;
+      }
+
+      .sv-process-card:nth-child(2) {
+        background: linear-gradient(160deg, #2a2416, var(--card));
+      }
+      .sv-process-card:nth-child(3) {
+        background: linear-gradient(160deg, #1a2340, var(--card));
+      }
+      .sv-process-card:nth-child(4) {
+        background: linear-gradient(160deg, #3a1c1c, var(--card));
+      }
+      .sv-process-card:nth-child(5) {
+        background: linear-gradient(160deg, #1c3a2c, var(--card));
+      }
+
+      /* ===================== INTEGRATIONS MARQUEE ===================== */
+      .sv-marquee-wrap {
+        max-width: none;
+        padding: 2.5rem 0;
+        overflow: hidden;
+      }
+
+      .sv-marquee-track {
+        display: flex;
+        width: max-content;
+        gap: 2.5rem;
+      }
+
+      .sv-marquee-track span {
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+        color: transparent;
+        -webkit-text-stroke: 1px var(--line);
+        white-space: nowrap;
+      }
+
+      .sv-marquee-track.sv-marquee-row2 span {
+        -webkit-text-stroke: 1px var(--accent-2);
+      }
+
+      /* ===================== QUOTE (pinned zoom) ===================== */
+      .sv-quote-section {
+        max-width: none;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .sv-quote-text {
+        font-size: clamp(1.8rem, 5vw, 3.4rem);
+        text-align: center;
+        line-height: 1.35;
+        max-width: 85vw;
+      }
+
+      .sv-quote-text .sv-accent-word {
+        color: var(--accent);
+      }
+
+      /* ===================== CTA ===================== */
+      .sv-cta-section {
+        text-align: center;
+        padding-bottom: 12rem;
+      }
+
+      .sv-cta-section h2 {
+        font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+        max-width: 680px;
+        margin: 0 auto 1rem;
+      }
+
+      .sv-cta-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1.75rem;
+        flex-wrap: wrap;
+      }
+
+      .sv-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.05rem 2.4rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .sv-btn-solid {
+        background: var(--accent);
+        color: #1a1305;
+        border: none;
+      }
+
+      .sv-btn-ghost {
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+
+      @media (max-width: 720px) {
+        .sv-deepdive-visual {
+          height: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body class="sv-body">
+    <div class="sv-page">
+      <!-- ===================== HERO ===================== -->
+      <section class="sv-hero">
+        <div class="sv-blob sv-blob-1"></div>
+        <div class="sv-blob sv-blob-2"></div>
+        <div class="sv-eyebrow" id="svHeroEyebrow">Services</div>
+        <h1 id="svHeroHeading">
+          One platform, every repetitive task automated.
+        </h1>
+        <p id="svHeroSub">
+          From connecting your first two tools to running enterprise-scale
+          pipelines, Lumen's services cover the full range of what "automation"
+          actually means day to day.
+        </p>
+      </section>
+
+      <!-- ===================== SERVICES GRID ===================== -->
+      <section>
+        <div class="sv-label">What's included</div>
+        <h2 class="sv-section-heading">Six ways Lumen removes the busywork.</h2>
+        <p class="sv-sub">
+          Every plan includes access to all six — the difference between tiers
+          is scale, not capability.
+        </p>
+
+        <div class="sv-grid" id="svGrid">
+          <div class="sv-service-card">
+            <div class="sv-glare"></div>
+            <div class="sv-service-icon">01</div>
+            <h3>Workflow Automation</h3>
+            <p>Build multi-step automations without writing a line of code.</p>
+          </div>
+          <div class="sv-service-card">
+            <div class="sv-glare"></div>
+            <div class="sv-service-icon">02</div>
+            <h3>App Integrations</h3>
+            <p>Connect 200+ tools your team is already using today.</p>
+          </div>
+          <div class="sv-service-card">
+            <div class="sv-glare"></div>
+            <div class="sv-service-icon">03</div>
+            <h3>Data Sync &amp; Pipelines</h3>
+            <p>Keep every system speaking the same data, in real time.</p>
+          </div>
+          <div class="sv-service-card">
+            <div class="sv-glare"></div>
+            <div class="sv-service-icon">04</div>
+            <h3>Analytics &amp; Reporting</h3>
+            <p>
+              See exactly where time is being saved, and where it isn't yet.
+            </p>
+          </div>
+          <div class="sv-service-card">
+            <div class="sv-glare"></div>
+            <div class="sv-service-icon">05</div>
+            <h3>Enterprise Security</h3>
+            <p>SOC 2 Type II, SSO, and granular permissioning built in.</p>
+          </div>
+          <div class="sv-service-card">
+            <div class="sv-glare"></div>
+            <div class="sv-service-icon">06</div>
+            <h3>Developer API</h3>
+            <p>Build custom automations directly on top of our engine.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== DEEP-DIVE 1: Workflow Automation ===================== -->
+      <section>
+        <div class="sv-deepdive">
+          <div class="sv-deepdive-text">
+            <div class="sv-label">Workflow Automation</div>
+            <h2 class="sv-section-heading">
+              If it happens twice, it can happen automatically.
+            </h2>
+            <p class="sv-sub">
+              Set a trigger, add as many conditions and actions as the job
+              needs, and Lumen runs it exactly the same way every single time —
+              no missed steps, no "I forgot to update the sheet."
+            </p>
+            <ul>
+              <li>Visual builder — drag steps, don't write scripts</li>
+              <li>Conditional branching for real-world edge cases</li>
+              <li>Error handling with automatic retries</li>
+            </ul>
+          </div>
+          <div class="sv-deepdive-visual" id="svVisual1">
+            <div class="sv-node-chain">
+              <div class="sv-node" id="svNode1">
+                <span class="sv-node-tag">Trigger</span>New order placed in
+                Shopify
+              </div>
+              <div class="sv-node-connector">
+                <div class="sv-connector-fill" id="svFill1"></div>
+              </div>
+              <div class="sv-node" id="svNode2">
+                <span class="sv-node-tag">Condition</span>Order total is over
+                $200
+              </div>
+              <div class="sv-node-connector">
+                <div class="sv-connector-fill" id="svFill2"></div>
+              </div>
+              <div class="sv-node" id="svNode3">
+                <span class="sv-node-tag">Action</span>Notify #priority-orders
+                in Slack
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== DEEP-DIVE 2: Integrations ===================== -->
+      <section>
+        <div class="sv-deepdive sv-reverse">
+          <div class="sv-deepdive-text">
+            <div class="sv-label">App Integrations</div>
+            <h2 class="sv-section-heading">
+              Your tools, finally talking to each other.
+            </h2>
+            <p class="sv-sub">
+              Lumen sits in the middle of your stack so nothing has to be
+              copy-pasted between apps ever again — connect once, and every
+              workflow downstream just works.
+            </p>
+            <ul>
+              <li>200+ pre-built connectors, ready on day one</li>
+              <li>Two-way sync, not just one-directional triggers</li>
+              <li>Custom connectors available on Enterprise</li>
+            </ul>
+          </div>
+          <div class="sv-deepdive-visual" id="svVisual2">
+            <div class="sv-orbit-visual" id="svOrbitVisual">
+              <div class="sv-orbit-ring"></div>
+              <div class="sv-orbit-hub">Lumen</div>
+              <div class="sv-orbit-chip">Slack</div>
+              <div class="sv-orbit-chip">Sheets</div>
+              <div class="sv-orbit-chip">Stripe</div>
+              <div class="sv-orbit-chip">HubSpot</div>
+              <div class="sv-orbit-chip">GitHub</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== DEEP-DIVE 3: Analytics ===================== -->
+      <section>
+        <div class="sv-deepdive">
+          <div class="sv-deepdive-text">
+            <div class="sv-label">Analytics &amp; Reporting</div>
+            <h2 class="sv-section-heading">
+              See the hours you're actually getting back.
+            </h2>
+            <p class="sv-sub">
+              Every automation reports on itself — runs, failures, and time
+              saved — so you're never guessing whether a workflow is actually
+              pulling its weight.
+            </p>
+            <ul>
+              <li>Per-workflow time-saved estimates</li>
+              <li>Failure alerts before they become a backlog</li>
+              <li>Exportable reports for stakeholders</li>
+            </ul>
+          </div>
+          <div class="sv-deepdive-visual" id="svVisual3">
+            <div class="sv-bars-visual" id="svBarsVisual">
+              <div class="sv-bar" data-height="55%"></div>
+              <div class="sv-bar" data-height="80%"></div>
+              <div class="sv-bar" data-height="40%"></div>
+              <div class="sv-bar" data-height="95%"></div>
+              <div class="sv-bar" data-height="65%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== PROCESS (horizontal pin) ===================== -->
+      <div class="sv-process-section" id="svProcessSection">
+        <div class="sv-process-track" id="svProcessTrack">
+          <div class="sv-process-heading-slide">
+            <div class="sv-label">How it works</div>
+            <h2 class="sv-section-heading">Four steps, start to finish.</h2>
+            <p class="sv-sub">
+              Most teams have their first automation live within an afternoon —
+              keep scrolling to see the whole process.
+            </p>
+          </div>
+          <div class="sv-process-card">
+            <span class="sv-step-num">01</span>
+            <h4>Connect</h4>
+            <p>
+              Link the tools you already use — no engineering ticket required.
+            </p>
+          </div>
+          <div class="sv-process-card">
+            <span class="sv-step-num">02</span>
+            <h4>Build</h4>
+            <p>
+              Drag together a trigger, a condition or two, and the actions you
+              want.
+            </p>
+          </div>
+          <div class="sv-process-card">
+            <span class="sv-step-num">03</span>
+            <h4>Automate</h4>
+            <p>
+              Turn it on. Lumen runs it exactly the same way, every single time.
+            </p>
+          </div>
+          <div class="sv-process-card">
+            <span class="sv-step-num">04</span>
+            <h4>Monitor</h4>
+            <p>
+              Track runs, catch failures early, and see the hours it's saving
+              you.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== INTEGRATIONS MARQUEE ===================== -->
+      <section style="max-width: none; padding: 4rem 0">
+        <div style="text-align: center; margin-bottom: 2rem">
+          <div class="sv-label" style="justify-content: center">
+            Works with what you already use
+          </div>
+        </div>
+        <div class="sv-marquee-wrap">
+          <div class="sv-marquee-track" id="svMarqueeTrack1">
+            <span>SLACK</span><span>SALESFORCE</span><span>HUBSPOT</span
+            ><span>NOTION</span><span>ZAPIER</span> <span>SLACK</span
+            ><span>SALESFORCE</span><span>HUBSPOT</span><span>NOTION</span
+            ><span>ZAPIER</span>
+          </div>
+        </div>
+        <div class="sv-marquee-wrap">
+          <div class="sv-marquee-track sv-marquee-row2" id="svMarqueeTrack2">
+            <span>GOOGLE SHEETS</span><span>STRIPE</span><span>GITHUB</span
+            ><span>ZENDESK</span><span>AIRTABLE</span> <span>GOOGLE SHEETS</span
+            ><span>STRIPE</span><span>GITHUB</span><span>ZENDESK</span
+            ><span>AIRTABLE</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== QUOTE (pinned zoom) ===================== -->
+      <div class="sv-quote-section" id="svQuoteSection">
+        <h2 class="sv-quote-text" id="svQuoteText">
+          Over <span class="sv-accent-word">10 million tasks</span> ran through
+          Lumen automations last month alone.
+        </h2>
+      </div>
+
+      <!-- ===================== CTA ===================== -->
+      <section class="sv-cta-section">
+        <div class="sv-label" style="justify-content: center">Get started</div>
+        <h2>Ready to give your team back their week?</h2>
+        <p class="sv-sub" style="margin-left: auto; margin-right: auto">
+          No credit card required to try it — most teams have their first
+          automation running within the hour.
+        </p>
+        <div class="sv-cta-actions">
+          <button class="sv-btn sv-btn-solid" id="svCtaSolid">
+            Start free trial
+          </button>
+          <button class="sv-btn sv-btn-ghost" id="svCtaGhost">
+            Talk to sales
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      (function () {
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* ===================== Hero ===================== */
+        const svHeroHeading = document.getElementById("svHeroHeading");
+        const svHeroText = svHeroHeading.textContent;
+        svHeroHeading.innerHTML = svHeroText
+          .split("")
+          .map((ch) =>
+            ch === " " ? " " : `<span class="sv-char">${ch}</span>`,
+          )
+          .join("");
+
+        gsap.set(".sv-hero .sv-char", { yPercent: 120, opacity: 0 });
+
+        const svHeroTl = gsap.timeline({ delay: 0.2 });
+        svHeroTl
+          .to("#svHeroEyebrow", {
+            opacity: 1,
+            duration: 0.6,
+            ease: "power2.out",
+          })
+          .to(
+            ".sv-hero .sv-char",
+            {
+              yPercent: 0,
+              opacity: 1,
+              duration: 0.9,
+              ease: "power4.out",
+              stagger: 0.012,
+            },
+            "-=0.2",
+          )
+          .to(
+            "#svHeroSub",
+            { opacity: 1, duration: 0.8, ease: "power2.out" },
+            "-=0.4",
+          );
+
+        gsap.to(".sv-blob-1", {
+          y: 40,
+          x: -20,
+          duration: 6,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+        gsap.to(".sv-blob-2", {
+          y: -30,
+          x: 30,
+          duration: 7,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+
+        /* ===================== Services grid: reveal + tilt ===================== */
+        gsap.set(".sv-service-card", { opacity: 0, y: 30 });
+
+        ScrollTrigger.batch(".sv-service-card", {
+          start: "top 88%",
+          onEnter: (batch) =>
+            gsap.to(batch, {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              ease: "power3.out",
+              stagger: 0.1,
+            }),
+          once: true,
+        });
+
+        document.querySelectorAll(".sv-service-card").forEach((card) => {
+          const rotateX = gsap.quickTo(card, "rotateX", {
+            duration: 0.5,
+            ease: "power3",
+          });
+          const rotateY = gsap.quickTo(card, "rotateY", {
+            duration: 0.5,
+            ease: "power3",
+          });
+          const glare = card.querySelector(".sv-glare");
+
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const relX = (e.clientX - rect.left) / rect.width;
+            const relY = (e.clientY - rect.top) / rect.height;
+            rotateY((relX - 0.5) * 14);
+            rotateX(-(relY - 0.5) * 14);
+            glare.style.setProperty("--gx", relX * 100 + "%");
+            glare.style.setProperty("--gy", relY * 100 + "%");
+          });
+
+          card.addEventListener("mouseleave", () => {
+            rotateX(0);
+            rotateY(0);
+          });
+        });
+
+        /* ===================== Deep-dive 1: node chain ===================== */
+        ScrollTrigger.create({
+          trigger: "#svVisual1",
+          start: "top 75%",
+          once: true,
+          onEnter: () => {
+            const nodeTl = gsap.timeline();
+            nodeTl
+              .to("#svNode1", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power3.out",
+              })
+              .to("#svFill1", { height: "100%", duration: 0.5, ease: "none" })
+              .to(
+                "#svNode2",
+                { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+                "-=0.15",
+              )
+              .to("#svFill2", { height: "100%", duration: 0.5, ease: "none" })
+              .to(
+                "#svNode3",
+                { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+                "-=0.15",
+              );
+          },
+        });
+
+        /* ===================== Deep-dive 2: orbit hub ===================== */
+        const svOrbitChips = document.querySelectorAll(
+          "#svOrbitVisual .sv-orbit-chip",
+        );
+        const svOrbitRadius = 115;
+        const svOrbitCount = svOrbitChips.length;
+
+        gsap.set("#svOrbitVisual", { opacity: 0, scale: 0.85 });
+        gsap.set(svOrbitChips, { opacity: 0 });
+
+        ScrollTrigger.create({
+          trigger: "#svVisual2",
+          start: "top 75%",
+          once: true,
+          onEnter: () => {
+            gsap.to("#svOrbitVisual", {
+              opacity: 1,
+              scale: 1,
+              duration: 0.7,
+              ease: "power3.out",
+            });
+            gsap.to(svOrbitChips, {
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.08,
+              delay: 0.2,
+            });
+
+            svOrbitChips.forEach((chip, i) => {
+              const state = { angle: (Math.PI * 2 * i) / svOrbitCount };
+              gsap.to(state, {
+                angle: state.angle + Math.PI * 2,
+                duration: 16,
+                repeat: -1,
+                ease: "none",
+                onUpdate: () => {
+                  const x = Math.cos(state.angle) * svOrbitRadius;
+                  const y = Math.sin(state.angle) * svOrbitRadius;
+                  gsap.set(chip, { x, y });
+                },
+              });
+            });
+          },
+        });
+
+        /* ===================== Deep-dive 3: analytics bars ===================== */
+        ScrollTrigger.create({
+          trigger: "#svVisual3",
+          start: "top 75%",
+          once: true,
+          onEnter: () => {
+            document
+              .querySelectorAll("#svBarsVisual .sv-bar")
+              .forEach((bar, i) => {
+                gsap.to(bar, {
+                  height: bar.getAttribute("data-height"),
+                  duration: 1,
+                  delay: i * 0.1,
+                  ease: "power3.out",
+                });
+              });
+          },
+        });
+
+        /* ===================== Process: horizontal pin ===================== */
+        const svProcessTrack = document.getElementById("svProcessTrack");
+        gsap.to(svProcessTrack, {
+          x: () => -(svProcessTrack.scrollWidth - window.innerWidth + 100),
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#svProcessSection",
+            start: "top top",
+            end: () =>
+              `+=${svProcessTrack.scrollWidth - window.innerWidth + 100}`,
+            scrub: 1,
+            pin: true,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        /* ===================== Integrations marquee ===================== */
+        const svTrack1 = document.getElementById("svMarqueeTrack1");
+        const svTrack2 = document.getElementById("svMarqueeTrack2");
+
+        gsap.to(svTrack1, {
+          x: -(svTrack1.scrollWidth / 2),
+          duration: 20,
+          ease: "none",
+          repeat: -1,
+        });
+        gsap.fromTo(
+          svTrack2,
+          { x: -(svTrack2.scrollWidth / 2) },
+          { x: 0, duration: 22, ease: "none", repeat: -1 },
+        );
+
+        /* ===================== Quote: pinned zoom ===================== */
+        gsap.fromTo(
+          "#svQuoteText",
+          { scale: 0.55, opacity: 0.3 },
+          {
+            scale: 1,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "#svQuoteSection",
+              start: "top top",
+              end: "+=90%",
+              scrub: true,
+              pin: true,
+            },
+          },
+        );
+
+        /* ===================== CTA: magnetic buttons ===================== */
+        document.querySelectorAll(".sv-btn").forEach((btn) => {
+          const xTo = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3" });
+          const yTo = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3" });
+
+          btn.addEventListener("mousemove", (e) => {
+            const rect = btn.getBoundingClientRect();
+            xTo((e.clientX - rect.left - rect.width / 2) * 0.35);
+            yTo((e.clientY - rect.top - rect.height / 2) * 0.45);
+          });
+
+          btn.addEventListener("mouseleave", () => {
+            xTo(0);
+            yTo(0);
+          });
+        });
+
+        window.addEventListener("load", () => ScrollTrigger.refresh());
+      })();
+    </script>
+  </body>
 </html>

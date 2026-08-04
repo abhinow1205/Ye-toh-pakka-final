@@ -1,8 +1,9 @@
 
     /* ===================== 2. Expand to fullscreen ===================== */
+
   .expand-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1.25rem;
   }
 
@@ -11,7 +12,9 @@
     height: 260px;
     border-radius: 16px;
     border: 1px solid var(--line);
-    background: linear-gradient(150deg, var(--card-2), var(--card));
+    background: rgba(92, 225, 230, 0.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     padding: 1.75rem;
     display: flex;
     flex-direction: column;

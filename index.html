@@ -92,18 +92,17 @@
         justify-content: center;
       }
 
-      .demo-tag {
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 1.25rem;
-      }
-
       .hero-left h1 {
         font-size: clamp(2.2rem, 4vw, 3.4rem);
+        font-weight: 700;
+        font-family: var(--font-primary);
         line-height: 1.12;
         margin: 0 0 1.25rem;
+
+        background: linear-gradient(120deg, #5ce1e6, #7fa8ff, #8c52ff, #d26cff);
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       .hero-left p {
@@ -770,13 +769,12 @@
 
     <div class="hero-section">
       <div class="hero-left">
-        <div class="demo-tag">From Complexity to Clarity</div>
-        <h1>Turn scattered chaos into a single, luminous focus.</h1>
+        <div class="section-label">BUSINESS AUTOMATION & DATA INTELLIGENCE</div>
+        <h1>Where Automation Meets Smarter Decision Making.</h1>
         <p>
-          Stars scattered loosely across the whole card, with a faint nebula
-          glow behind them, gather into a dense, glowing halo around a single
-          core. Drag the handle on the card to see the shift from complexity to
-          clarity.
+          From automated reporting and workflow automation to powerful analytics
+          and custom dashboards, Insight Grid builds solutions that save time,
+          reduce errors, and empower better decisions.
         </p>
       </div>
 
@@ -800,10 +798,14 @@
     <!-- ================= Section 2 ================= -->
     <section class="section_2" id="sec-2">
       <div class="top_half">
-        <div class="section-label">01 — Curtain reveal</div>
-        <div class="curtain-line"><h2>Every line arrives on its own,</h2></div>
+        <div class="section-label">WHY BUSINESSES CHOOSE INSIGHT GRID</div>
         <div class="curtain-line">
-          <h2 style="color: var(--accent)">a beat after the one before it.</h2>
+          <h2 class="section-headline">Built to Eliminate Repetitive Work,</h2>
+        </div>
+        <div class="curtain-line">
+          <h2 class="section-headline2" style="color: var(--accent)">
+            Designed to Accelerate Better Decisions.
+          </h2>
         </div>
       </div>
       <div class="bottom_half">
@@ -811,96 +813,10 @@
           <!-- Card 1 -->
           <div class="mat mat1">
             <div class="sec2_upper_half">
-              <h1>Just a Headline</h1>
+              <h1>Workflow Automation</h1>
               <p>
-                A few sentences of text to explain the headline. A few
-                sentences.
-              </p>
-            </div>
-
-            <div class="sec2_lower_half">
-              <div class="sec2_circles">
-                <div class="ring-item" data-percent="78">
-                  <svg width="110" height="110" viewBox="0 0 110 110">
-                    <circle class="bg" cx="55" cy="55" r="46"></circle>
-                    <circle class="progress" cx="55" cy="55" r="46"></circle>
-                  </svg>
-                  <div class="ring-content">
-                    <span class="ring-num">0%</span>
-                    <span class="ring-label">Design</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="sec2_vertical_divider"></div>
-
-              <ul class="sec2_lists">
-                <li>
-                  <i data-lucide="check-circle" class="list-icon"></i>
-                  <span>User Interface</span>
-                </li>
-                <li>
-                  <i data-lucide="check-circle" class="list-icon"></i>
-                  <span>UX Research</span>
-                </li>
-                <li>
-                  <i data-lucide="check-circle" class="list-icon"></i>
-                  <span>Prototyping</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="mat mat2">
-            <div class="sec2_upper_half">
-              <h1>Just a Headline</h1>
-              <p>
-                A few sentences of text to explain the headline. A few
-                sentences.
-              </p>
-            </div>
-
-            <div class="sec2_lower_half">
-              <div class="sec2_circles">
-                <div class="ring-item" data-percent="65">
-                  <svg width="110" height="110" viewBox="0 0 110 110">
-                    <circle class="bg" cx="55" cy="55" r="46"></circle>
-                    <circle class="progress" cx="55" cy="55" r="46"></circle>
-                  </svg>
-                  <div class="ring-content">
-                    <span class="ring-num">0%</span>
-                    <span class="ring-label">Code</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="sec2_vertical_divider"></div>
-
-              <ul class="sec2_lists">
-                <li>
-                  <i data-lucide="code" class="list-icon"></i>
-                  <span>HTML & CSS</span>
-                </li>
-                <li>
-                  <i data-lucide="code" class="list-icon"></i>
-                  <span>JavaScript</span>
-                </li>
-                <li>
-                  <i data-lucide="code" class="list-icon"></i>
-                  <span>React App</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="mat mat3">
-            <div class="sec2_upper_half">
-              <h1>Just a Headline</h1>
-              <p>
-                A few sentences of text to explain the headline. A few
-                sentences.
+                Automate repetitive processes and free your team to focus on
+                high-value work.
               </p>
             </div>
 
@@ -913,7 +829,93 @@
                   </svg>
                   <div class="ring-content">
                     <span class="ring-num">0%</span>
-                    <span class="ring-label">Growth</span>
+                    <span class="ring-label">Efficiency</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sec2_vertical_divider"></div>
+
+              <ul class="sec2_lists">
+                <li>
+                  <i data-lucide="check-circle" class="list-icon"></i>
+                  <span>Automated workflows tailored to your business</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" class="list-icon"></i>
+                  <span>Eliminate repetitive manual processes</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" class="list-icon"></i>
+                  <span>Faster execution with fewer errors</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="mat mat2">
+            <div class="sec2_upper_half">
+              <h1>Unified Data Intelligence</h1>
+              <p>
+                Bring all your business data into one centralized, real-time
+                ecosystem.
+              </p>
+            </div>
+
+            <div class="sec2_lower_half">
+              <div class="sec2_circles">
+                <div class="ring-item" data-percent="99">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <circle class="bg" cx="55" cy="55" r="46"></circle>
+                    <circle class="progress" cx="55" cy="55" r="46"></circle>
+                  </svg>
+                  <div class="ring-content">
+                    <span class="ring-num">0%</span>
+                    <span class="ring-label">Accurate</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sec2_vertical_divider"></div>
+
+              <ul class="sec2_lists">
+                <li>
+                  <i data-lucide="code" class="list-icon"></i>
+                  <span>Integrate multiple platforms seamlessly</span>
+                </li>
+                <li>
+                  <i data-lucide="code" class="list-icon"></i>
+                  <span>Real-time reporting across departments</span>
+                </li>
+                <li>
+                  <i data-lucide="code" class="list-icon"></i>
+                  <span>Single source of truth for decision making</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="mat mat3">
+            <div class="sec2_upper_half">
+              <h1>Actionable Business Insights</h1>
+              <p>
+                Transform complex datasets into dashboards that drive smarter
+                business decisions.
+              </p>
+            </div>
+
+            <div class="sec2_lower_half">
+              <div class="sec2_circles">
+                <div class="ring-item" data-percent="75">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <circle class="bg" cx="55" cy="55" r="46"></circle>
+                    <circle class="progress" cx="55" cy="55" r="46"></circle>
+                  </svg>
+                  <div class="ring-content">
+                    <span class="ring-num">0%</span>
+                    <span class="ring-label">Faster</span>
                   </div>
                 </div>
               </div>
@@ -923,15 +925,15 @@
               <ul class="sec2_lists">
                 <li>
                   <i data-lucide="trending-up" class="list-icon"></i>
-                  <span>SEO Optimization</span>
+                  <span>Interactive executive dashboards</span>
                 </li>
                 <li>
                   <i data-lucide="trending-up" class="list-icon"></i>
-                  <span>Analytics</span>
+                  <span>AI-driven insights and forecasting</span>
                 </li>
                 <li>
                   <i data-lucide="trending-up" class="list-icon"></i>
-                  <span>Conversion</span>
+                  <span>Custom KPIs tailored to your goals</span>
                 </li>
               </ul>
             </div>
@@ -946,130 +948,197 @@
       <div class="h-scroll-section" id="hScrollSection">
         <div class="h-track" id="hTrack">
           <div class="s3_content">
-            <h2>Our Services</h2>
+            <div class="s3_tag">
+              <span></span>
+              Our Services
+            </div>
+
+            <h2>Solutions Designed Around Your Business</h2>
+
             <p>
-              Explore our wide range of services meant to automate all your
-              manual tasks
+              Every business operates differently. We combine automation,
+              analytics and custom software to remove repetitive work and give
+              teams complete visibility over their operations.
             </p>
+
+            <div class="s3_stats">
+              <div class="stat">
+                <h3>5+</h3>
+                <span>Core Services</span>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="stat">
+                <h3>∞</h3>
+                <span>Automation Possibilities</span>
+              </div>
+            </div>
           </div>
           <div class="h-card">
             <div class="card-top">
-              <span class="num">02</span>
+              <span class="num">01</span>
 
-              <span class="eyebrow"> Analytics </span>
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
             </div>
+
+            <span class="eyebrow"> AUTOMATION </span>
 
             <div class="service-icon">
               <i data-lucide="layout-dashboard"></i>
             </div>
 
             <div class="card-content">
-              <h3>Dashboard Design</h3>
+              <h3>Automated Reporting Systems</h3>
 
               <p>
-                Interactive dashboards built for business intelligence,
-                automation and data-driven decisions.
+                Replace repetitive reporting with automated dashboards that
+                deliver accurate insights whenever you need them.
               </p>
             </div>
 
-            <div class="card-arrow">
-              <i data-lucide="arrow-right"></i>
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
             </div>
           </div>
           <div class="h-card">
             <div class="card-top">
               <span class="num">02</span>
 
-              <span class="eyebrow"> Analytics </span>
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
             </div>
+
+            <span class="eyebrow"> VISUALIZATION </span>
 
             <div class="service-icon">
               <i data-lucide="layout-dashboard"></i>
             </div>
 
             <div class="card-content">
-              <h3>Dashboard Design</h3>
+              <h3>Dashboard Design & Development</h3>
 
               <p>
-                Interactive dashboards built for business intelligence,
-                automation and data-driven decisions.
+                Interactive dashboards built to visualize your most important
+                metrics and support faster, data-driven decisions.
               </p>
             </div>
 
-            <div class="card-arrow">
-              <i data-lucide="arrow-right"></i>
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
             </div>
           </div>
           <div class="h-card">
             <div class="card-top">
-              <span class="num">02</span>
+              <span class="num">03</span>
 
-              <span class="eyebrow"> Analytics </span>
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
             </div>
+
+            <span class="eyebrow"> OPTIMIZATION </span>
 
             <div class="service-icon">
               <i data-lucide="layout-dashboard"></i>
             </div>
 
             <div class="card-content">
-              <h3>Dashboard Design</h3>
+              <h3>Workflow Automation</h3>
 
               <p>
-                Interactive dashboards built for business intelligence,
-                automation and data-driven decisions.
+                Automate business processes, reduce manual effort, and improve
+                operational efficiency with intelligent workflows.
               </p>
             </div>
 
-            <div class="card-arrow">
-              <i data-lucide="arrow-right"></i>
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
             </div>
           </div>
           <div class="h-card">
             <div class="card-top">
-              <span class="num">02</span>
+              <span class="num">04</span>
 
-              <span class="eyebrow"> Analytics </span>
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
             </div>
+
+            <span class="eyebrow"> CONNECTIVITY </span>
 
             <div class="service-icon">
               <i data-lucide="layout-dashboard"></i>
             </div>
 
             <div class="card-content">
-              <h3>Dashboard Design</h3>
+              <h3>Data Integration & Management</h3>
 
               <p>
-                Interactive dashboards built for business intelligence,
-                automation and data-driven decisions.
+                Connect your applications, databases, and cloud platforms to
+                create a single, reliable source of business data.
               </p>
             </div>
 
-            <div class="card-arrow">
-              <i data-lucide="arrow-right"></i>
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
             </div>
           </div>
           <div class="h-card">
             <div class="card-top">
-              <span class="num">02</span>
+              <span class="num">05</span>
 
-              <span class="eyebrow"> Analytics </span>
+              <div class="status">
+                <span class="pulse"></span>
+                LIVE
+              </div>
             </div>
+
+            <span class="eyebrow"> INTELLIGENCE </span>
 
             <div class="service-icon">
               <i data-lucide="layout-dashboard"></i>
             </div>
 
             <div class="card-content">
-              <h3>Dashboard Design</h3>
+              <h3>Predictive & Advanced Analytics</h3>
 
               <p>
-                Interactive dashboards built for business intelligence,
-                automation and data-driven decisions.
+                Leverage machine learning and advanced algorithms to uncover
+                hidden patterns, forecast future trends, and make informed
+                business decisions.
               </p>
             </div>
 
-            <div class="card-arrow">
-              <i data-lucide="arrow-right"></i>
+            <div class="card-bottom">
+              <span class="link"> View Service </span>
+
+              <div class="card-arrow">
+                <i data-lucide="arrow-right"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -1081,28 +1150,25 @@
 
     <!-- ===================== COUNTERS ===================== -->
     <section class="counter-section">
-      <div class="section-label">Count</div>
-      <h2>Numbers that tick up</h2>
-      <p class="section-sub">
-        A plain object tweened from 0 to a target value, with onUpdate writing
-        to the DOM.
-      </p>
+      <div class="section-label">Insight Feed</div>
+      <h2 class="section-headline">Every number has a story.</h2>
+      <p class="section-sub">A few things that define how we work.</p>
       <div class="counters">
         <div class="counter-item">
-          <div class="num-display" data-target="248">0</div>
-          <div class="num-label">Animations shipped</div>
-        </div>
-        <div class="counter-item">
-          <div class="num-display" data-target="99">0</div>
-          <div class="num-label">% still 60fps</div>
+          <div class="num-display" data-target="5">0</div>
+          <div class="num-label">Specialized Services</div>
         </div>
         <div class="counter-item">
           <div class="num-display" data-target="12">0</div>
-          <div class="num-label">Coffees per demo</div>
+          <div class="num-label">Automation Workflows</div>
         </div>
         <div class="counter-item">
-          <div class="num-display" data-target="1">0</div>
-          <div class="num-label">Regret (thankfully)</div>
+          <div class="num-display" data-target="50">0</div>
+          <div class="num-label">Business Processes Optimized</div>
+        </div>
+        <div class="counter-item">
+          <div class="num-display" data-target="100">0</div>
+          <div class="num-label">Ideas Worth Exploring</div>
         </div>
       </div>
     </section>
@@ -1118,10 +1184,10 @@
           <div class="lg:col-span-5 space-y-3">
             <span
               class="text-xs font-bold uppercase tracking-widest text-emerald-400"
-              >Core Value Pillars</span
+              >WHY INSIGHT GRID</span
             >
             <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6">
-              Designed to solve your hardest engineering trade-offs
+              Built to automate. Designed to scale.
             </h3>
 
             <!-- Interactive Selector Cards -->
@@ -1136,9 +1202,9 @@
                   <i data-lucide="cpu" class="w-5 h-5"></i>
                 </div>
                 <div>
-                  <h4 class="font-bold text-sm">Automated Neural Processing</h4>
+                  <h4 class="font-bold text-sm">Business-First Approach</h4>
                   <p class="text-xs text-slate-400 mt-0.5">
-                    Autonomous background tasks optimized by AI models.
+                    Every automation begins by understanding your workflows.
                   </p>
                 </div>
               </button>
@@ -1153,9 +1219,10 @@
                   <i data-lucide="shield" class="w-5 h-5"></i>
                 </div>
                 <div>
-                  <h4 class="font-bold text-sm">Enterprise Governance</h4>
+                  <h4 class="font-bold text-sm">Connected Intelligence</h4>
                   <p class="text-xs text-slate-400 mt-0.5">
-                    Role-based access control with granular policy engines.
+                    Bring all your business data together to create one reliable
+                    source of truth.
                   </p>
                 </div>
               </button>
@@ -1170,11 +1237,10 @@
                   <i data-lucide="activity" class="w-5 h-5"></i>
                 </div>
                 <div>
-                  <h4 class="font-bold text-sm">
-                    Real-time Telemetry Dashboard
-                  </h4>
+                  <h4 class="font-bold text-sm">Measurable Impact</h4>
                   <p class="text-xs text-slate-400 mt-0.5">
-                    Instant sub-second observability across millions of events.
+                    Every solution is built with clear business outcomes in
+                    mind—not just technical implementation.
                   </p>
                 </div>
               </button>
@@ -1194,19 +1260,20 @@
                 >
                   <span
                     class="text-xs font-mono text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20"
-                    >01. Neural Engine</span
+                    >01. Business Discovery</span
                   >
                   <span class="text-xs text-slate-500 font-mono"
-                    >LATENCY: 4.2ms</span
+                    >WORKFLOW ANALYZED</span
                   >
                 </div>
                 <h4 class="text-2xl font-bold text-white">
-                  Self-optimizing AI models that adapt to your workload pattern
+                  Automation designed around the way your business actually
+                  operates.
                 </h4>
                 <p class="text-slate-300 text-sm leading-relaxed">
-                  Instead of manual cluster tuning and scaling scripts, our
-                  proprietary neural router predicts traffic spikes and
-                  reallocates cloud compute before slowdowns happen.
+                  We begin by understanding your existing processes, identifying
+                  repetitive tasks, and mapping opportunities for automation
+                  before any development begins.
                 </p>
 
                 <!-- Mock Visual Mockup -->
@@ -1214,8 +1281,8 @@
                   class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3 font-mono text-xs"
                 >
                   <div class="flex items-center justify-between text-slate-400">
-                    <span>[STATUS: OPTIMIZED]</span>
-                    <span class="text-emerald-400">● Live AI Routing</span>
+                    <span>[DISCOVERY COMPLETE]</span>
+                    <span class="text-emerald-400">● Live Monitoring</span>
                   </div>
                   <div
                     class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"
@@ -1223,8 +1290,10 @@
                     <div class="bg-brand-500 h-full w-3/4 animate-pulse"></div>
                   </div>
                   <div class="text-[11px] text-slate-400 flex justify-between">
-                    <span>Allocated Compute: 64 Cores</span>
-                    <span class="text-brand-400">Efficiency: +340%</span>
+                    <span>Processes Mapped: 24</span>
+                    <span class="text-brand-400"
+                      >Automation Opportunities: 18</span
+                    >
                   </div>
                 </div>
               </div>
@@ -1236,26 +1305,25 @@
                 >
                   <span
                     class="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20"
-                    >02. Security & Compliance</span
+                    >02. Unified Data</span
                   >
                   <span class="text-xs text-slate-500 font-mono"
-                    >ENCRYPTION: AES-256</span
+                    >LIVE CONNECTIONS</span
                   >
                 </div>
                 <h4 class="text-2xl font-bold text-white">
-                  Military-grade access isolation with automatic policy audits
+                  Every system connected. Every insight in one place.
                 </h4>
                 <p class="text-slate-300 text-sm leading-relaxed">
-                  Define global security policies once. Our automated compliance
-                  checker continuous verifies SAML/SSO enforcement, encryption
-                  keys, and GDPR data residence boundaries.
+                  Dashboards become truly valuable when data from CRMs, ERPs,
+                  spreadsheets, APIs, and databases work together in real time.
                 </p>
 
                 <div
                   class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3 font-mono text-xs"
                 >
                   <div class="flex items-center justify-between text-slate-400">
-                    <span>[SECURITY POLICY: STRICT]</span>
+                    <span>[CONNECTION CHECK: ESTABLISHED]</span>
                     <span class="text-emerald-400"
                       >✓ All Systems Compliant</span
                     >
@@ -1266,12 +1334,12 @@
                     <div
                       class="p-2 bg-slate-950 rounded border border-slate-800"
                     >
-                      Key Rotation: Active
+                      ERM: Synced
                     </div>
                     <div
                       class="p-2 bg-slate-950 rounded border border-slate-800"
                     >
-                      RBAC Enforcement: 100%
+                      APIs: Live
                     </div>
                   </div>
                 </div>
@@ -1284,27 +1352,28 @@
                 >
                   <span
                     class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20"
-                    >03. Real-time Telemetry</span
+                    >03. Business Growth</span
                   >
                   <span class="text-xs text-slate-500 font-mono"
-                    >SAMPLING: 100% EVENTS</span
+                    >RESULTS ANALYZED</span
                   >
                 </div>
                 <h4 class="text-2xl font-bold text-white">
-                  Complete end-to-end trace visibility in a single glass window
+                  Automation that continues creating value long after
+                  deployment.
                 </h4>
                 <p class="text-slate-300 text-sm leading-relaxed">
-                  Never guess where latency bottlenecks live. Drill down from
-                  high-level SLA dashboards to granular single-function stack
-                  traces in two clicks.
+                  By reducing manual work and improving operational visibility,
+                  businesses spend less time managing processes and more time
+                  driving growth.
                 </p>
 
                 <div
                   class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-2 font-mono text-xs"
                 >
                   <div class="flex justify-between items-center text-slate-400">
-                    <span>[THROUGHPUT: 48,200 req/sec]</span>
-                    <span class="text-brand-400">P99 Latency: 2.1ms</span>
+                    <span>[PRODUCTIVITY: Optimized]</span>
+                    <span class="text-brand-400">Operational Efficiency</span>
                   </div>
                   <div class="flex items-end gap-1 h-12 pt-2">
                     <div class="bg-brand-500/40 w-1/12 h-1/2 rounded-t"></div>
@@ -1330,12 +1399,15 @@
 
     <!-- ================= Section 7 ================= -->
     <!-- ===================== 2. EXPAND TO FULLSCREEN ===================== -->
-    <section>
-      <div class="section-label">02 — Shared element</div>
-      <h2>A card that becomes the page</h2>
+    <section class="section_7" id="sec-7">
+      <div class="section-label">CASE STUDIES</div>
+      <h2 class="section-headline">
+        From operational bottlenecks to automated workflows.
+      </h2>
       <p class="section-sub">
-        Click a card and GSAP's Flip plugin morphs it seamlessly from its grid
-        position into a fullscreen detail view — then back again on close.
+        See how we transform repetitive processes into streamlined systems that
+        save time, improve accuracy, and help businesses make smarter decisions
+        with confidence.
       </p>
       <div class="expand-grid" id="expandGrid">
         <div class="expand-card">
@@ -1561,13 +1633,6 @@
 
     <!-- ================= Review Section ================= -->
     <section class="rv-section">
-      <div class="rv-head">
-        <div class="eyebrow" id="rv2Eyebrow">What teams are saying</div>
-        <h2 id="rv2Heading">
-          A constant stream of "why didn't we do this sooner."
-        </h2>
-      </div>
-
       <div class="rv2-marquee-wrap">
         <div class="rv2-track" id="rv2Track1">
           <div class="rv2-card">
@@ -1724,46 +1789,56 @@
     <!-- ================= Section 8 ================= -->
     <section class="section_8" id="sec-8">
       <div class="sec8_top">
-        <div class="section-label">Accordion</div>
-        <h2>Smooth height, not display toggling</h2>
+        <div class="section-label">FREQUENTLY ASKED QUESTIONS</div>
+        <h2 class="section-headline">
+          Everything you need to know before we start.
+        </h2>
         <p class="section-sub">
-          Height animates to each panel's natural scrollHeight, so it's never
-          abrupt.
+          Whether you're looking to automate workflows, build custom dashboards,
+          or integrate your business systems, we're here to make the process
+          simple and transparent.
         </p>
       </div>
       <div class="accordion" id="accordion">
         <div class="accordion-item">
           <button class="accordion-header">
-            <span>How does the height animation work?</span
+            <span>What types of businesses do you work with?</span
             ><span class="plus">+</span>
           </button>
           <div class="accordion-body">
             <div class="accordion-body-inner">
-              GSAP reads the content's natural height via scrollHeight and
-              tweens the wrapper's height to that value, then back to 0 on
-              close.
+              We work with startups, SMEs, and growing enterprises across
+              industries. If your business relies on data, repetitive processes,
+              or multiple software tools, we can help streamline operations
+              through automation and analytics.
             </div>
           </div>
         </div>
         <div class="accordion-item">
           <button class="accordion-header">
-            <span>Can more than one stay open?</span><span class="plus">+</span>
+            <span>Can you integrate with our existing software?</span
+            ><span class="plus">+</span>
           </button>
           <div class="accordion-body">
             <div class="accordion-body-inner">
-              This version closes others when one opens — remove that line in
-              the JS if you want independent panels instead.
+              Yes. We build solutions that work with your existing technology
+              stack whenever possible. From CRMs and ERPs to spreadsheets, APIs,
+              databases, and cloud platforms, we focus on creating a connected
+              ecosystem rather than replacing your current tools.
             </div>
           </div>
         </div>
         <div class="accordion-item">
           <button class="accordion-header">
-            <span>Does this need a plugin?</span><span class="plus">+</span>
+            <span>How long does a typical project take?</span
+            ><span class="plus">+</span>
           </button>
           <div class="accordion-body">
             <div class="accordion-body-inner">
-              No — just core GSAP tweening a height value, same trick works for
-              any expand/collapse UI.
+              Every project is different, but most engagements begin with a
+              discovery phase to understand your workflows and goals. Once the
+              scope is finalized, we provide a clear roadmap with timelines,
+              milestones, and regular progress updates throughout development.
             </div>
           </div>
         </div>
@@ -1846,10 +1921,12 @@
 
     <!-- ================= Section 9 ================= -->
     <section class="section_9" id="sec-9">
-      <div class="section-label">12 — Breathing spacing</div>
+      <div class="section-label">LET'S BUILD SOMETHING SMARTER</div>
       <p class="section-sub">
-        Letter-spacing and opacity animate together on scroll, so the heading
-        seems to exhale into its final, tighter tracking.
+        Whether you're looking to streamline operations, connect your data, or
+        build intelligent automation from the ground up, we're ready to help.
+        Let's discuss your goals and create a solution that works for your
+        business.
       </p>
       <h2
         id="breatheText"
@@ -1862,7 +1939,7 @@
         Feel Like Talking?
       </h2>
       <button class="primary_medium_button" id="bg_gradient_move">
-        Contact
+        Book a Free Consultation
       </button>
     </section>
 
