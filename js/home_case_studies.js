@@ -29,6 +29,26 @@ document.querySelectorAll('.expand-card').forEach((card) => {
 
 expandOverlay.addEventListener('click', closeExpanded);
 
+/* ===================== 2b. Case study tabs (inside expand overlay) ===================== */
+document.querySelectorAll('.case-tabs').forEach((tabs) => {
+  const buttons = tabs.querySelectorAll('.case-tabs-list button');
+  const items = tabs.querySelectorAll('.case-tab-item');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const target = btn.getAttribute('data-target');
+
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      items.forEach((item) => {
+        item.classList.toggle('active', item.dataset.id === target);
+      });
+    });
+  });
+});
+
 function closeExpanded() {
   if (!expandedCard) return;
   const state = Flip.getState(expandedCard, { props: 'borderRadius' });
