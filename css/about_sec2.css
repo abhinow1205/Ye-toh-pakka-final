@@ -1,0 +1,19 @@
+  /* ===================== MANIFESTO (pinned zoom) ===================== */
+  .au-manifesto-section {
+    max-width: none;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .au-manifesto-text {
+    font-size: clamp(1.8rem, 5.4vw, 3.6rem);
+    text-align: center;
+    line-height: 1.35;
+    max-width: 90vw;
+  }
+
+  .au-manifesto-text .au-accent-word { color: var(--accent); }

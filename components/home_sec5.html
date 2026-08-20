@@ -1,0 +1,204 @@
+<section id="option3" class="design-section space-y-8">
+  <!-- Pillars Canvas -->
+  <div class="rounded-3xl p-6 md:p-10 border border-slate-800 m-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- Left Column: Navigation Buttons -->
+      <div class="lg:col-span-5 space-y-3">
+        <span
+          class="text-xs font-bold uppercase tracking-widest text-emerald-400"
+          >WHY INSIGHT GRID</span
+        >
+        <h3
+          class="text-2xl sm:text-3xl font-bold text-white mb-6 font-['Fraunces']"
+        >
+          Built to automate. Designed to scale.
+        </h3>
+
+        <!-- Interactive Selector Cards -->
+        <div class="space-y-3" id="pillar-controls">
+          <button
+            class="pillar-btn active w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-4 bg-slate-900 border-brand-500 text-white shadow-lg shadow-brand-500/10"
+          >
+            <div
+              class="p-2.5 rounded-lg bg-brand-500/20 text-brand-400 shrink-0"
+            >
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm">Business-First Approach</h4>
+              <p class="text-xs text-slate-400 mt-0.5">
+                Every automation begins by understanding your workflows.
+              </p>
+            </div>
+          </button>
+
+          <button
+            class="pillar-btn w-full text-left p-4 rounded-xl border border-slate-800/80 bg-slate-900/40 text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-300 flex items-start gap-4"
+          >
+            <div class="p-2.5 rounded-lg bg-slate-800 text-slate-300 shrink-0">
+              <i data-lucide="shield" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm">Connected Intelligence</h4>
+              <p class="text-xs text-slate-400 mt-0.5">
+                Bring all your business data together to create one reliable
+                source of truth.
+              </p>
+            </div>
+          </button>
+
+          <button
+            class="pillar-btn w-full text-left p-4 rounded-xl border border-slate-800/80 bg-slate-900/40 text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-300 flex items-start gap-4"
+          >
+            <div class="p-2.5 rounded-lg bg-slate-800 text-slate-300 shrink-0">
+              <i data-lucide="activity" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm">Measurable Impact</h4>
+              <p class="text-xs text-slate-400 mt-0.5">
+                Every solution is built with clear business outcomes in mind—not
+                just technical implementation.
+              </p>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Stage Container -->
+      <div class="lg:col-span-7">
+        <div
+          class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 relative min-h-[380px] flex flex-col justify-between"
+          id="pillar-stage"
+        >
+          <!-- Dynamic Content View 0 -->
+          <div class="pillar-view space-y-6" id="pillar-view-0">
+            <div
+              class="flex items-center justify-between border-b border-slate-800 pb-4"
+            >
+              <span
+                class="text-xs font-mono text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20"
+                >01. Business Discovery</span
+              >
+              <span class="text-xs text-slate-500 font-mono"
+                >WORKFLOW ANALYZED</span
+              >
+            </div>
+            <h4 class="text-2xl font-bold text-white">
+              Automation designed around the way your business actually
+              operates.
+            </h4>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              We begin by understanding your existing processes, identifying
+              repetitive tasks, and mapping opportunities for automation before
+              any development begins.
+            </p>
+
+            <!-- Mock Visual Mockup -->
+            <div
+              class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3 font-mono text-xs"
+            >
+              <div class="flex items-center justify-between text-slate-400">
+                <span>[DISCOVERY COMPLETE]</span>
+                <span class="text-emerald-400">● Live Monitoring</span>
+              </div>
+              <div
+                class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"
+              >
+                <div class="bg-brand-500 h-full w-3/4 animate-pulse"></div>
+              </div>
+              <div class="text-[11px] text-slate-400 flex justify-between">
+                <span>Processes Mapped: 24</span>
+                <span class="text-brand-400">Automation Opportunities: 18</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Content View 1 (Hidden initially) -->
+          <div class="pillar-view space-y-6 hidden" id="pillar-view-1">
+            <div
+              class="flex items-center justify-between border-b border-slate-800 pb-4"
+            >
+              <span
+                class="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20"
+                >02. Unified Data</span
+              >
+              <span class="text-xs text-slate-500 font-mono"
+                >LIVE CONNECTIONS</span
+              >
+            </div>
+            <h4 class="text-2xl font-bold text-white">
+              Every system connected. Every insight in one place.
+            </h4>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Dashboards become truly valuable when data from CRMs, ERPs,
+              spreadsheets, APIs, and databases work together in real time.
+            </p>
+
+            <div
+              class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3 font-mono text-xs"
+            >
+              <div class="flex items-center justify-between text-slate-400">
+                <span>[CONNECTION CHECK: ESTABLISHED]</span>
+                <span class="text-emerald-400">✓ All Systems Compliant</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-300">
+                <div class="p-2 bg-slate-950 rounded border border-slate-800">
+                  ERM: Synced
+                </div>
+                <div class="p-2 bg-slate-950 rounded border border-slate-800">
+                  APIs: Live
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Content View 2 (Hidden initially) -->
+          <div class="pillar-view space-y-6 hidden" id="pillar-view-2">
+            <div
+              class="flex items-center justify-between border-b border-slate-800 pb-4"
+            >
+              <span
+                class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20"
+                >03. Business Growth</span
+              >
+              <span class="text-xs text-slate-500 font-mono"
+                >RESULTS ANALYZED</span
+              >
+            </div>
+            <h4 class="text-2xl font-bold text-white">
+              Automation that continues creating value long after deployment.
+            </h4>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              By reducing manual work and improving operational visibility,
+              businesses spend less time managing processes and more time
+              driving growth.
+            </p>
+
+            <div
+              class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-2 font-mono text-xs"
+            >
+              <div class="flex justify-between items-center text-slate-400">
+                <span>[PRODUCTIVITY: Optimized]</span>
+                <span class="text-brand-400">Operational Efficiency</span>
+              </div>
+              <div class="flex items-end gap-1 h-12 pt-2">
+                <div class="bg-brand-500/40 w-1/12 h-1/2 rounded-t"></div>
+                <div class="bg-brand-500/60 w-1/12 h-3/4 rounded-t"></div>
+                <div class="bg-brand-500 w-1/12 h-full rounded-t"></div>
+                <div class="bg-brand-500/50 w-1/12 h-2/3 rounded-t"></div>
+                <div class="bg-brand-500/70 w-1/12 h-4/5 rounded-t"></div>
+                <div class="bg-brand-500/90 w-1/12 h-full rounded-t"></div>
+                <div class="bg-brand-500/30 w-1/12 h-1/3 rounded-t"></div>
+                <div class="bg-brand-500/80 w-1/12 h-5/6 rounded-t"></div>
+                <div class="bg-brand-500 w-1/12 h-full rounded-t"></div>
+                <div class="bg-brand-500/60 w-1/12 h-2/3 rounded-t"></div>
+                <div class="bg-brand-500/40 w-1/12 h-1/2 rounded-t"></div>
+                <div class="bg-brand-500/80 w-1/12 h-3/4 rounded-t"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

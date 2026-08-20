@@ -1,4 +1,4 @@
-  /* ===== Horizontal pin gallery ===== */
+/* ===== Horizontal pin gallery ===== */
 .s3_content{
 
     position:relative;
@@ -220,22 +220,16 @@
 
     overflow:hidden;
 
-    background:
-    linear-gradient(
-        145deg,
-        rgba(92,225,230,.15),
-        rgba(140,82,255,.10)
-    );
-
-    backdrop-filter:blur(20px);
-
-    border:1px solid rgba(255,255,255,.08);
+    background: rgba(0, 0, 0, 0.55);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.14);
 
     transition:.45s;
 
 }
 
-.h-card::before{
+/* .h-card::before{
 
     content:"";
 
@@ -252,7 +246,7 @@
 
     animation:rotateGlow 12s linear infinite;
 
-}
+} */
 
 @keyframes rotateGlow{
 
@@ -438,6 +432,10 @@
 
     background:rgba(255,255,255,.05);
 
+}
+
+.card-arrow:hover{
+    background-color: #5ce1e6;
 }
 
 .h-card:hover{

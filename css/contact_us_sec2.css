@@ -1,0 +1,33 @@
+.section_2 {
+  padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+}
+
+/* ===================== STATS STRIP ===================== */
+  .cu-stats-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .cu-stat { 
+    flex: 1 1 160px;
+    text-align: center;
+  }
+
+  .cu-stat .cu-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .cu-stat .cu-stat-label {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }

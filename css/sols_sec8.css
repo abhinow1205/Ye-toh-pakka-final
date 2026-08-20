@@ -1,0 +1,19 @@
+  /* ===================== QUOTE (pinned zoom) ===================== */
+  .sv-quote-section {
+    max-width: none;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .sv-quote-text {
+    font-size: clamp(1.8rem, 5vw, 3.4rem);
+    text-align: center;
+    line-height: 1.35;
+    max-width: 85vw;
+  }
+
+  .sv-quote-text .sv-accent-word { color: var(--accent); }

@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[Service Name] — SaaS Platform</title>
+    <!-- Modern Font & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --primary-hover: #4338ca;
+        --primary-light: #eef2ff;
+        --slate-900: #0f172a;
+        --slate-800: #1e293b;
+        --slate-600: #475569;
+        --slate-400: #94a3b8;
+        --slate-100: #f1f5f9;
+        --slate-50: #f8fafc;
+        --border: #e2e8f0;
+        --radius: 12px;
+        --max-width: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family:
+          "Plus Jakarta Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        color: var(--slate-900);
+        background-color: #ffffff;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Utility Layout */
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .section {
+        padding: 96px 0;
+      }
+
+      .section-alt {
+        background-color: var(--slate-50);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        background-color: var(--primary-light);
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.875rem;
+        border-radius: 9999px;
+        margin-bottom: 16px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 28px;
+        font-weight: 600;
+        font-size: 1rem;
+        border-radius: var(--radius);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff;
+        border: 1px solid var(--primary);
+        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background-color: #ffffff;
+        color: var(--slate-800);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--slate-100);
+      }
+
+      /* Header / Nav */
+      header {
+        height: 80px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        z-index: 100;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .logo {
+        font-weight: 800;
+        font-size: 1.35rem;
+        color: var(--slate-900);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--primary);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 96px 0 64px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: 3.25rem;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+        color: var(--slate-900);
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        color: var(--slate-600);
+        margin-bottom: 32px;
+        max-width: 540px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .hero-mockup {
+        background: linear-gradient(135deg, var(--slate-900), var(--slate-800));
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+      }
+
+      .mockup-header {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .mockup-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .mockup-body {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 32px;
+        color: white;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 1px dashed rgba(255, 255, 255, 0.2);
+      }
+
+      /* Social Proof Banner */
+      .social-proof {
+        padding: 32px 0;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        text-align: center;
+      }
+
+      .social-proof p {
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 700;
+        color: var(--slate-400);
+        margin-bottom: 20px;
+      }
+
+      .logo-grid {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        opacity: 0.6;
+        filter: grayscale(100%);
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+
+      .logo-item {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--slate-800);
+      }
+
+      /* Features / Capabilities */
+      .section-header {
+        text-align: center;
+        max-width: 680px;
+        margin: 0 auto 64px;
+      }
+
+      .section-header h2 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+      }
+
+      .section-header p {
+        font-size: 1.125rem;
+        color: var(--slate-600);
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+      }
+
+      .feature-card {
+        background: #ffffff;
+        border: 1px solid var(--border);
+        padding: 32px;
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08);
+        border-color: var(--primary-light);
+        transform: translateY(-4px);
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--primary-light);
+        color: var(--primary);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .feature-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .feature-card p {
+        color: var(--slate-600);
+        font-size: 0.975rem;
+      }
+
+      /* How It Works (Step-by-Step) */
+      .steps-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        position: relative;
+      }
+
+      .step-card {
+        background: #ffffff;
+        padding: 32px;
+        border-radius: var(--radius);
+        position: relative;
+        border: 1px solid var(--border);
+      }
+
+      .step-number {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--slate-100);
+        position: absolute;
+        top: 16px;
+        right: 24px;
+        line-height: 1;
+      }
+
+      .step-card h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .step-card p {
+        color: var(--slate-600);
+        font-size: 0.95rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Metrics / Value Prop Highlight */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        background: var(--slate-900);
+        color: white;
+        border-radius: 20px;
+        padding: 48px;
+        margin-top: 64px;
+      }
+
+      .metric-item {
+        text-align: center;
+      }
+
+      .metric-val {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #818cf8;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .metric-label {
+        color: var(--slate-400);
+        font-size: 0.95rem;
+      }
+
+      /* Call To Action */
+      .cta-section {
+        text-align: center;
+        background: linear-gradient(
+          180deg,
+          #ffffff 0%,
+          var(--primary-light) 100%
+        );
+        border-top: 1px solid var(--border);
+      }
+
+      .cta-box {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .cta-box h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 16px;
+      }
+
+      .cta-box p {
+        font-size: 1.2rem;
+        color: var(--slate-600);
+        margin-bottom: 32px;
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 48px 0;
+        background: var(--slate-900);
+        color: var(--slate-400);
+        font-size: 0.875rem;
+      }
+
+      .footer-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Responsive Breakpoints */
+      @media (max-width: 992px) {
+        .hero {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 40px;
+        }
+        .hero p {
+          margin: 0 auto 32px;
+        }
+        .hero-actions {
+          justify-content: center;
+        }
+        .grid-3,
+        .steps-wrapper,
+        .metrics-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <header>
+      <div class="container nav-container">
+        <a href="#" class="logo">
+          <div class="logo-icon"><i data-lucide="layers"></i></div>
+          DataPulse
+        </a>
+        <div class="hero-actions">
+          <a
+            href="#demo"
+            class="btn btn-secondary"
+            style="padding: 10px 18px; font-size: 0.9rem"
+            >Sign In</a
+          >
+          <a
+            href="#cta"
+            class="btn btn-primary"
+            style="padding: 10px 18px; font-size: 0.9rem"
+            >Get Started</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Service Hero Section -->
+    <section class="container hero">
+      <div>
+        <!-- VARIABLE: Service Badge -->
+        <div class="badge">
+          <i data-lucide="zap" size="16"></i>
+          Service Feature Module
+        </div>
+        <!-- VARIABLE: Main Heading -->
+        <h1>Transform Data into Action with [Service Name]</h1>
+        <!-- VARIABLE: Subtitle -->
+        <p>
+          Eliminate manual overhead, unlock real-time intelligence, and empower
+          your team with our enterprise-grade [Service Name] solution.
+        </p>
+        <div class="hero-actions">
+          <a href="#cta" class="btn btn-primary"
+            >Start Free Trial <i data-lucide="arrow-right" size="18"></i
+          ></a>
+          <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+        </div>
+      </div>
+
+      <!-- Hero Interactive Preview / Graphic -->
+      <div class="hero-mockup">
+        <div class="mockup-header">
+          <div class="mockup-dot"></div>
+          <div class="mockup-dot"></div>
+          <div class="mockup-dot"></div>
+        </div>
+        <div class="mockup-body">
+          <i
+            data-lucide="bar-chart-3"
+            size="48"
+            style="margin-bottom: 16px; opacity: 0.8"
+          ></i>
+          <p style="font-weight: 600; font-size: 1.1rem">
+            Interactive [Service] Visual Placeholder
+          </p>
+          <p
+            style="font-size: 0.85rem; color: var(--slate-400); margin-top: 4px"
+          >
+            Live preview component or video walkthrough insert
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof Logos -->
+    <section class="social-proof">
+      <div class="container">
+        <p>Trusted by data teams at high-growth companies</p>
+        <div class="logo-grid">
+          <div class="logo-item">ACME Corp</div>
+          <div class="logo-item">GlobalData</div>
+          <div class="logo-item">FlowState</div>
+          <div class="logo-item">Nexus SaaS</div>
+          <div class="logo-item">HyperScale</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Capabilities Grid -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Everything you need for [Service Goal]</h2>
+          <p>
+            Designed for scalability, precision, and frictionless performance
+            across your entire stack.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="cpu"></i></div>
+            <h3>Automated Processing</h3>
+            <p>
+              Execute end-to-end workflows without manual intervention. Set
+              triggers and let our system handle execution seamlessly.
+            </p>
+          </div>
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="shield-check"></i></div>
+            <h3>Enterprise Security</h3>
+            <p>
+              Bank-grade encryption in transit and at rest with role-based
+              access control (RBAC) and full audit logs.
+            </p>
+          </div>
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="refresh-cw"></i></div>
+            <h3>Real-Time Sync</h3>
+            <p>
+              Keep your data ecosystem updated across every team member and tool
+              with ultra-low latency updates.
+            </p>
+          </div>
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="sliders"></i></div>
+            <h3>Custom Rules & Alerts</h3>
+            <p>
+              Define custom logic, thresholds, and instant notifications to
+              intercept anomalies before they impact operations.
+            </p>
+          </div>
+          <!-- Feature 5 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="plug"></i></div>
+            <h3>100+ Pre-Built Connectors</h3>
+            <p>
+              Instantly connect to PostgreSQL, Snowflake, Salesforce, Hubspot,
+              and major REST APIs in two clicks.
+            </p>
+          </div>
+          <!-- Feature 6 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="trending-up"></i></div>
+            <h3>Scalable Infrastructure</h3>
+            <p>
+              Built on cloud-native technology that dynamically scales
+              auto-magically as your workload grows.
+            </p>
+          </div>
+        </div>
+
+        <!-- Value Metrics -->
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <div class="metric-val">10x</div>
+            <div class="metric-label">Faster Execution Time</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">99.99%</div>
+            <div class="metric-label">Uptime & Reliability</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">40+ Hrs</div>
+            <div class="metric-label">Saved Per Team/Month</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <h2>How [Service Name] Works</h2>
+          <p>
+            Deploy in minutes, scale forever. Get up and running in three simple
+            steps.
+          </p>
+        </div>
+
+        <div class="steps-wrapper">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h3>Connect Your Sources</h3>
+            <p>
+              Authenticate your database, app, or API endpoints using our
+              plug-and-play integrations.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h3>Configure Parameters</h3>
+            <p>
+              Tailor your dashboards, automated schedules, logic conditions, or
+              predictive algorithms easily.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h3>Publish & Automate</h3>
+            <p>
+              Deliver real-time outputs directly to your team, stakeholders, or
+              downstream data pipelines.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="section cta-section" id="cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Ready to elevate your [Service Domain]?</h2>
+          <p>
+            Join hundreds of data-driven teams who simplified their operations
+            with DataPulse today.
+          </p>
+          <div style="display: flex; gap: 16px; justify-content: center">
+            <a href="#" class="btn btn-primary">Get Started Now</a>
+            <a href="#" class="btn btn-secondary">Talk to Sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-flex">
+        <p>&copy; 2026 DataPulse Inc. All rights reserved.</p>
+        <div style="display: flex; gap: 24px">
+          <a href="#" style="color: var(--slate-400); text-decoration: none"
+            >Privacy Policy</a
+          >
+          <a href="#" style="color: var(--slate-400); text-decoration: none"
+            >Terms of Service</a
+          >
+          <a href="#" style="color: var(--slate-400); text-decoration: none"
+            >Contact Us</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

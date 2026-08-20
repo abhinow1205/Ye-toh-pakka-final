@@ -1,0 +1,44 @@
+  #case-studies-sec6 {
+    padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+  }
+
+/* ==========================================================================
+       9. WORKFLOW SECTION
+       ========================================================================== */
+      .workflow-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin-top: 3rem;
+        position: relative;
+      }
+
+      .workflow-card {
+        position: relative;
+        background: rgba(0, 0, 0, 0.55);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .workflow-card::after {
+        content: "→";
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: var(--text-dim);
+        z-index: 3;
+      }
+
+      .workflow-grid .workflow-card:last-child::after {
+        display: none;
+      }
+
+      .step-number {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--secondary);
+        margin-bottom: 0.5rem;
+      }

@@ -1,0 +1,47 @@
+#case-studies-sec10 {
+  padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+}
+
+/* ==========================================================================
+       13. HORIZONTAL ROADMAP TIMELINE
+       ========================================================================== */
+      .roadmap-wrapper {
+        margin-top: 4rem;
+        position: relative;
+      }
+
+      .roadmap-progress {
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 2px;
+        position: relative;
+        margin-bottom: 3rem;
+      }
+
+      .roadmap-progress-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+      }
+
+      .roadmap-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+
+      .roadmap-card {
+        position: relative;
+      }
+
+      .week-tag {
+        font-family: var(--font-mono);
+        color: var(--secondary);
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+      }

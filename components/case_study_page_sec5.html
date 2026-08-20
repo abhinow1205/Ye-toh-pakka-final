@@ -1,0 +1,96 @@
+<!-- 5. SYSTEM ARCHITECTURE -->
+<section class="section-spacing" id="architecture">
+  <div class="container">
+    <div
+      class="fade-up"
+      style="text-align: center; max-width: 700px; margin: 0 auto 1rem"
+    >
+      <span class="badge"
+        ><span class="badge-dot"></span> Infrastructure Design</span
+      >
+      <h2 class="heading-lg text-gradient">End-to-End Automated Data Flow</h2>
+      <p class="body-text">
+        How raw enterprise data transforms seamlessly into executive
+        intelligence in real-time.
+      </p>
+    </div>
+
+    <div class="architecture-wrapper fade-up">
+      <!-- SVG Connections -->
+      <svg class="svg-connectors" width="100%" height="100%">
+        <defs>
+          <linearGradient
+            id="cyan-purple-grad"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+          >
+            <stop offset="0%" stop-color="#8C52FF" />
+            <stop offset="100%" stop-color="#5CE1E6" />
+          </linearGradient>
+        </defs>
+        <path class="connector-path" d="M 150 100 L 900 100" />
+        <path class="connector-path-active" d="M 150 100 L 900 100" />
+      </svg>
+
+      <div class="arch-flow">
+        <div class="arch-node">
+          <div class="arch-node-icon"><i data-lucide="database"></i></div>
+          <h4 class="heading-md" style="font-size: 1.1rem">Data Sources</h4>
+          <p class="body-text" style="font-size: 0.8rem">CRM, ERPs & Sheets</p>
+        </div>
+
+        <i
+          data-lucide="chevron-right"
+          style="color: var(--text-dim)"
+          class="desktop-only"
+        ></i>
+
+        <div class="arch-node">
+          <div class="arch-node-icon"><i data-lucide="terminal"></i></div>
+          <h4 class="heading-md" style="font-size: 1.1rem">Python ETL</h4>
+          <p class="body-text" style="font-size: 0.8rem">Clean & Transform</p>
+        </div>
+
+        <i
+          data-lucide="chevron-right"
+          style="color: var(--text-dim)"
+          class="desktop-only"
+        ></i>
+
+        <div class="arch-node">
+          <div class="arch-node-icon"><i data-lucide="server"></i></div>
+          <h4 class="heading-md" style="font-size: 1.1rem">SQL Warehouse</h4>
+          <p class="body-text" style="font-size: 0.8rem">Unified Storage</p>
+        </div>
+
+        <i
+          data-lucide="chevron-right"
+          style="color: var(--text-dim)"
+          class="desktop-only"
+        ></i>
+
+        <div class="arch-node">
+          <div class="arch-node-icon">
+            <i data-lucide="bar-chart-3"></i>
+          </div>
+          <h4 class="heading-md" style="font-size: 1.1rem">BI Engine</h4>
+          <p class="body-text" style="font-size: 0.8rem">Power BI Analytics</p>
+        </div>
+
+        <i
+          data-lucide="chevron-right"
+          style="color: var(--text-dim)"
+          class="desktop-only"
+        ></i>
+
+        <div class="arch-node">
+          <div class="arch-node-icon"><i data-lucide="send"></i></div>
+          <h4 class="heading-md" style="font-size: 1.1rem">Auto Dispatch</h4>
+          <p class="body-text" style="font-size: 0.8rem">Scheduled PDF/Email</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+#case-studies-sec9 {
+  padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+}
+
+/* ==========================================================================
+       12. BUSINESS IMPACT (METRICS)
+       ========================================================================== */
+      .impact-section {
+        background: linear-gradient(
+          180deg,
+          rgba(5, 6, 8, 0) 0%,
+          rgba(140, 82, 255, 0.05) 50%,
+          rgba(5, 6, 8, 0) 100%
+        );
+      }
+
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+
+      .impact-card {
+        text-align: center;
+        padding: 3rem 1.5rem;
+      }
+
+      .counter-value {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        font-weight: 800;
+        font-family: var(--font-mono);
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 0.75rem;
+        background: linear-gradient(135deg, #fff, var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .impact-label {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }

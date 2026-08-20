@@ -1,0 +1,116 @@
+/* Header Section */
+
+  .sh7-header {
+    max-width: 320px;
+  }
+
+  .sh7-header.sh7-center { margin-right: auto; text-align: left; }
+
+  .sh7-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: clamp(0.7rem, 0.3vw + 0.62rem, 0.78rem);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.1rem;
+  }
+  .sh7-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); flex-shrink: 0; }
+
+  .sh7-headline {
+    font-size: clamp(1.9rem, 1.1rem + 2.6vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.1rem;
+  }
+
+  .sh7-sub {
+    color: var(--muted);
+    font-size: clamp(0.95rem, 0.3vw + 0.85rem, 1.08rem);
+    line-height: 1.7;
+    max-width: 52ch; /* industry-standard readable line length */
+  }
+
+  .sh7-center .sh7-sub { margin-right: auto; }
+
+
+/* Other sections Headline */
+  .sh7-eyebrow {
+    background: rgba(205, 164, 94, 0.12);
+    border: 1px solid rgba(205, 164, 94, 0.35);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  .sh7-headline { clip-path: inset(0 100% 0 0); }
+  .sh7-underline-wrap { position: relative; display: inline-block; }
+  .sh7-underline {
+    position: absolute;
+    left: 0; bottom: 0.06em;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .sh7-header h2{
+    font-family: "Fraunces", serif;
+    font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+  }
+
+  .sh7-header p{
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+  }
+
+  .sh7-sub { opacity: 0; transform: translateY(14px); }
+
+/* ===================== CULTURE STRIP (horizontal pin) ===================== */
+  .au-culture-section {
+    max-width: none;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+  }
+
+  .au-culture-track {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    gap: 1.75rem;
+    width: max-content;
+  }
+
+  .au-culture-heading-slide {
+    width: clamp(80px, 20vw, 180px);
+    max-width: 480px;
+    flex-shrink: 0;
+    /* padding-right: 3rem; */
+  }
+
+  .au-culture-card {
+    width: 300px;
+    height: 380px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.55);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .au-culture-card h4 { margin: 0 0 0.35rem; font-size: 1.1rem; }
+  .au-culture-card p { margin: 0; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+  .au-culture-card img { width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;}

@@ -1,0 +1,254 @@
+<section class="section_1">
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <!-- ===================== ARTICLE HEADER ===================== -->
+  <header class="article-header">
+    <div class="article-glow"></div>
+    <div class="wrap">
+      <a href="#" class="back-link">&larr; Back to blog</a>
+      <span class="eyebrow">Data</span>
+      <h1>What 2.4 billion events taught us about scale.</h1>
+      <p class="article-dek">
+        The infrastructure decisions that let us process a week of usage data
+        without anyone noticing we were under the hood.
+      </p>
+      <div class="byline">
+        <span class="avatar-dot"></span>
+        <div>
+          <strong>Sam Ruiz</strong><span>Staff Engineer, Data Platform</span>
+        </div>
+        <span class="dot-sep"></span>
+        <span>Aug 1, 2026</span>
+        <span class="dot-sep"></span>
+        <span>10 min read</span>
+      </div>
+
+      <div class="cover-panel">
+        <svg
+          class="cover-chart"
+          viewBox="0 0 600 90"
+          preserveAspectRatio="none"
+        >
+          <path
+            id="coverPath"
+            d="M0,70 L60,60 L120,64 L180,40 L240,48 L300,20 L360,30 L420,12 L480,24 L540,8 L600,16"
+          />
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== ARTICLE BODY ===================== -->
+  <section class="article-body-section">
+    <div class="wrap article-layout">
+      <aside class="toc">
+        <div class="toc-rail">
+          <div class="toc-line"></div>
+          <div class="toc-progress" id="tocProgress"></div>
+          <a href="#s1" class="toc-item" data-toc
+            >The week everything doubled</a
+          >
+          <a href="#s2" class="toc-item" data-toc>Where the pipeline breaks</a>
+          <a href="#s3" class="toc-item" data-toc
+            >Three changes that mattered</a
+          >
+          <a href="#s4" class="toc-item" data-toc>What we'd do differently</a>
+        </div>
+      </aside>
+
+      <article class="prose" id="articleBody">
+        <p>
+          Three weeks ago, one customer's usage doubled overnight. Not gradually
+          — overnight. By the time we noticed the graph moving, we were already
+          the busiest hour we'd ever had, and it kept climbing for six more
+          days. This is what that week taught us about the difference between a
+          system that scales on paper and one that scales at 2 a.m.
+        </p>
+
+        <h2 id="s1">The week everything doubled</h2>
+        <p>
+          Our ingestion pipeline was built to comfortably absorb
+          <strong>3x</strong> our average load. We'd tested it, we'd load-tested
+          it again, and we felt good about the headroom. What we hadn't tested
+          was <strong>sustained</strong> 4x load for a hundred and sixty-eight
+          hours straight, from a single tenant, with no warning.
+        </p>
+        <p>
+          The first symptom wasn't a crash. It was worse — everything kept
+          working, just a little slower, in a way that took two days to notice
+          and would have taken two more to diagnose if we hadn't already been
+          watching the right dashboard.
+        </p>
+
+        <div class="pull-quote">
+          <p>
+            "The system didn't fail. It just got quietly, patiently worse, until
+            140ms became 900ms and nobody had noticed the slope."
+          </p>
+        </div>
+
+        <h2 id="s2">Where the pipeline actually breaks</h2>
+        <p>
+          Under normal load, our event pipeline looks almost boringly simple:
+          ingest, validate, enrich, write. Under sustained pressure, the
+          enrichment stage — the part that looks up account and session context
+          for every single event — became the bottleneck. It wasn't the
+          database. It was the connection pool sitting in front of it, sized for
+          a load we no longer had.
+        </p>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="val">4.1x</div>
+            <div class="lbl">Peak load vs. baseline</div>
+          </div>
+          <div class="stat-box">
+            <div class="val">900ms</div>
+            <div class="lbl">Worst-case latency reached</div>
+          </div>
+          <div class="stat-box">
+            <div class="val">0</div>
+            <div class="lbl">Events actually lost</div>
+          </div>
+        </div>
+
+        <p>
+          That last number is the one we're proudest of. Slow is recoverable.
+          Lost is not — and the enrichment queue, for all its faults, never
+          dropped a single event. It just made everyone wait longer than we'd
+          like to admit.
+        </p>
+
+        <h2 id="s3">Three changes that mattered</h2>
+        <p>
+          We made a dozen small changes that week. Three of them accounted for
+          almost all of the recovery:
+        </p>
+        <p>
+          <strong>1. Dynamic pool sizing.</strong> The enrichment connection
+          pool now scales with observed queue depth instead of a fixed config
+          value nobody remembers setting.
+        </p>
+        <p>
+          <strong>2. Per-tenant backpressure.</strong> One account's spike can
+          no longer degrade latency for everyone else on the same shard.
+        </p>
+        <p>
+          <strong
+            >3. A dashboard that would have caught this on day one.</strong
+          >
+          The slope, not just the current value — because 140ms creeping to
+          200ms over six hours looks fine on any single chart refresh.
+        </p>
+
+        <div class="code-block">
+          <code
+            ><span class="cm"
+              >// simplified: backpressure check before enrichment</span
+            >
+            <span class="kw">if</span> (tenant.queueDepth &gt; tenant.softLimit)
+            { <span class="kw">await</span> shed(event, { reason:
+            <span class="cm">'tenant_backpressure'</span> });
+            <span class="kw">return</span>; }</code
+          >
+        </div>
+
+        <h2 id="s4">What we'd do differently</h2>
+        <p>
+          Honestly? Not much about the response — the team handled a bad week
+          well. What we'd change is upstream: load-test for
+          <strong>duration</strong>, not just peak, and build the
+          slope-detection dashboard before you need it, not during the incident
+          it would have prevented.
+        </p>
+        <p>
+          2.4 billion events later, the system is faster and more honest about
+          its limits than it was a month ago. That's usually how it goes.
+        </p>
+
+        <div class="author-card">
+          <span class="avatar-dot"></span>
+          <div>
+            <strong>Sam Ruiz</strong
+            ><span
+              >Staff Engineer on the Data Platform team. Previously built
+              ingestion systems at two companies that no longer exist.</span
+            >
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== RELATED ===================== -->
+  <section class="related-section">
+    <div class="wrap">
+      <h2 class="section-title">More from Data</h2>
+      <div class="post-grid" id="relatedGrid">
+        <article class="post-card">
+          <span class="post-cat">Data</span>
+          <h3>The three metrics that actually predict churn.</h3>
+          <p>
+            We looked at 40,000 accounts. Most of the metrics people obsess over
+            turned out to be noise.
+          </p>
+          <div class="post-meta">
+            <span class="avatar-dot" style="width: 22px; height: 22px"></span
+            ><strong>Sam Ruiz</strong><span class="dot-sep"></span
+            ><span>7 min</span>
+          </div>
+        </article>
+        <article class="post-card">
+          <span class="post-cat">Engineering</span>
+          <h3>Inside our event pipeline: click to chart in 140ms.</h3>
+          <p>
+            A walkthrough of the ingestion path — from the snippet in your app
+            to the bar moving on your dashboard.
+          </p>
+          <div class="post-meta">
+            <span class="avatar-dot" style="width: 22px; height: 22px"></span
+            ><strong>Priya Shah</strong><span class="dot-sep"></span
+            ><span>9 min</span>
+          </div>
+        </article>
+        <article class="post-card">
+          <span class="post-cat">Product</span>
+          <h3>Why real-time beats real-enough.</h3>
+          <p>
+            The difference between "technically correct" and "useful right now"
+            — and why we bet on the second.
+          </p>
+          <div class="post-meta">
+            <span class="avatar-dot" style="width: 22px; height: 22px"></span
+            ><strong>Jordan Ale</strong><span class="dot-sep"></span
+            ><span>6 min</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SUBSCRIBE ===================== -->
+  <section class="related-section" style="padding-top: 0">
+    <div class="wrap">
+      <div class="subscribe-panel">
+        <div>
+          <span class="eyebrow" style="margin-bottom: 0.8rem"
+            >Stay in the loop</span
+          >
+          <h2 style="font-size: 1.5rem">One email, twice a month. No fluff.</h2>
+          <form class="subscribe-form" onsubmit="return false;">
+            <input
+              class="subscribe-input"
+              type="email"
+              placeholder="you@company.com"
+            />
+            <button class="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
