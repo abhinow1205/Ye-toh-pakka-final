@@ -1,0 +1,91 @@
+/* ===================== PROCESS (horizontal pin) ===================== */
+.sv-process-section {
+  max-width: none;
+  padding: 0;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.sv-process-track {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+  width: max-content;
+}
+
+.sv-process-heading-slide {
+  width: 40vw;
+  max-width: 460px;
+  flex-shrink: 0;
+  padding-right: 3rem;
+}
+
+.sv-process-card {
+  width: 300px;
+  height: 380px;
+  flex-shrink: 0;
+  position: relative;      /* anchors the step number */
+  overflow: hidden;        /* keeps the image inside the rounded corners */
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  padding: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Large outlined numeral, floating over the media block */
+.sv-process-card .sv-step-num {
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  z-index: 2;
+  font-family: 'Fraunces', serif;
+  font-size: 2.75rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-primary);
+  text-stroke: 1px var(--color-primary);
+}
+
+.sv-process1-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 18px 18px 0 0;
+}
+
+/* Intro card's media block — same footprint as the photos, icon instead */
+.service-icon {
+  width: 100%;
+  height: 200px;
+  border-radius: 18px 18px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+.service-icon i {
+  width: 42px;
+  height: 42px;
+  color: var(--color-primary);
+}
+
+.sv-process-card h4 {
+  margin: 1.25rem 0 0.4rem;
+  padding: 0 1.5rem;
+  font-size: 1.15rem;
+}
+
+.sv-process-card p {
+  margin: 0;
+  padding: 0 1.5rem;
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.55;
+}

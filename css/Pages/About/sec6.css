@@ -1,0 +1,40 @@
+.section_6 {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+}
+
+/* ===================== TEAM ===================== */
+  .au-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .au-team-card {
+    padding: 1.75rem;
+    text-align: center;
+    opacity: 0;
+  }
+
+  .au-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    margin: 0 auto 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #14100a;
+  }
+
+  .au-team-card h4 { margin: 0 0 0.2rem; font-size: 1.05rem; }
+  .au-team-card .au-role { color: var(--accent); font-size: 0.8rem; margin-bottom: 0.6rem; }
+  .au-team-card p { margin: 0; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }

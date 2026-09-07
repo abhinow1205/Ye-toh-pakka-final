@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Case Studies</title>
+    <title>Case Studies | Insight Grid</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,27 +34,29 @@
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="icon" type="image/png" href="assets/IG Only Logo.png" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/bg_comp.css" />
-    <link rel="stylesheet" href="css/navbar_comp.css" />
-    <link rel="stylesheet" href="css/buttons.css" />
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/Universal/global.css" />
+    <link rel="stylesheet" href="./css/Universal/variables.css" />
+    <link rel="stylesheet" href="./css/Universal/navbar.css" />
+    <link rel="stylesheet" href="./css/Universal/fixed_bg.css" />
+    <link rel="stylesheet" href="./css/Universal/buttons.css" />
+    <link rel="stylesheet" href="./css/Universal/footer.css" />
+    <link rel="stylesheet" href="./css/Universal/mainhero-left.css" />
+    <link rel="stylesheet" href="./css/Universal/bottom_CTA.css" />
+    <link rel="stylesheet" href="./css/Universal/section_header.css" />
+    <link rel="stylesheet" href="./css/Universal/card_types.css" />
 
-    <link rel="stylesheet" href="css/case_studies_sec1.css" />
-
-    <link rel="stylesheet" href="css/case_studies_sec2.css" />
-
-    <link rel="stylesheet" href="css/case_studies_sec3.css" />
-
-    <link rel="stylesheet" href="css/footer_comp.css" />
+    <link rel="stylesheet" href="./css/Pages/Case Studies/sec1.css" />
+    <link rel="stylesheet" href="./css/Pages/Case Studies/sec2.css" />
 
     <!-- GSAP Libraries to be declared first -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -65,25 +67,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
   </head>
   <body>
-    <!-- Ficed BG -->
+    <!-- Fixed BG -->
     <div id="fixed-bg-comp"></div>
 
     <!-- Navbar -->
     <div id="navbar-component"></div>
 
     <!-- Section 1 -->
-    <div id="case-studies-sec1"></div>
+    <div id="sec1-case-studies"></div>
 
     <!-- Section 2 -->
-    <div id="case-studies-sec2"></div>
+    <div id="sec2-case-studies"></div>
 
     <!-- Section 3 -->
-    <div id="case-studies-sec3"></div>
+    <div id="sec3-case-studies"></div>
 
     <!-- Footer -->
     <div id="footer-component"></div>
 
     <!-- Main script remains at the last -->
-    <script type="module" src="js/case_studies_script.js"></script>
+    <script type="module" src="js/Pages/Case Studies/case_studies.js"></script>
   </body>
 </html>

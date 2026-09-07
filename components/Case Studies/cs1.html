@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ==========================================================================
+     PAGE NAV COMPONENT — sticky table of contents + scroll progress
+     Add this once in your main file (not per-section). It reads the same
+     section ids used by the 7 sections below, so keep those ids intact.
+     ========================================================================== -->
+    <nav class="toc" aria-label="Table of contents">
+      <div class="toc-line">
+        <div class="toc-line-fill" id="toc-line-fill"></div>
+      </div>
+      <ul class="toc-list" id="toc-list">
+        <li class="toc-item" data-target="#overview">
+          <button class="toc-btn">
+            <span class="toc-dot"></span><span class="toc-label">Overview</span>
+          </button>
+        </li>
+        <li class="toc-item" data-target="#challenges">
+          <button class="toc-btn">
+            <span class="toc-dot"></span
+            ><span class="toc-label">Challenges</span>
+          </button>
+        </li>
+        <li class="toc-item" data-target="#old-workflow">
+          <button class="toc-btn">
+            <span class="toc-dot"></span
+            ><span class="toc-label">Old workflow</span>
+          </button>
+        </li>
+        <li class="toc-item" data-target="#solutions">
+          <button class="toc-btn">
+            <span class="toc-dot"></span
+            ><span class="toc-label">Solutions</span>
+          </button>
+        </li>
+        <li class="toc-item" data-target="#new-workflow">
+          <button class="toc-btn">
+            <span class="toc-dot"></span
+            ><span class="toc-label">New workflow</span>
+          </button>
+        </li>
+        <li class="toc-item" data-target="#business-impact">
+          <button class="toc-btn">
+            <span class="toc-dot"></span
+            ><span class="toc-label">Business impact</span>
+          </button>
+        </li>
+        <li class="toc-item" data-target="#testimonial">
+          <button class="toc-btn">
+            <span class="toc-dot"></span
+            ><span class="toc-label">Testimonial</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile fallback for the nav above — a slim top progress bar,
+     shown only under 900px (see .scroll-progress media query) -->
+    <div class="scroll-progress">
+      <div class="scroll-progress-fill" id="scroll-progress-fill"></div>
+    </div>
+
+    <!-- ==========================================================================
+     SECTION 1 — OVERVIEW COMPONENT
+     ========================================================================== -->
+    <section class="section sec1" id="overview">
+      <div class="container">
+        <div class="section-head">
+          <h2>Meridian Freight cut reporting</h2>
+          <p>
+            A regional logistics operator was drowning in manual spreadsheets
+            and next-day reports. Here's how we rebuilt their reporting pipeline
+            from the ground up — and what changed for the teams who depend on
+            it.
+          </p>
+          <a href="/case-studies.html" class="back-link-cs"
+            >&larr; Back to Case Studies</a
+          >
+        </div>
+
+        <div class="sec1-grid">
+          <!-- Left card: full height, half width — engagement facts -->
+          <div class="info_card sec1-card sec1-facts">
+            <div>
+              <span class="sec1-kicker">Engagement summary</span>
+              <h3>
+                Rebuilding reporting infrastructure for a 40-warehouse freight
+                network
+              </h3>
+            </div>
+            <ul class="sec1-fact-list">
+              <li>
+                <span class="sec1-fact-label">Client</span>
+                <span class="sec1-fact-value">Meridian Freight Co.</span>
+              </li>
+              <li>
+                <span class="sec1-fact-label">Industry</span>
+                <span class="sec1-fact-value"
+                  >Logistics &amp; Distribution</span
+                >
+              </li>
+              <li>
+                <span class="sec1-fact-label">Timeline</span>
+                <span class="sec1-fact-value">14 weeks</span>
+              </li>
+              <li>
+                <span class="sec1-fact-label">Footprint</span>
+                <span class="sec1-fact-value">40 warehouses, 6 regions</span>
+              </li>
+              <li>
+                <span class="sec1-fact-label">Team</span>
+                <span class="sec1-fact-value">3 engineers, 1 analyst</span>
+              </li>
+              <li>
+                <span class="sec1-fact-label">Systems connected</span>
+                <span class="sec1-fact-value">6 data sources</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right column: 2 stacked cards, count-up metric animations -->
+          <div class="sec1-metrics">
+            <div class="info_card sec1-metric-card">
+              <div class="sec1-metric-value">
+                <span class="js-counter" data-target="82" data-suffix="%"
+                  >0</span
+                >
+              </div>
+              <p class="sec1-metric-label">Reduction in time-to-report</p>
+            </div>
+            <div class="info_card sec1-metric-card">
+              <div class="sec1-metric-value">
+                <span class="js-counter" data-target="3200" data-suffix="+"
+                  >0</span
+                ><span class="unit">hrs/yr</span>
+              </div>
+              <p class="sec1-metric-label">Analyst hours reclaimed annually</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+     SECTION 2 — CHALLENGES COMPONENT
+     ========================================================================== -->
+    <section class="section sec2" id="challenges">
+      <div class="container">
+        <div class="section-head">
+          <h2>The old process was breaking under its own weight</h2>
+          <p>
+            Every region ran its own spreadsheets, on its own schedule, in its
+            own format. By the time a report reached leadership, the numbers
+            inside it were already out of date.
+          </p>
+        </div>
+
+        <div class="sec2-cards">
+          <div class="info_card sec2-card">
+            <div class="sec2-num">1</div>
+            <h3>Manual data entry across 6 systems</h3>
+            <p>
+              Warehouse leads re-typed the same shipment data into spreadsheets,
+              a TMS, and a billing tool — three times, three chances to get it
+              wrong.
+            </p>
+          </div>
+          <div class="info_card sec2-card">
+            <div class="sec2-num">2</div>
+            <h3>Reports took three days to compile</h3>
+            <p>
+              Regional numbers were emailed to a single analyst, who reconciled
+              formats by hand before anyone could see the full picture.
+            </p>
+          </div>
+          <div class="info_card sec2-card">
+            <div class="sec2-num">3</div>
+            <h3>No real-time visibility into operations</h3>
+            <p>
+              Delays at one warehouse went unnoticed for days, since dashboards
+              only reflected whatever was compiled at the last cutoff.
+            </p>
+          </div>
+        </div>
+
+        <div class="sec2-row">
+          <!-- Left: text + animated horizontal progress fill -->
+          <div class="info_card sec2-bar-card">
+            <h3>
+              Analyst time spent assembling reports instead of reading them
+            </h3>
+            <p>
+              Nearly seven in ten working hours went into formatting and
+              reconciliation — not analysis.
+            </p>
+            <div class="progress-fill-label">
+              <span>Manual reporting workload</span>
+              <strong class="js-bar-value">0%</strong>
+            </div>
+            <div class="progress-track">
+              <div
+                class="progress-fill js-progress-fill"
+                data-percent="68"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Right: circular progress card -->
+          <div class="info_card sec2-ring-card">
+            <div class="ring-wrap">
+              <svg viewBox="0 0 148 148">
+                <circle class="ring-track" cx="74" cy="74" r="64"></circle>
+                <circle
+                  class="ring-fill js-ring-fill"
+                  cx="74"
+                  cy="74"
+                  r="64"
+                  data-percent="61"
+                ></circle>
+              </svg>
+              <div class="ring-value">
+                <span class="js-ring-value">0</span>%
+              </div>
+            </div>
+            <p class="ring-caption">
+              of leadership decisions were delayed by stale or conflicting data
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+     SECTION 3 — OLD WORKFLOW COMPONENT
+     GSAP ScrollTrigger fills the connector line as the section scrolls,
+     and toggles .is-active on each step once the fill line reaches it.
+     ========================================================================== -->
+    <section class="section sec3" id="old-workflow">
+      <div class="container">
+        <div class="section-head">
+          <h2>Five manual handoffs, one report</h2>
+          <p>
+            Before automation, a single weekly report passed through five
+            disconnected steps — each one adding delay and a fresh chance for
+            error.
+          </p>
+        </div>
+
+        <div class="workflow-rail" id="old-workflow-rail">
+          <div class="workflow-track-line"></div>
+          <div class="workflow-fill-line" id="old-fill-line"></div>
+
+          <div class="workflow-steps" id="old-workflow-steps">
+            <div class="workflow-step" data-step="1">
+              <div class="workflow-marker">1</div>
+              <h4>Manual data collection</h4>
+              <p>
+                Warehouse leads pull numbers from paper logs and local
+                spreadsheets.
+              </p>
+              <span class="workflow-time">~6 hrs</span>
+            </div>
+            <div class="workflow-step" data-step="2">
+              <div class="workflow-marker">2</div>
+              <h4>Spreadsheet consolidation</h4>
+              <p>
+                One analyst merges six regional files into a single working
+                sheet.
+              </p>
+              <span class="workflow-time">~5 hrs</span>
+            </div>
+            <div class="workflow-step" data-step="3">
+              <div class="workflow-marker">3</div>
+              <h4>Manual validation &amp; cleanup</h4>
+              <p>
+                Mismatched formats and duplicate entries get fixed line by line.
+              </p>
+              <span class="workflow-time">~4 hrs</span>
+            </div>
+            <div class="workflow-step" data-step="4">
+              <div class="workflow-marker">4</div>
+              <h4>Static report building</h4>
+              <p>Charts and tables are rebuilt from scratch in a slide deck.</p>
+              <span class="workflow-time">~3 hrs</span>
+            </div>
+            <div class="workflow-step" data-step="5">
+              <div class="workflow-marker">5</div>
+              <h4>Email distribution &amp; waiting</h4>
+              <p>
+                The deck is emailed out; questions wait for next week's cycle.
+              </p>
+              <span class="workflow-time">~2 days</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+     SECTION 4 — SOLUTIONS COMPONENT (image carousel)
+     Autoplays every 5s; arrows/dots pause autoplay on manual interaction.
+     ========================================================================== -->
+    <section class="section sec4" id="solutions">
+      <div class="container">
+        <div class="section-head">
+          <h2>What we built instead</h2>
+          <p>
+            A connected pipeline that pulls data automatically, validates it in
+            real time, and pushes finished dashboards to the people who need
+            them.
+          </p>
+        </div>
+
+        <div class="carousel" id="solutions-carousel">
+          <div class="carousel-track" id="carousel-track">
+            <div class="carousel-slide">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80"
+                alt="Live operations dashboard showing automated data streams"
+              />
+              <div class="carousel-slide-caption">
+                <span>01 — Live dashboards</span>
+                <h3>Every warehouse feeds one real-time view</h3>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80"
+                alt="Analytics screens displaying automated reporting metrics"
+              />
+              <div class="carousel-slide-caption">
+                <span>02 — Automated validation</span>
+                <h3>Data is checked and reconciled before it's seen</h3>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img
+                src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1400&q=80"
+                alt="Team reviewing workflow automation on screen"
+              />
+              <div class="carousel-slide-caption">
+                <span>03 — Workflow orchestration</span>
+                <h3>Six systems synced through one automation layer</h3>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80"
+                alt="Close-up of analytics dashboard charts"
+              />
+              <div class="carousel-slide-caption">
+                <span>04 — Instant reporting</span>
+                <h3>Reports generate the moment data lands, not weekly</h3>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img
+                src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1400&q=80"
+                alt="Team collaborating around automated reporting tools"
+              />
+              <div class="carousel-slide-caption">
+                <span>05 — Shared visibility</span>
+                <h3>Every region sees the same numbers, at the same time</h3>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="carousel-arrow prev"
+            id="carousel-prev"
+            aria-label="Previous slide"
+          >
+            ‹
+          </button>
+          <button
+            class="carousel-arrow next"
+            id="carousel-next"
+            aria-label="Next slide"
+          >
+            ›
+          </button>
+        </div>
+
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+     SECTION 5 — NEW WORKFLOW COMPONENT
+     Structurally identical to Section 3; palette classes swap to green.
+     ========================================================================== -->
+    <section class="section sec5" id="new-workflow">
+      <div class="container">
+        <div class="section-head">
+          <h2>One pipeline, five automated steps</h2>
+          <p>
+            The same weekly report now assembles itself — each step below runs
+            automatically, with no manual handoff in between.
+          </p>
+        </div>
+
+        <div class="workflow-rail" id="new-workflow-rail">
+          <div class="workflow-track-line"></div>
+          <div class="workflow-fill-line is-green" id="new-fill-line"></div>
+
+          <div class="workflow-steps" id="new-workflow-steps">
+            <div class="workflow-step" data-step="1">
+              <div class="workflow-marker is-green">1</div>
+              <h4>Automated data sync</h4>
+              <p>Connectors pull from all six systems on a live schedule.</p>
+              <span class="workflow-time">~2 min</span>
+            </div>
+            <div class="workflow-step" data-step="2">
+              <div class="workflow-marker is-green">2</div>
+              <h4>Real-time validation</h4>
+              <p>Rules catch mismatches and duplicates as data arrives.</p>
+              <span class="workflow-time">~30 sec</span>
+            </div>
+            <div class="workflow-step" data-step="3">
+              <div class="workflow-marker is-green">3</div>
+              <h4>Smart aggregation engine</h4>
+              <p>Regional figures merge into one consistent dataset.</p>
+              <span class="workflow-time">~1 min</span>
+            </div>
+            <div class="workflow-step" data-step="4">
+              <div class="workflow-marker is-green">4</div>
+              <h4>Auto-generated dashboards</h4>
+              <p>Charts and summaries rebuild themselves on every update.</p>
+              <span class="workflow-time">Instant</span>
+            </div>
+            <div class="workflow-step" data-step="5">
+              <div class="workflow-marker is-green">5</div>
+              <h4>Instant stakeholder alerts</h4>
+              <p>Leadership gets notified the moment numbers are ready.</p>
+              <span class="workflow-time">Instant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+     SECTION 6 — BUSINESS IMPACT COMPONENT
+     Left: wide card, impact list + animated bar.
+     Right: stacked scorecard + circular progress card.
+     Circular value is driven by the IMPACT_SATISFACTION_SCORE variable —
+     change it and call updateImpactRing() to reflect a new %.
+     ========================================================================== -->
+    <section class="section sec6" id="business-impact">
+      <div class="container">
+        <div class="section-head">
+          <h2>The numbers, six months later</h2>
+          <p>
+            Automation didn't just save time — it changed what the operations
+            team could act on, and how fast.
+          </p>
+        </div>
+
+        <div class="sec6-grid">
+          <!-- Left: single wide card -->
+          <div class="info_card sec6-left">
+            <div>
+              <h3>What changed across the network</h3>
+              <ul class="sec6-impact-list">
+                <li>Weekly reports now compile in minutes, not days</li>
+                <li>
+                  Zero duplicate data entry across the six connected systems
+                </li>
+                <li>Regional teams see the same live numbers as leadership</li>
+                <li>Analysts spend their time on analysis, not formatting</li>
+              </ul>
+            </div>
+            <div class="sec6-bar-block">
+              <div class="progress-fill-label">
+                <span>Overall operational efficiency gain</span>
+                <strong class="js-bar-value" data-for="impact-bar">0%</strong>
+              </div>
+              <div class="progress-track">
+                <div
+                  class="progress-fill js-progress-fill"
+                  id="impact-bar"
+                  data-percent="82"
+                  style="background: linear-gradient(90deg, #123326, #22c57d)"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: 2 stacked cards -->
+          <div class="sec6-right">
+            <div class="info_card sec6-score-card">
+              <div
+                class="sec6-score-value js-counter"
+                data-target="1.4"
+                data-prefix="+$"
+                data-suffix="M"
+                data-decimals="1"
+              >
+                +$0M
+              </div>
+              <span class="sec6-score-change">▲ 128% YoY</span>
+              <p class="sec6-score-label">
+                Annual cost savings from reduced manual labor
+              </p>
+            </div>
+
+            <div class="info_card sec6-ring-card">
+              <div class="ring-wrap">
+                <svg viewBox="0 0 148 148">
+                  <circle class="ring-track" cx="74" cy="74" r="64"></circle>
+                  <circle
+                    class="ring-fill js-ring-fill"
+                    id="impact-ring"
+                    cx="74"
+                    cy="74"
+                    r="64"
+                    data-percent="94"
+                  ></circle>
+                </svg>
+                <div class="ring-value">
+                  <span class="js-ring-value" id="impact-ring-value">0</span>%
+                </div>
+              </div>
+              <div class="sec6-ring-text">
+                <h4>Client satisfaction score</h4>
+                <p>Measured across regional operations leads post-rollout</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+     SECTION 7 — TESTIMONIAL COMPONENT
+     ========================================================================== -->
+    <section class="section sec7" id="testimonial">
+      <div class="container">
+        <div class="testimonial-card">
+          <div class="testimonial-avatar">
+            <i data-lucide="user-round"></i>
+          </div>
+          <div class="testimonial-body">
+            <p class="quote">
+              "We used to find out about a bad week on Friday afternoon. Now we
+              find out on Monday morning — sometimes before the warehouse
+              manager does. That shift alone changed how we run the business."
+            </p>
+            <div class="testimonial-meta">
+              <strong>Sarah Chen</strong>
+              <span class="dot"></span>
+              <span>VP of Operations</span>
+            </div>
+            <div class="testimonial-logo">MERIDIAN FREIGHT CO.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

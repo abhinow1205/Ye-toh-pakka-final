@@ -1,0 +1,106 @@
+/* .info_card {
+  background: linear-gradient(135deg, #134e4a 0%, #1e1b4b 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+} */
+
+.info_card {
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(139, 82, 255, 0.10),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(92, 225, 230, 0.06),
+      transparent 40%
+    ),
+    rgba(3, 5, 14, 0.82);
+
+  border-radius: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* animated ring, sitting just behind the pill */
+.info_card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px; /* controls ring thickness */
+  background: conic-gradient(
+    from var(--eyebrow-angle, 0deg),
+    rgba(129, 140, 248, 0.1),
+    #a5b4fc 20%,
+    rgba(129, 140, 248, 0.1) 40%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: eyebrow-ring-spin 3.5s linear infinite;
+}
+
+@property --eyebrow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes eyebrow-ring-spin {
+  to { --eyebrow-angle: 360deg; }
+}
+
+.interactive_card {
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(139, 82, 255, 0.10),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(92, 225, 230, 0.06),
+      transparent 40%
+    ),
+    rgba(3, 5, 14, 0.82);
+
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.interactive_card:hover {
+  border-color: #8c52ff;
+
+  box-shadow:
+    0 0 0 1px rgba(140, 82, 255, 0.25),
+    0 0 18px rgba(140, 82, 255, 0.35),
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}

@@ -1,0 +1,92 @@
+<nav class="navbar" id="siteNav">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo-wrap">
+      <img src="assets/IG Only Logo.png" alt="Insight Grid Logo" />
+    </a>
+
+    <div class="nav-center desktop-only">
+      <ul class="nav-list" id="desktopNavList"></ul>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-actions desktop-only" style="display: flex; gap: 0.6rem">
+        <a
+          href="mailto:solutions@insightgrid.in"
+          class="secondary_small_button"
+          id="minimal_outline"
+        >
+          <i data-lucide="mail"></i>
+        </a>
+        <a
+          href="#"
+          class="primary_small_button"
+          id="bg_gradient_move"
+          data-quote-trigger
+          >Request Quote</a
+        >
+      </div>
+
+      <button
+        class="hamburger mobile-only"
+        id="hamburgerBtn"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar3"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-overlay mobile-only" id="mobileOverlay">
+  <div class="mobile-overlay-inner">
+    <ul class="m-list" id="mobileNavList"></ul>
+    <div class="mobile-actions">
+      <a href="mailto:solutions@insightgrid.in" class="btn btn-ghost"
+        >Email Us</a
+      >
+      <a href="#" class="btn btn-solid">Request Quote</a>
+    </div>
+  </div>
+</div>
+
+<div class="quote-overlay" id="quoteOverlay">
+  <div class="quote-modal">
+    <button class="quote-modal-close" id="quoteCloseBtn" aria-label="Close">
+      &times;
+    </button>
+    <h3>Request a Quote</h3>
+    <p class="quote-modal-sub">
+      Tell us a bit about your project and we'll get back to you shortly.
+    </p>
+    <form id="quoteForm">
+      <div class="quote-field">
+        <label for="quoteName">Name</label>
+        <input type="text" id="quoteName" name="name" required />
+      </div>
+      <div class="quote-field">
+        <label for="quoteCompany">Company</label>
+        <input type="text" id="quoteCompany" name="company" required />
+      </div>
+      <div class="quote-field">
+        <label for="quoteDescription">Description</label>
+        <textarea
+          id="quoteDescription"
+          name="description"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-solid quote-submit"
+        id="quoteSubmitBtn"
+      >
+        Submit
+      </button>
+      <p class="quote-status" id="quoteStatus"></p>
+    </form>
+  </div>
+</div>

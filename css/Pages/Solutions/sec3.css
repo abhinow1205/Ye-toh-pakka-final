@@ -1,0 +1,153 @@
+/* ============================================================================================
+   ============================================================================================
+   SECTION 2 — PROCESS (scroll-driven stepper)
+   Copy the CSS between the SECTION 2 markers into your stylesheet and the HTML/JS the same way.
+   All classes are prefixed with "pr-".
+   ============================================================================================
+   ============================================================================================ */
+
+/* ===== SECTION 2 CSS START ===== */
+.pr-section {
+  --pr-ink: #14181F;
+  --pr-paper: #EEEBE3;
+  --pr-line: #2B313C;
+  --pr-brass: #D6A56A;
+  --pr-card: #1B212B;
+
+  /* background: var(--pr-ink); */
+  color: var(--pr-paper);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* padding: 96px 32px 112px; */
+  padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+}
+
+.pr-inner { margin: 0 auto; gap: 60px; display: flex; flex-direction: column; }
+
+/* --- stepper wrap --- */
+.pr-steps-wrap {
+  position: relative;
+}
+
+.pr-track {
+  position: absolute;
+  top: 27px;
+  left: calc(10% + 27px);
+  right: calc(10% + 27px);
+  height: 2px;
+  background: var(--pr-line);
+}
+
+.pr-track-fill {
+  height: 100%;
+  width: calc(var(--pr-progress, 0) * 100%);
+  background: var(--color-primary);
+  transition: width 0.05s linear;
+}
+
+.pr-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  position: relative;
+}
+
+.pr-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 6px;
+}
+
+.pr-step-marker {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--pr-card);
+  border: 2px solid var(--pr-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6B7280;
+  margin-bottom: 22px;
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+.pr-step-marker svg { width: 22px; height: 22px; }
+
+.pr-step.is-active .pr-step-marker {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--pr-card);
+  transform: scale(1.08);
+}
+
+.pr-step-index {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #6B7280;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+.pr-step.is-active .pr-step-index { color: var(--color-primary); }
+
+.pr-step-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+  transition: color 0.3s ease;
+}
+
+.pr-step-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #8992A1;
+  margin: 0;
+}
+
+/* --- tablet --- */
+@media (max-width: 900px) {
+  .pr-section { padding: 72px 24px 88px; }
+  .pr-steps { grid-template-columns: repeat(3, 1fr); row-gap: 48px; }
+  .pr-track { display: none; }
+  .pr-step-desc { display: none; }
+}
+
+/* --- mobile: vertical stepper, line runs down the left --- */
+@media (max-width: 560px) {
+  .pr-section { padding: 56px 18px 72px; }
+  .pr-header { text-align: left; margin-bottom: 48px; }
+  .pr-headline { font-size: 26px; }
+
+  .pr-steps { display: flex; flex-direction: column; gap: 0; }
+
+  .pr-track {
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 27px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    z-index: -2;
+  }
+  .pr-track-fill {
+    width: 100%;
+    height: calc(var(--pr-progress, 0) * 100%);
+  }
+
+  .pr-step {
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+    padding: 0 0 36px 0;
+  }
+  .pr-step:last-child { padding-bottom: 0; }
+  .pr-step-marker { margin-bottom: 0; margin-right: 18px; }
+  .pr-step-desc { display: block; }
+}
+/* ===== SECTION 2 CSS END ===== */

@@ -1,0 +1,96 @@
+.bl-section {
+    width: 100%;
+    padding: 3rem clamp(1.5rem, 5vw, 4.5rem);
+  }
+
+.bl-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .bl-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--ink);
+    padding: 0.7rem 1.3rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* ===================================================================
+     VARIANT 1 — Editorial grid, tilt + glare cards
+  =================================================================== */
+  .bl1-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    perspective: 1200px;
+  }
+
+  .bl1-card {
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+
+.bl1-thumb {
+  height: 150px;
+
+  background-image: url("https://images.unsplash.com/photo-1711097383282-28097ae16b1d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+
+  border-bottom: 1px solid var(--line);
+  transform: translateZ(0);
+}
+
+.bl2-thumb {
+  height: 150px;
+
+  background-image: url("https://images.unsplash.com/photo-1672380135241-c024f7fbfa13?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+
+  border-bottom: 1px solid var(--line);
+  transform: translateZ(0);
+}
+
+.bl3-thumb {
+  height: 150px;
+
+  background-image: url("https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+
+  border-bottom: 1px solid var(--line);
+  transform: translateZ(0);
+}
+
+  .bl1-body { padding: 1.5rem; transform: translateZ(20px); }
+
+  .bl1-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .bl1-card h3 { font-size: 1.05rem; line-height: 1.4; margin-bottom: 0.6rem; }
+  .bl1-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.55; margin: 0 0 1rem; }
+
+  .bl1-meta { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
