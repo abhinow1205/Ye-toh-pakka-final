@@ -1,0 +1,149 @@
+      /* Full Width Main Layout (Vertical Stacking) */
+      .main-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+            /* Article Body */
+      .article-content {
+        padding: 3rem;
+        width: 100%;
+      }
+
+      .intro-lead {
+        font-size: 1.2rem;
+        color: var(--muted);
+        margin-bottom: 2rem;
+        border-left: 4px solid var(--primary);
+        padding-left: 1.25rem;
+      }
+
+      /* Stat Grid */
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2.5rem 0;
+      }
+
+      .stat-card {
+        padding: 1.75rem;
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: var(--color-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .stat-desc {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      /* Process Feature Cards */
+      .process-card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .process-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .icon-box {
+        width: 52px;
+        height: 52px;
+        background: white;
+        color: var(--color-primary);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.35rem;
+        flex-shrink: 0;
+      }
+
+      .process-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      .tool-tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-top: 1.25rem;
+      }
+
+      .tag {
+        background: var(--color-primary);
+        border: 1px solid var(--gray-border);
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      /* Visual Chart Container */
+      .chart-box {
+        background: var(--gray-light);
+        border-radius: 12px;
+        padding: 2rem;
+        margin: 2.5rem 0;
+        border: 1px solid var(--gray-border);
+        width: 100%;
+      }
+
+      .chart-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .bar-chart {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .bar-group {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .bar-label {
+        width: 140px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .bar-wrapper {
+        flex-grow: 1;
+        background: #e2e8f0;
+        height: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .bar-fill {
+        height: 100%;
+        background: var(--color-primary);
+        border-radius: 10px;
+      }

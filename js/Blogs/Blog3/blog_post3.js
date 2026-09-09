@@ -1,16 +1,16 @@
-import { loadComponent } from "../Universal/loader.js";
+import { loadComponent } from "../../Universal/loader.js";
 
-import { initNavbar } from "../Universal/navbar.js";
+import { initNavbar } from "../../Universal/navbar.js";
 
-import { initializeFixedBackground } from "../Universal/fixed_bg.js";
+import { initializeFixedBackground } from "../../Universal/fixed_bg.js";
 
-import { section_header } from "../Universal/section_header.js";
+import { section_header } from "../../Universal/section_header.js";
 
-import { bottom_CTA } from "../Universal/bottom_CTA.js";
+import { bottom_CTA } from "../../Universal/bottom_CTA.js";
 
-import { blog_script_common } from "../Blogs/blog_script.js";
+import { blog_body3 } from "./blog_body3.js";
 
-import { footer_comp_common } from "../Universal/footer.js";
+import { footer_comp_common } from "../../Universal/footer.js";
 
 gsap.registerPlugin(
         ScrollTrigger,
@@ -28,7 +28,7 @@ async function initSite(){
 
         loadComponent("fixed-bg-comp","../components/Universal/fixed_bg.html"),
 
-        loadComponent("blog1-body","../components/Blogs/bp1.html"),
+        loadComponent("blog3-body","../components/Blogs/bp3.html"),
 
         loadComponent("footer-component","../components/Universal/footer.html"),
 
@@ -42,7 +42,7 @@ async function initSite(){
 
     section_header();
 
-    blog_script_common();
+    blog_body3();
 
     bottom_CTA();
 

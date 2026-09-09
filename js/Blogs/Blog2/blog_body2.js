@@ -1,4 +1,4 @@
-export function blog_script_common(){
+export function blog_body2(){
     
 /* ===================== HEADER LOAD SEQUENCE ===================== */
       const coverPath = document.getElementById("coverPath");
@@ -76,21 +76,6 @@ export function blog_script_common(){
             target.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
-
-      /* ===================== PROSE REVEALS ===================== */
-      gsap.utils
-        .toArray(
-          ".prose h2, .prose > p, .pull-quote, .stat-row, .code-block, .author-card",
-        )
-        .forEach((el) => {
-          gsap.from(el, {
-            opacity: 0,
-            y: 18,
-            duration: 0.55,
-            ease: "power2.out",
-            scrollTrigger: { trigger: el, start: "top 88%" },
-          });
-        });
 
       /* ===================== RELATED + SUBSCRIBE ===================== */
       gsap.from(".post-card", {
