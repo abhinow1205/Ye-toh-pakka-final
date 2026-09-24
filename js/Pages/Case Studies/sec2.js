@@ -2,75 +2,29 @@ export function case_studies_sec2(){
       // ---- Dummy data ----
   const caseStudies = [
     {
-      title: "Cutting claims processing time by 60%",
-      industry: "Healthcare",
-      client: "Meridian Health Network",
+      title: "Media & News Monitoring System (Political Consultancy)",
+      href: "./cs-media-monitoring-system.html",
+      industry: "Agency",
+      client: "Wilbert Creations",
       date: "2026-05-12",
-      summary: "How a regional health network automated claims intake and slashed processing time from days to hours."
+      summary: "Automated news monitoring that tracks, filters, and delivers relevant updates."
     },
     {
-      title: "Scaling fraud detection to 2M transactions a day",
-      industry: "Finance",
-      client: "Northbridge Capital",
-      date: "2026-03-02",
-      summary: "A mid-size fintech rebuilt its fraud detection pipeline to keep pace with rapid transaction growth."
+      title: "Business Operating System for a Solo Founder",
+      href: "./cs-business-operating-system.html",
+      industry: "Agency",
+      client: "Loopmark",
+      date: "2026-06-12",
+      summary: "A solo founder was running their business across a dozen scattered tools. Here's how we built them a single operating system for the whole business."
     },
     {
-      title: "Turning returns data into a 12% margin gain",
-      industry: "Retail",
-      client: "Solstice Apparel Co.",
-      date: "2026-06-18",
-      summary: "An apparel brand used return pattern analysis to cut inventory waste and improve margins."
-    },
-    {
-      title: "Rerouting a fleet of 400 vehicles in real time",
+      title: "Workflow Automation with Approval & Auto-Execution",
+      href: "./cs-workflow-automation.html",
       industry: "Logistics",
-      client: "Ferrovia Freight",
-      date: "2025-11-09",
-      summary: "A freight company built a live rerouting system that adapts to traffic and weather instantly."
+      client: "Vintage Operations",
+      date: "2026-06-12",
+      summary: "Automated workflows that track tasks, route approvals, and reduce manual delays."
     },
-    {
-      title: "Personalized learning paths for 50,000 students",
-      industry: "Education",
-      client: "Brightline Learning",
-      date: "2026-01-22",
-      summary: "An edtech platform introduced adaptive learning paths that lifted course completion rates."
-    },
-    {
-      title: "Reducing patient no-shows by a third",
-      industry: "Healthcare",
-      client: "Alden Family Clinics",
-      date: "2025-09-14",
-      summary: "A clinic network used predictive reminders to significantly cut missed appointments."
-    },
-    {
-      title: "Automating reconciliation across 14 currencies",
-      industry: "Finance",
-      client: "Vantage Global Bank",
-      date: "2026-04-27",
-      summary: "A multinational bank replaced manual reconciliation with an automated, audit-ready workflow."
-    },
-    {
-      title: "Rebuilding checkout to cut cart abandonment",
-      industry: "Retail",
-      client: "Northloop Home Goods",
-      date: "2026-02-08",
-      summary: "A home goods retailer redesigned checkout and recovered a meaningful share of lost sales."
-    },
-    {
-      title: "Cutting warehouse pick times by 40%",
-      industry: "Logistics",
-      client: "Cascade Distribution",
-      date: "2025-12-30",
-      summary: "A distribution center reorganized picking routes using historical order data."
-    },
-    {
-      title: "Bringing hybrid classrooms to rural districts",
-      industry: "Education",
-      client: "Prairie Unified School District",
-      date: "2026-07-01",
-      summary: "A rural school district rolled out hybrid classroom tools despite limited connectivity."
-    }
   ];
 
   // ---- State ----
@@ -118,8 +72,9 @@ export function case_studies_sec2(){
     emptyState.style.display = items.length === 0 ? 'block' : 'none';
 
     items.forEach(cs => {
-      const card = document.createElement('div');
+      const card = document.createElement('a');
       card.className = 'interactive_card cs-card';
+      card.href = cs.href;
       card.innerHTML = `
         <span class="industry-tag">${cs.industry}</span>
         <h3>${cs.title}</h3>
