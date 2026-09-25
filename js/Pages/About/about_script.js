@@ -18,7 +18,7 @@ import { about_sec4 } from "../../Pages/About/sec4.js";
 
 import { about_sec5 } from "../../Pages/About/sec5.js";
 
-import { about_sec6 } from "../../Pages/About/sec6.js";
+// import { about_sec6 } from "../../Pages/About/sec6.js";
 
 import { about_sec7 } from "../../Pages/About/sec7.js";
 
@@ -50,7 +50,7 @@ async function initSite(){
 
         loadComponent("sec5-about","./components/Pages/About/sec5.html"),
 
-        loadComponent("sec6-about","./components/Pages/About/sec6.html"),
+        // loadComponent("sec6-about","./components/Pages/About/sec6.html"),
 
         loadComponent("sec7-about","./components/Pages/About/sec7.html"),
 
@@ -79,7 +79,7 @@ async function initSite(){
 
     about_sec5();
 
-    about_sec6();
+    // about_sec6();
 
     about_sec7();
 
