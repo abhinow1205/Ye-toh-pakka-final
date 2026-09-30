@@ -22,18 +22,24 @@
   }
 
   .au-avatar {
-    width: 76px;
-    height: 76px;
-    border-radius: 50%;
-    margin: 0 auto 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #14100a;
-  }
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 1.1rem;
+  align-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #eee;
+}
+
+.au-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
   .au-team-card h4 { margin: 0 0 0.2rem; font-size: 1.05rem; }
   .au-team-card .au-role { color: var(--accent); font-size: 0.8rem; margin-bottom: 0.6rem; }
